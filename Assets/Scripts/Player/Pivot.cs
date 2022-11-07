@@ -7,7 +7,7 @@ public class Pivot : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 difference = mainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        Vector3 difference = Camera.current.ScreenToWorldPoint(Input.mousePosition) - transform.position;
 
         difference.Normalize();
 
