@@ -1,12 +1,14 @@
+using System;
 using UnityEngine;
 
 public class Pivot : MonoBehaviour
 {
     public GameObject myPlayer;
+    public Camera mainCamera;
 
     private void FixedUpdate()
     {
-        Vector3 difference = Camera.current.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        Vector3 difference = mainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
 
         difference.Normalize();
 
