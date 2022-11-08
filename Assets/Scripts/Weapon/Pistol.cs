@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Knife : MeleeWeapon
+public class Pistol : RangeWeapon
 {
     // Start is called before the first frame update
     protected override void Start()
@@ -10,13 +10,9 @@ public class Knife : MeleeWeapon
         base.Start();
 
         AttackDamage = 100;
-        AttackRange = 0.75f;
 
-        effects += Bleed;
-    }
-
-    private void Bleed(Enemy enemy)
-    {
-        enemy.TakeBleed();
+        Spread = 0.0825f;
+        Penetration = 0f;
+        NumberOfBullets = 1;
     }
 }

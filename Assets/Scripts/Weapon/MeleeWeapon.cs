@@ -5,7 +5,6 @@ using UnityEngine;
 abstract public class MeleeWeapon : Weapon
 {
     [SerializeField] private Transform attackPoint;
-    [SerializeField] private LayerMask enemyLayers;
     protected float AttackRange { get; set; }
 
     protected virtual void Start()
@@ -13,18 +12,18 @@ abstract public class MeleeWeapon : Weapon
         effects += Damage;
     }
 
-    private void Damage(Collider2D enemy)
+    private void Damage(Enemy enemy)
     {
-        enemy.GetComponent<Enemy>().TakeDamage(AttackDamage);
+        enemy.TakeDamage(AttackDamage);
     }
 
     public override void Attack()
     {
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, AttackRange, enemyLayers);
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, AttackRange, EnemyLayers);
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            effects(enemy);
+            effects(enemy.GetComponent<Enemy>());
         }
     }
 }

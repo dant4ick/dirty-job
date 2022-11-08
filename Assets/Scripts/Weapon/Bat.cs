@@ -15,8 +15,8 @@ public class Bat : MeleeWeapon
         effects += Stun;
     }
 
-    private void Stun(Collider2D enemy)
+    private void Stun(Enemy enemy)
     {
-        enemy.GetComponent<Enemy>().TakeStun(1f);
+        enemy.TakeStun(1f);
     }
 }
