@@ -22,6 +22,11 @@ public class Enemy : MonoBehaviour
         Debug.Log("STUN");
     }
 
+    public void TakeBleed()
+    {
+        Debug.Log("BLEED");
+    }
+
     void Die()
     {
         Debug.Log("DED");
