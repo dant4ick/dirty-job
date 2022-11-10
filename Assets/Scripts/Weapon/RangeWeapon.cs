@@ -9,11 +9,18 @@ public class RangeWeapon : Weapon
 
     protected float Spread { get; set; }
     protected float Penetration { get; set; }
-    protected int NumberOfBullets { get; set; }
+    protected int NumberOfBulletsPerShot { get; set; }
+
+    protected int MaxAmmo { get; set; }
+    protected int CurrentAmmo { get; set; }
+    protected float ReloadTime { get; set; }
+    private bool isReloading = false;
 
     // Start is called before the first frame update
     protected virtual void Start()
     {
+        CurrentAmmo = MaxAmmo;
+
         effects += BulletHit;
     }
 
@@ -24,9 +31,27 @@ public class RangeWeapon : Weapon
 
     public override void Attack()
     {
+        if (isReloading)
+        {
+            return;
+        }
+
+        if (Time.time < LastTimeAttack + FireRate)
+        {
+            return;
+        }
+
+        if (CurrentAmmo == 0)
+        {
+            StartCoroutine(Reload());
+            return;
+        }
+
+        CurrentAmmo--;
+
         Vector3 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
 
-        for (int bullet = 0; bullet < NumberOfBullets; bullet++)
+        for (int bullet = 0; bullet < NumberOfBulletsPerShot; bullet++)
         {
             Vector3 offset = new Vector2(Random.Range(0f, Spread), Random.Range(-Spread, Spread));
             RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, mousePosition + offset);
@@ -42,6 +67,18 @@ public class RangeWeapon : Weapon
                     effects(enemy);
                 }
             }
+
+            LastTimeAttack = Time.time;
         }
+    }
+
+    IEnumerator Reload()
+    {
+        isReloading = true;
+
+        yield return new WaitForSeconds(ReloadTime);
+        CurrentAmmo = MaxAmmo;
+
+        isReloading = false;
     }
 }

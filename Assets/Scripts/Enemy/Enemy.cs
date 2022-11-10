@@ -18,7 +18,6 @@ public class Enemy : MonoBehaviour
 
     public void TakeStun(float seconds)
     {
-        // Когда бъешь типо битой и тп то чел глушиться
         Debug.Log("STUN");
     }
 

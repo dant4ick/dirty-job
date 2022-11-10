@@ -7,15 +7,17 @@ public class Bat : MeleeWeapon
     // Start is called before the first frame update
     protected override void Start()
     {
-        base.Start();
-
         AttackDamage = 100;
         AttackRange = 0.75f;
 
-        effects += Stun;
+        FireRate = 1f;
+
+        effects += TakeStun;
+
+        base.Start();
     }
 
-    private void Stun(Enemy enemy)
+    private void TakeStun(Enemy enemy)
     {
         enemy.TakeStun(1f);
     }
