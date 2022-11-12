@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb795c96ced7f5c4e8328e162170f68f, type: 3}
+  m_Name: Shotgun
+  m_EditorClassIdentifier: 
+  _sprite: {fileID: -1964752095, guid: 429fd4d48054d2b4b9c1787209b5cc01, type: 3}
+  _name: Shotgun
+  _enemyLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  _attackDamage: 50
+  _attackRate: 1
+  _spread: 0.8
+  _penetration: 1
+  _numberOfBulletsPerShot: 8
+  _maxAmmo: 2
+  _currentAmmo: 2
+  _reloadTime: 2
+  _isReloading: 0
