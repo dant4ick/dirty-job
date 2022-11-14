@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-abstract public class Weapon : Item
+abstract public class Weapon : Item.Item
 {
     [SerializeField] private LayerMask _enemyLayers;
 

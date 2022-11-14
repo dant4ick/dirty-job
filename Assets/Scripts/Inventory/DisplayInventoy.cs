@@ -23,7 +23,7 @@ public class DisplayInventoy : MonoBehaviour
 
     public void CreateDisplay()
     {
-        foreach (Item item in inventory.ItemList)
+        foreach (Item.Item item in inventory.ItemList)
         {         
             RectTransform obj = Instantiate(inventorySlotTemplate, inventoryPannel).GetComponent<RectTransform>();
             obj.gameObject.SetActive(true);
@@ -37,7 +37,7 @@ public class DisplayInventoy : MonoBehaviour
 
     public void UpdateDisplay()
     {
-        foreach (Item item in inventory.ItemList)
+        foreach (Item.Item item in inventory.ItemList)
         {
             if (!itemDisplayed.ContainsKey(item.GetInstanceID()))
             {

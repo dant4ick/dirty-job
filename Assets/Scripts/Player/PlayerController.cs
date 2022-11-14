@@ -1,3 +1,4 @@
+using Item.Weapon;
 using UnityEngine;
 
 namespace Player
@@ -42,7 +43,7 @@ namespace Player
 
         public void OnTriggerEnter2D(Collider2D other)
         {
-            Debug.Log("other");
+            Debug.Log(other);
 
             var item = other.GetComponent<RangeWeaponInterface>();
             if (item)

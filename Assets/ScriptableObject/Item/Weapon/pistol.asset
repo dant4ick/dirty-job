@@ -19,10 +19,10 @@ MonoBehaviour:
     m_Bits: 128
   _attackDamage: 100
   _attackRate: 0.5
-  _spread: 0.5
+  spreadDegrees: 5
   _penetration: 1
   _numberOfBulletsPerShot: 1
   _maxAmmo: 8
-  _currentAmmo: 0
+  _currentAmmo: 1
   _reloadTime: 2
   _isReloading: 0

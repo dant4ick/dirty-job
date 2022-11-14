@@ -8,7 +8,7 @@ public class RangeWeapon : Weapon
 {
     #region BASIC RANGE WEAPON STATS
         [Header ("Basic Range Weapon Stats")] 
-        [SerializeField] private float _spread;
+        [SerializeField] private float spreadDegrees;
         [SerializeField] private float _penetration;
         [SerializeField] private int _numberOfBulletsPerShot;
         [SerializeField] private int _maxAmmo;
@@ -17,7 +17,7 @@ public class RangeWeapon : Weapon
         [SerializeField] private bool _isReloading;
     #endregion
 
-    public float Spread { get { return _spread; } }
+    public float SpreadDegrees { get { return spreadDegrees; } }
     public float Penetration { get { return _penetration; } }
     public int NumberOfBulletsPerShot { get { return _numberOfBulletsPerShot; } }
 

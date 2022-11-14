@@ -5,11 +5,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Inventory", menuName = "ScriptableObjects/Inventory System/Inventory")]
 public class Inventory : ScriptableObject
 {
-    [SerializeField] private List<Item> _itemList = new List<Item>();
+    [SerializeField] private List<Item.Item> _itemList = new List<Item.Item>();
 
-    public List<Item> ItemList { get { return _itemList; } }
+    public List<Item.Item> ItemList { get { return _itemList; } }
 
-    public void AddItem(Item item)
+    public void AddItem(Item.Item item)
     {
         if (_itemList.Count < 5)
         {
