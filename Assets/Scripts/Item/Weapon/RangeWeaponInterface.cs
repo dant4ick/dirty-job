@@ -6,42 +6,47 @@ namespace Item.Weapon
     public class RangeWeaponInterface : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer _spriteRenderer;
-        [SerializeField] private Transform _firePoint;
-        [SerializeField] public RangeWeapon rangeWeapon;
+        [SerializeField] private Transform _firePoint;        
+        [SerializeField] private RangeWeapon _rangeWeapon;
 
         private float _lastTimeAttack;
 
         private void Start()
         {
-            _spriteRenderer.sprite = rangeWeapon.Sprite;
+            _spriteRenderer.sprite = _rangeWeapon.Sprite;
             PlayerShoot.shootInput += Shoot;
+        }
+
+        public Item GetItem()
+        {
+            return (Item)_rangeWeapon;
         }
 
         public void Shoot(Vector2 pointToShoot)
         {
-            if (rangeWeapon.IsReloading)
+            if (_rangeWeapon.IsReloading)
             {
                 return;
             }
 
-            if (Time.time < _lastTimeAttack + rangeWeapon.AttackRate)
+            if (Time.time < _lastTimeAttack + _rangeWeapon.AttackRate)
             {
                 return;
             }
 
-            if (rangeWeapon.CurrentAmmo == 0)
+            if (_rangeWeapon.CurrentAmmo == 0)
             {
                 StartCoroutine(Reload());
                 return;
             }
 
-            rangeWeapon.CurrentAmmo--;
+            _rangeWeapon.CurrentAmmo--;
 
-            for (int bullet = 0; bullet < rangeWeapon.NumberOfBulletsPerShot; bullet++)
+            for (int bullet = 0; bullet < _rangeWeapon.NumberOfBulletsPerShot; bullet++)
             {
                 Vector2 firePointPosition = _firePoint.position;
                 Vector2 directionToShoot = pointToShoot - firePointPosition;
-                float turn = Random.Range(-rangeWeapon.SpreadDegrees, rangeWeapon.SpreadDegrees) * Mathf.Deg2Rad;
+                float turn = Random.Range(-_rangeWeapon.SpreadDegrees, _rangeWeapon.SpreadDegrees) * Mathf.Deg2Rad;
 
                 // Applying a spread to the bullet using polar coordinate system 
                 float angleDir = Mathf.Atan2(directionToShoot.y, directionToShoot.x) + turn;
@@ -59,7 +64,7 @@ namespace Item.Weapon
 
                     if (enemy != null)
                     {
-                        enemy.TakeDamage(rangeWeapon.AttackDamage);
+                        enemy.TakeDamage(_rangeWeapon.AttackDamage);
                     }
                 }
                 _lastTimeAttack = Time.time;
@@ -68,12 +73,12 @@ namespace Item.Weapon
 
         IEnumerator Reload()
         {
-            rangeWeapon.IsReloading = true;
+            _rangeWeapon.IsReloading = true;
 
-            yield return new WaitForSeconds(rangeWeapon.ReloadTime);
-            rangeWeapon.CurrentAmmo = rangeWeapon.MaxAmmo;
+            yield return new WaitForSeconds(_rangeWeapon.ReloadTime);
+            _rangeWeapon.CurrentAmmo = _rangeWeapon.MaxAmmo;
 
-            rangeWeapon.IsReloading = false;
+            _rangeWeapon.IsReloading = false;
         }
     }
 }

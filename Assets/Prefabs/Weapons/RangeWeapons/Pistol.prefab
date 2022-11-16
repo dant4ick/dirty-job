@@ -132,7 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 4384004110052204687}
   _firePoint: {fileID: 4384004111039939741}
-  rangeWeapon: {fileID: 11400000, guid: 3c95bbab8c12aba41a3a578035a9b181, type: 2}
+  _rangeWeapon: {fileID: 11400000, guid: 3c95bbab8c12aba41a3a578035a9b181, type: 2}
 --- !u!61 &418615530037617941
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -149,7 +149,7 @@ BoxCollider2D:
   m_Offset: {x: 0.2750001, y: 0.11250019}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.1, y: 0.2}
+    pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.6875, y: 0.375}
     newSize: {x: 0.6875, y: 0.375}
     adaptiveTilingThreshold: 0.5

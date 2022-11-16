@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 6805725542362686702}
   _firePoint: {fileID: 6805725542563708688}
-  rangeWeapon: {fileID: 11400000, guid: e64c9fd3f8f35754aba9b389009e43b5, type: 2}
+  _rangeWeapon: {fileID: 11400000, guid: e64c9fd3f8f35754aba9b389009e43b5, type: 2}
 --- !u!61 &2997972073100220653
 BoxCollider2D:
   m_ObjectHideFlags: 0

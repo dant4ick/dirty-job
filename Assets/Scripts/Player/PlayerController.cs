@@ -43,12 +43,10 @@ namespace Player
 
         public void OnTriggerEnter2D(Collider2D other)
         {
-            Debug.Log(other);
-
             var item = other.GetComponent<RangeWeaponInterface>();
             if (item)
             {
-                inventory.AddItem(item.rangeWeapon);
+                inventory.AddItem(item.GetItem());
                 Destroy(other.gameObject);
             }
         }
