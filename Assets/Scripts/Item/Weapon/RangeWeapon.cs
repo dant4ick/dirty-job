@@ -22,9 +22,7 @@ public class RangeWeapon : Weapon
     public int NumberOfBulletsPerShot { get { return _numberOfBulletsPerShot; } }
 
     public int MaxAmmo { get { return _maxAmmo; } }
-    public int CurrentAmmo { get { return _currentAmmo; } set { _currentAmmo = value; } }
     public float ReloadTime { get { return _reloadTime; } }
-    public bool IsReloading { get { return _isReloading; } set { _isReloading = value; } }
 
     // Start is called before the first frame update
 

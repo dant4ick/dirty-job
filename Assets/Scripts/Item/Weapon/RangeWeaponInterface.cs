@@ -8,11 +8,13 @@ namespace Item.Weapon
         [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private Transform _firePoint;        
         [SerializeField] private RangeWeapon _rangeWeapon;
-
+        private int _currentAmmo;
+        private bool _isReloading = false;
         private float _lastTimeAttack;
 
         private void Start()
         {
+            _currentAmmo = _rangeWeapon.MaxAmmo;
             _spriteRenderer.sprite = _rangeWeapon.Sprite;
             PlayerShoot.shootInput += Shoot;
         }
@@ -24,7 +26,7 @@ namespace Item.Weapon
 
         public void Shoot(Vector2 pointToShoot)
         {
-            if (_rangeWeapon.IsReloading)
+            if (_isReloading)
             {
                 return;
             }
@@ -34,13 +36,13 @@ namespace Item.Weapon
                 return;
             }
 
-            if (_rangeWeapon.CurrentAmmo == 0)
+            if (_currentAmmo == 0)
             {
                 StartCoroutine(Reload());
                 return;
             }
 
-            _rangeWeapon.CurrentAmmo--;
+            _currentAmmo--;
 
             for (int bullet = 0; bullet < _rangeWeapon.NumberOfBulletsPerShot; bullet++)
             {
@@ -55,6 +57,7 @@ namespace Item.Weapon
                 // TODO: fix shooting towards shooter
 
                 RaycastHit2D hitInfo = Physics2D.Raycast(firePointPosition, directionToShoot);
+                Debug.Log(transform.rotation);
 
                 Debug.DrawRay(firePointPosition, directionToShoot, Color.black, 10f);
 
@@ -73,12 +76,12 @@ namespace Item.Weapon
 
         IEnumerator Reload()
         {
-            _rangeWeapon.IsReloading = true;
+            _isReloading = true;
 
             yield return new WaitForSeconds(_rangeWeapon.ReloadTime);
-            _rangeWeapon.CurrentAmmo = _rangeWeapon.MaxAmmo;
+            _currentAmmo = _rangeWeapon.MaxAmmo;
 
-            _rangeWeapon.IsReloading = false;
+            _isReloading = false;
         }
     }
 }
