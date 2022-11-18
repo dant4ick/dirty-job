@@ -12,9 +12,7 @@ public class RangeWeapon : Weapon
         [SerializeField] private float _penetration;
         [SerializeField] private int _numberOfBulletsPerShot;
         [SerializeField] private int _maxAmmo;
-        [SerializeField] private int _currentAmmo;
         [SerializeField] private float _reloadTime;
-        [SerializeField] private bool _isReloading;
     #endregion
 
     public float SpreadDegrees { get { return spreadDegrees; } }

@@ -9,14 +9,27 @@ public class Inventory : ScriptableObject
     [SerializeField] private List<InventoryCell> _itemList = new List<InventoryCell>();
     public event EventHandler OnItemListChanged;
 
-    public List<InventoryCell> ItemList { get { return _itemList; } }
+    //public List<InventoryCell> ItemList { get { return _itemList; } }
 
-    public void AddCell()
+    public int GetLength()
     {
-        if (_itemList.Count < 6)
-        {
-            _itemList.Add(new InventoryCell());
-        }
+        return _itemList.Count;
+    }
+
+    public Item.Item GetItemFromCell(int position)
+    {
+        return _itemList[position].GetItem();
+    }
+
+    public void SetCells()
+    {
+        if (_itemList.Count >= 6)
+            return;
+
+        int cellInListCount = _itemList.Count;
+
+        for (int cellCount = 0; cellCount < 6 - cellInListCount; cellCount++)
+            _itemList.Add(new InventoryCell());        
     }
 
     public void AddItem(Item.Item item)
@@ -32,9 +45,14 @@ public class Inventory : ScriptableObject
         }
     }
 
-    public void SetItem(Item.Item item, int position)
+    public void SetItemToCell(Item.Item item, int position)
     {
         _itemList[position].SetItem(item);
+    }
+
+    public void Clear()
+    {
+        _itemList.Clear();
     }
 }
 

@@ -7,15 +7,12 @@ public class DisplayInventoy : MonoBehaviour
 {
     public Inventory inventory;
     public Transform inventorySlotTemplate;
-    public Transform inventoryPannel;
     public Transform itemImageInInventory;
+
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < 6; i++)
-        {
-            inventory.AddCell();
-        }
+        inventory.SetCells();
         UpdateDisplay();
         inventory.OnItemListChanged += Inventory_OnItemListChanged;
     }
@@ -27,23 +24,23 @@ public class DisplayInventoy : MonoBehaviour
 
     public void UpdateDisplay()
     {        
-        foreach (Transform child in inventoryPannel)
+        foreach (Transform child in transform)
         {
             Destroy(child.gameObject);
         }
 
-        foreach (InventoryCell item in inventory.ItemList)
+        for (int item = 0; item < inventory.GetLength(); item++)
         {         
-            RectTransform obj = Instantiate(inventorySlotTemplate, inventoryPannel).GetComponent<RectTransform>();
+            RectTransform obj = Instantiate(inventorySlotTemplate, transform).GetComponent<RectTransform>();
             obj.gameObject.SetActive(true);
 
-            if (!(item.GetItem() is null))
+            if (!(inventory.GetItemFromCell(item) is null))
             {
                 RectTransform objImage = Instantiate(itemImageInInventory, obj).GetComponent<RectTransform>();
                 objImage.position = obj.position;
 
                 Image image = objImage.GetComponent<Image>();
-                image.sprite = item.GetItem().Sprite;
+                image.sprite = inventory.GetItemFromCell(item).Sprite;
             }
         }
     }

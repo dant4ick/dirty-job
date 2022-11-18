@@ -14,15 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sprite: {fileID: -1964752095, guid: 429fd4d48054d2b4b9c1787209b5cc01, type: 3}
   _name: Shotgun
+  _prefab: {fileID: 6805725542362686688, guid: 197c5cf29bac8d347ba0bb3586d340c7, type: 3}
   _enemyLayers:
     serializedVersion: 2
     m_Bits: 128
   _attackDamage: 50
-  _attackRate: 1
-  _spread: 0.8
+  _attackRate: 2
+  spreadDegrees: 20
   _penetration: 1
   _numberOfBulletsPerShot: 8
   _maxAmmo: 2
-  _currentAmmo: 2
-  _reloadTime: 2
-  _isReloading: 0
+  _reloadTime: 3

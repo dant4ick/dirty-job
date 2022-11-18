@@ -3,20 +3,20 @@ using UnityEngine;
 
 namespace Item.Weapon
 {
-    public class RangeWeaponInterface : MonoBehaviour
+    public class RangeWeaponInterface : ItemInterface
     {
         [SerializeField] private SpriteRenderer _spriteRenderer;
-        [SerializeField] private Transform _firePoint;        
-        [SerializeField] private RangeWeapon _rangeWeapon;
+        [SerializeField] private Transform _firePoint;
+        private RangeWeapon _rangeWeapon;
         private int _currentAmmo;
         private bool _isReloading = false;
         private float _lastTimeAttack;
 
         private void Start()
         {
+            _rangeWeapon = (RangeWeapon)Item;
             _currentAmmo = _rangeWeapon.MaxAmmo;
             _spriteRenderer.sprite = _rangeWeapon.Sprite;
-            PlayerShoot.shootInput += Shoot;
         }
 
         public Item GetItem()
