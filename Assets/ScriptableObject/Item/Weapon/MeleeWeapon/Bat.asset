@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f910ee96ecfd2d64b8a3a4c8556177d4, type: 3}
   m_Name: Bat
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 21300000, guid: a26d32cd4e0a6134da9f33870109a09a, type: 3}
+  _spriteInInventory: {fileID: 21300000, guid: 35f54303913058e48a42eec32beda286, type: 3}
   _name: Bat
   _prefab: {fileID: 8613582706276230804, guid: e073e4f67544bed45914aeb9f47ca11e, type: 3}
   _enemyLayers:

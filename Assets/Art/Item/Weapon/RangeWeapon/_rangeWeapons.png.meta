@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a26d32cd4e0a6134da9f33870109a09a
+guid: a95088facd0fb2346a8d33b4b484416c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -42,8 +42,8 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
-  spriteExtrude: 1
+  spriteMode: 2
+  spriteExtrude: 0
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
@@ -115,7 +115,60 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: _rangeWeapons_0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 4
+        width: 11
+        height: 6
+      alignment: 9
+      pivot: {x: 0.09090909, y: 0.16666667}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -3.5, y: 2}
+        - {x: -4.5, y: 1}
+        - {x: -5.5, y: -3}
+        - {x: -0.5, y: -2}
+        - {x: 5.5, y: 1}
+        - {x: 5.5, y: 3}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26fc2d26633dddc4eb1d5d32ba9de26b
+      internalID: 758425553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _rangeWeapons_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 3
+        width: 16
+        height: 6
+      alignment: 9
+      pivot: {x: 0.0625, y: 0.16666667}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -6, y: 3}
+        - {x: -8, y: -3}
+        - {x: -3, y: -1}
+        - {x: 6, y: 0}
+        - {x: 8, y: 3}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7293c3e8fbd7c0c4f93e182d04742b36
+      internalID: 1333967535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -126,7 +179,9 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      _rangeWeapons_1: 1333967535
+      _rangeWeapons_0: 758425553
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

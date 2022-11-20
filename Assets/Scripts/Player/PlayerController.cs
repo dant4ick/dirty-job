@@ -99,7 +99,7 @@ namespace Player
                 _hand = newHand.gameObject;
 
                 Transform rangeWeapon = Instantiate(equipment.GetRangeWeapon().PreFab, newHand).GetComponent<Transform>();
-                rangeWeapon.GetComponent<BoxCollider2D>().enabled = false;
+                rangeWeapon.GetComponent<PolygonCollider2D>().enabled = false;
                 Destroy(rangeWeapon.GetComponent<Rigidbody2D>());
                 rangeWeapon.position = handPoint;
                 PlayerAttack.shootInput += rangeWeapon.GetComponent<RangeWeaponInterface>().Shoot;
@@ -110,7 +110,7 @@ namespace Player
             if (equipment.GetMeleeWeapon() != null)
             {
                 Transform meleeWeapon = Instantiate(equipment.GetMeleeWeapon().PreFab, _attackPoint).GetComponent<Transform>();
-                meleeWeapon.GetComponent<BoxCollider2D>().enabled = false;
+                meleeWeapon.GetComponent<PolygonCollider2D>().enabled = false;
                 Destroy(meleeWeapon.GetComponent<Rigidbody2D>());
 
                 meleeWeapon.GetComponent<SpriteRenderer>().sprite = null;

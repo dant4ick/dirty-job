@@ -40,7 +40,7 @@ public class DisplayInventory : MonoBehaviour
                 objImage.position = obj.position;
 
                 Image image = objImage.GetComponent<Image>();
-                image.sprite = inventory.GetItemFromCell(item).Sprite;
+                image.sprite = inventory.GetItemFromCell(item).SpriteInInventory;
             }
         }
     }

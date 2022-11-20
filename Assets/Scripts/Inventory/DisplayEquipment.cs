@@ -37,7 +37,7 @@ public class DisplayEquipment : MonoBehaviour
             objImage.position = slot1.position;
 
             Image image = objImage.GetComponent<Image>();
-            image.sprite = equipment.GetRangeWeapon().Sprite;
+            image.sprite = equipment.GetRangeWeapon().SpriteInInventory;
         }
 
         RectTransform slot2 = Instantiate(equipmentSlotTemplate, transform).GetComponent<RectTransform>();
@@ -49,7 +49,7 @@ public class DisplayEquipment : MonoBehaviour
             objImage.position = slot2.position;
 
             Image image = objImage.GetComponent<Image>();
-            image.sprite = equipment.GetMeleeWeapon().Sprite;
+            image.sprite = equipment.GetMeleeWeapon().SpriteInInventory;
         }
     }
 }
