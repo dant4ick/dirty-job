@@ -12,8 +12,10 @@ namespace Item.Weapon
         private bool _isReloading = false;
         private float _lastTimeAttack;
 
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
+
             _rangeWeapon = (RangeWeapon)Item;
             _currentAmmo = _rangeWeapon.MaxAmmo;
         }

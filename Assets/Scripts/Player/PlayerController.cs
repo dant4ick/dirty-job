@@ -83,16 +83,24 @@ namespace Player
                 Destroy(_hand);
             }
 
+            if (equipment.GetRangeWeapon() == null && equipment.GetMeleeWeapon() == null)
+            {
+                transform.GetComponent<SpriteRenderer>().sprite = _noWeaponSprite;
+                return;
+            }
+
             if (equipment.GetRangeWeapon() != null)
             {
                 transform.GetComponent<SpriteRenderer>().sprite = _withRangeWeaponSprite;
 
                 Transform newHand = Instantiate(_handPrefab, transform).GetComponent<Transform>();
+                newHand.GetComponent<Pivot>().FixedUpdate();
                 Vector3 handPoint = newHand.GetChild(0).transform.position;
                 _hand = newHand.gameObject;
 
                 Transform rangeWeapon = Instantiate(equipment.GetRangeWeapon().PreFab, newHand).GetComponent<Transform>();
                 rangeWeapon.GetComponent<BoxCollider2D>().enabled = false;
+                Destroy(rangeWeapon.GetComponent<Rigidbody2D>());
                 rangeWeapon.position = handPoint;
                 PlayerAttack.shootInput += rangeWeapon.GetComponent<RangeWeaponInterface>().Shoot;
 
@@ -103,6 +111,7 @@ namespace Player
             {
                 Transform meleeWeapon = Instantiate(equipment.GetMeleeWeapon().PreFab, _attackPoint).GetComponent<Transform>();
                 meleeWeapon.GetComponent<BoxCollider2D>().enabled = false;
+                Destroy(meleeWeapon.GetComponent<Rigidbody2D>());
 
                 meleeWeapon.GetComponent<SpriteRenderer>().sprite = null;
 
@@ -111,11 +120,7 @@ namespace Player
                 PlayerAttack.attackInput += meleeWeapon.GetComponent<MeleeWeaponInterface>().Attack;
 
                 _meleeWeapon = meleeWeapon.gameObject;
-            }
-            else
-            {
-                transform.GetComponent<SpriteRenderer>().sprite = _noWeaponSprite;
-            }
+            }            
         }
 
         public void DropWeapon(Item.Item item, int positionInInventory, Transform objectInInventory)

@@ -7,7 +7,7 @@ namespace Player
         [SerializeField] private GameObject myPlayer;
         [SerializeField] private Camera mainCamera;
 
-        private void FixedUpdate()
+        public void FixedUpdate()
         {
             Vector3 difference = mainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
 

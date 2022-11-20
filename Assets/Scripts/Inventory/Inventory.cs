@@ -32,7 +32,7 @@ public class Inventory : ScriptableObject
             _itemList.Add(new InventoryCell());        
     }
 
-    public void AddItem(Item.Item item)
+    public bool AddItem(Item.Item item)
     {
         foreach (InventoryCell inventoryCell in _itemList)
         {
@@ -40,9 +40,10 @@ public class Inventory : ScriptableObject
             {
                 inventoryCell.SetItem(item);
                 OnItemListChanged?.Invoke(this, EventArgs.Empty);
-                break;
+                return true;
             }
         }
+        return false;
     }
 
     public void SetItemToCell(Item.Item item, int position)

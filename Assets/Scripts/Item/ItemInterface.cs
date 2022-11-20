@@ -6,28 +6,49 @@ namespace Item
 {
     public class ItemInterface : MonoBehaviour
     {
+        private bool _canPickUp;
+
         [SerializeField] private Item _item;
-        [SerializeField] private GameObject _visualCue;
+        [SerializeField] private GameObject _visualCuePreFab;
+        private GameObject _visualCue;
         public Item Item { get { return _item; } }
 
-        public void OnTriggerStay2D(Collider2D playerCollided)
+        protected virtual void Start()
         {
-            var player = playerCollided.GetComponent<Player.PlayerController>();
-            if (player)
-            {
-                _visualCue.SetActive(true);
+            float heightOfObject = transform.GetComponent<BoxCollider2D>().bounds.size.y;
+            float widthOfObject = transform.GetComponent<BoxCollider2D>().bounds.size.x;
 
+            _visualCue = Instantiate(_visualCuePreFab, transform, false);
+
+            _visualCue.SetActive(false);
+
+            _visualCue.transform.position = new Vector2(transform.GetComponent<BoxCollider2D>().bounds.center.x, transform.position.y + heightOfObject + 0.15f);
+        }
+
+        private void Update()
+        {
+            if (_canPickUp)
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    player.inventory.AddItem(_item);
-                    Destroy(gameObject);
+                    if (Player.PlayerController.Instance.inventory.AddItem(_item))
+                        Destroy(gameObject);
                 }
+        }
+
+        private void OnTriggerStay2D(Collider2D playerCollided)
+        {
+            if (playerCollided.TryGetComponent<Player.PlayerController>(out var player))
+            {
+                _visualCue.SetActive(true);
+                _canPickUp = true;
+                
             }
         }
 
         public void OnTriggerExit2D(Collider2D playerCollided)
         {
             _visualCue.SetActive(false);
+            _canPickUp = false;
         }
     }
 }

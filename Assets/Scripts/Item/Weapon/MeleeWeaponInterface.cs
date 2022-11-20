@@ -15,8 +15,10 @@ namespace Item.Weapon
         private delegate void Effects(Enemy enemy);
         private Effects effects;
 
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
+
             _meleeWeapon = (MeleeWeapon)Item;
 
             effects += DealDamage;
