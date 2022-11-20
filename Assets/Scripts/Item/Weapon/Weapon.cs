@@ -15,11 +15,5 @@ abstract public class Weapon : Item.Item
     public int AttackDamage { get { return _attackDamage; } }
     public float AttackRate { get { return _attackRate; } }
 
-    protected LayerMask EnemyLayers
-    {
-        get { return _enemyLayers; }
-    }
-
-    public delegate void Effects(Enemy enemy);
-    public Effects effects;
+    public LayerMask EnemyLayers { get { return _enemyLayers; } }
 }

@@ -16,12 +16,6 @@ namespace Item.Weapon
         {
             _rangeWeapon = (RangeWeapon)Item;
             _currentAmmo = _rangeWeapon.MaxAmmo;
-            _spriteRenderer.sprite = _rangeWeapon.Sprite;
-        }
-
-        public Item GetItem()
-        {
-            return (Item)_rangeWeapon;
         }
 
         public void Shoot(Vector2 pointToShoot)
@@ -70,8 +64,9 @@ namespace Item.Weapon
                         enemy.TakeDamage(_rangeWeapon.AttackDamage);
                     }
                 }
-                _lastTimeAttack = Time.time;
             }
+
+            _lastTimeAttack = Time.time;
         }
 
         IEnumerator Reload()

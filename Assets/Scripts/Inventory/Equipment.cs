@@ -67,7 +67,6 @@ public class EquipmentCell
     {
         return _weapon;
     }
-
     public void SetWeapon(Weapon item)
     {
         _weapon = item;

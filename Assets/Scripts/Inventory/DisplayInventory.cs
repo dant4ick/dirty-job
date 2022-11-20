@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DisplayInventoy : MonoBehaviour
+public class DisplayInventory : MonoBehaviour
 {
     public Inventory inventory;
     public Transform inventorySlotTemplate;

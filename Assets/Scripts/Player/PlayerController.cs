@@ -5,6 +5,9 @@ namespace Player
 {
     public class PlayerController : MonoBehaviour
     {
+        private static PlayerController _instance;
+        public static PlayerController Instance { get { return _instance; } }
+
         public Inventory inventory;
         public Equipment equipment;
 
@@ -17,7 +20,10 @@ namespace Player
 
         private static int _groundLayer;
 
-        private GameObject _rangeWeapon = null;
+        private GameObject _rangeWeapon;
+        private GameObject _meleeWeapon;
+
+        [SerializeField] private Transform _attackPoint;
 
         [SerializeField] private GameObject _handPrefab;
         [SerializeField] private Sprite _noWeaponSprite;
@@ -26,13 +32,15 @@ namespace Player
 
         private void Start()
         {
+            _instance = this;
+
             _rigidbody = gameObject.GetComponent<Rigidbody2D>();
             _feetCollider = gameObject.GetComponent<CircleCollider2D>();
             _headCollider = gameObject.GetComponent<BoxCollider2D>();
             
             _groundLayer = LayerMask.GetMask("Ground");
 
-            UpdateEquipment();
+            //UpdateEquipment();
 
             equipment.OnWeaponListChanged += Equipment_OnWeaponListChanged;
         }
@@ -53,15 +61,6 @@ namespace Player
             return Physics2D.BoxCast(_feetCollider.bounds.center, new Vector2(1f, 1f), 0f, Vector2.down, 0.2f, _groundLayer);
         }
 
-        public void OnTriggerEnter2D(Collider2D other)
-        {
-            var item = other.GetComponent<Item.ItemInterface>();
-            if (item)
-            {
-                inventory.AddItem(item.Item);
-                Destroy(other.gameObject);
-            }
-        }
         private void Equipment_OnWeaponListChanged(object sender, System.EventArgs e)
         {
             UpdateEquipment();
@@ -69,9 +68,14 @@ namespace Player
 
         public void UpdateEquipment()
         {
+            if (_meleeWeapon != null)
+            {
+                PlayerAttack.attackInput -= _meleeWeapon.GetComponent<MeleeWeaponInterface>().Attack;
+                Destroy(_meleeWeapon);
+            }
             if (_rangeWeapon != null)
             {
-                PlayerShoot.shootInput -= _rangeWeapon.GetComponent<RangeWeaponInterface>().Shoot;
+                PlayerAttack.shootInput -= _rangeWeapon.GetComponent<RangeWeaponInterface>().Shoot;
                 Destroy(_rangeWeapon);
             }
             if (_hand != null)
@@ -87,16 +91,39 @@ namespace Player
                 Vector3 handPoint = newHand.GetChild(0).transform.position;
                 _hand = newHand.gameObject;
 
-                Transform weapon = Instantiate(equipment.GetRangeWeapon().PreFab, newHand).GetComponent<Transform>();
-                weapon.position = handPoint;
-                PlayerShoot.shootInput += weapon.GetComponent<RangeWeaponInterface>().Shoot;
+                Transform rangeWeapon = Instantiate(equipment.GetRangeWeapon().PreFab, newHand).GetComponent<Transform>();
+                rangeWeapon.GetComponent<BoxCollider2D>().enabled = false;
+                rangeWeapon.position = handPoint;
+                PlayerAttack.shootInput += rangeWeapon.GetComponent<RangeWeaponInterface>().Shoot;
 
-                _rangeWeapon = weapon.gameObject;
+                _rangeWeapon = rangeWeapon.gameObject;
+            }
+
+            if (equipment.GetMeleeWeapon() != null)
+            {
+                Transform meleeWeapon = Instantiate(equipment.GetMeleeWeapon().PreFab, _attackPoint).GetComponent<Transform>();
+                meleeWeapon.GetComponent<BoxCollider2D>().enabled = false;
+
+                meleeWeapon.GetComponent<SpriteRenderer>().sprite = null;
+
+                meleeWeapon.GetComponent<MeleeWeaponInterface>().attackPoint = _attackPoint;
+
+                PlayerAttack.attackInput += meleeWeapon.GetComponent<MeleeWeaponInterface>().Attack;
+
+                _meleeWeapon = meleeWeapon.gameObject;
             }
             else
             {
                 transform.GetComponent<SpriteRenderer>().sprite = _noWeaponSprite;
             }
+        }
+
+        public void DropWeapon(Item.Item item, int positionInInventory, Transform objectInInventory)
+        {
+            Instantiate(item.PreFab, transform.position, transform.rotation);
+            inventory.SetItemToCell(null, positionInInventory);
+
+            Destroy(objectInInventory.gameObject);
         }
 
         private void OnApplicationQuit()

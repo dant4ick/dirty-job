@@ -16,22 +16,26 @@ public class InventoryItemSlot : MonoBehaviour, IDropHandler
             int idOfPrevCell = FindIdOfChild(prevCell);
             Item.Item itemInPrevCell;
 
-            if (prevCell.GetComponentInParent<DisplayInventoy>() != null)
+            RectTransform childOfPrevCell = eventData.pointerDrag.GetComponent<RectTransform>();
+
+            if (prevCell.GetComponentInParent<DisplayInventory>() != null)
             { 
-                itemInPrevCell = prevCell.GetComponentInParent<DisplayInventoy>().inventory.GetItemFromCell(idOfPrevCell);
-                prevCell.GetComponentInParent<DisplayInventoy>().inventory.SetItemToCell(null, idOfPrevCell);
+                itemInPrevCell = prevCell.GetComponentInParent<DisplayInventory>().inventory.GetItemFromCell(idOfPrevCell);
+                prevCell.GetComponentInParent<DisplayInventory>().inventory.SetItemToCell(null, idOfPrevCell);
             }
             else
             {
                 itemInPrevCell = prevCell.GetComponentInParent<DisplayEquipment>().equipment.GetWeaponFromCell(idOfPrevCell);
                 prevCell.GetComponentInParent<DisplayEquipment>().equipment.SetWeaponToCell(null, idOfPrevCell);
+
+                childOfPrevCell.transform.GetChild(0).gameObject.SetActive(true);
             }
 
             int idOfCurCell = FindIdOfChild(transform);
-            transform.GetComponentInParent<DisplayInventoy>().inventory.SetItemToCell(itemInPrevCell, idOfCurCell);
+            transform.GetComponentInParent<DisplayInventory>().inventory.SetItemToCell(itemInPrevCell, idOfCurCell);
 
-            eventData.pointerDrag.GetComponent<RectTransform>().transform.SetParent(transform, false);
-            eventData.pointerDrag.GetComponent<RectTransform>().position = GetComponent<RectTransform>().position;
+            childOfPrevCell.GetComponent<RectTransform>().transform.SetParent(transform, false);
+            childOfPrevCell.GetComponent<RectTransform>().position = GetComponent<RectTransform>().position;
         }
         else
         {
@@ -41,27 +45,34 @@ public class InventoryItemSlot : MonoBehaviour, IDropHandler
 
             Transform curCell = transform;
             int idOfCurCell = FindIdOfChild(curCell);
-            Item.Item itemInCurCell = transform.GetComponentInParent<DisplayInventoy>().inventory.GetItemFromCell(idOfCurCell);
+            Item.Item itemInCurCell = transform.GetComponentInParent<DisplayInventory>().inventory.GetItemFromCell(idOfCurCell);
 
-            if (prevCell.GetComponentInParent<DisplayInventoy>() != null)
+            RectTransform childOfCurCell = curCell.GetChild(1).GetComponent<RectTransform>();
+            RectTransform childOfPrevCell = eventData.pointerDrag.GetComponent<RectTransform>();
+
+            if (prevCell.GetComponentInParent<DisplayInventory>() != null)
             {
-                itemInPrevCell = prevCell.GetComponentInParent<DisplayInventoy>().inventory.GetItemFromCell(idOfPrevCell);
-                prevCell.GetComponentInParent<DisplayInventoy>().inventory.SetItemToCell(null, idOfPrevCell);
+                itemInPrevCell = prevCell.GetComponentInParent<DisplayInventory>().inventory.GetItemFromCell(idOfPrevCell);
+                prevCell.GetComponentInParent<DisplayInventory>().inventory.SetItemToCell(null, idOfPrevCell);
 
-                prevCell.GetComponentInParent<DisplayInventoy>().inventory.SetItemToCell(itemInCurCell, idOfPrevCell);
+                prevCell.GetComponentInParent<DisplayInventory>().inventory.SetItemToCell(itemInCurCell, idOfPrevCell);
             }
             else
             {
                 itemInPrevCell = prevCell.GetComponentInParent<DisplayEquipment>().equipment.GetWeaponFromCell(idOfPrevCell);
+
+                if (itemInPrevCell.GetType() != itemInCurCell.GetType())
+                    return;
+
                 prevCell.GetComponentInParent<DisplayEquipment>().equipment.SetWeaponToCell(null, idOfPrevCell);
 
                 prevCell.GetComponentInParent<DisplayEquipment>().equipment.SetWeaponToCell((Weapon)itemInCurCell, idOfPrevCell);
+
+                childOfPrevCell.transform.GetChild(0).gameObject.SetActive(true);
+                childOfCurCell.transform.GetChild(0).gameObject.SetActive(false);
             }
 
-            transform.GetComponentInParent<DisplayInventoy>().inventory.SetItemToCell(itemInPrevCell, idOfCurCell);
-
-            RectTransform childOfCurCell = curCell.GetChild(1).GetComponent<RectTransform>();
-            RectTransform childOfPrevCell = eventData.pointerDrag.GetComponent<RectTransform>();
+            transform.GetComponentInParent<DisplayInventory>().inventory.SetItemToCell(itemInPrevCell, idOfCurCell);
 
             childOfCurCell.transform.SetParent(childOfPrevCell.parent, false);
             childOfCurCell.position = childOfPrevCell.parent.GetComponent<RectTransform>().position;
@@ -73,7 +84,7 @@ public class InventoryItemSlot : MonoBehaviour, IDropHandler
 
     private int FindIdOfChild(Transform childToFindId)
     {
-        for (int child = 0; child < transform.parent.childCount; child++)
+        for (int child = 0; child < childToFindId.parent.childCount; child++)
         {
             if (childToFindId.parent.GetChild(child) == childToFindId)
             {
