@@ -692,7 +692,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2222685278200016921, guid: c4f7dc1b022124348b302970fcf0f001, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -750
+      value: -749.99994
       objectReference: {fileID: 0}
     - target: {fileID: 2222685278200016921, guid: c4f7dc1b022124348b302970fcf0f001, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -720,7 +720,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8436758060823892105, guid: c4f7dc1b022124348b302970fcf0f001, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -750
+      value: -749.99994
       objectReference: {fileID: 0}
     - target: {fileID: 8436758060823892105, guid: c4f7dc1b022124348b302970fcf0f001, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1104,8 +1104,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mainCamera: {fileID: 1297358391}
   _dialogueText: {fileID: 2017618505}
-  _input: AHAHAAHAHAHAHAHAAHAHAHAHHAAHAHHAHAHAHHAHA
-  _delay: 0.1
+  _inputPhrase:
+  - Did you hear about that sniper rifle?
+  - This shit can kill 100 man in one shot
+  - Best gun ever
+  _delay: 0.05
 --- !u!1001 &322673702191050097
 PrefabInstance:
   m_ObjectHideFlags: 0

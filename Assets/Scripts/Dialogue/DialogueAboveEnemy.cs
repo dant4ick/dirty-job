@@ -10,7 +10,7 @@ public class DialogueAboveEnemy : MonoBehaviour
     [SerializeField] private Camera _mainCamera;
     [SerializeField] private TMP_Text _dialogueText;
 
-    [SerializeField] private string _input;
+    [SerializeField] private List<string> _inputPhrase;
 
     [SerializeField] private float _delay;
 
@@ -34,18 +34,23 @@ public class DialogueAboveEnemy : MonoBehaviour
         }
     }
 
-    private IEnumerator WriteText(string input, TMP_Text text, float delay)
+    private IEnumerator WriteText(List<string> inputPhrase, TMP_Text text, float delay)
     {
-        for (int character = 0; character < input.Length; character++)
+        foreach (string phrase in inputPhrase)
         {
-            text.text += input[character];
-            yield return new WaitForSeconds(delay);
+            for (int character = 0; character < phrase.Length; character++)
+            {
+                text.text += phrase[character];
+                yield return new WaitForSeconds(delay);
+            }
+            yield return new WaitForSeconds(1.5f);
+            text.text = null;
         }
     }
 
     private void ShowDialogue()
     {
         _check = false;
-        StartCoroutine(WriteText(_input, _dialogueText, _delay));
+        StartCoroutine(WriteText(_inputPhrase, _dialogueText, _delay));
     }
 }
