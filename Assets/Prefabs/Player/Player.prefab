@@ -9,11 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 322673701078942239}
-  - component: {fileID: 322673701078942211}
+  - component: {fileID: 2775356525552475513}
   - component: {fileID: 322673701078942208}
   - component: {fileID: 322673701078942210}
+  - component: {fileID: 322673701078942211}
   - component: {fileID: 3424735711475696748}
-  - component: {fileID: 2775356525552475513}
+  - component: {fileID: 6693945845639171717}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -38,27 +39,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &322673701078942211
-MonoBehaviour:
+--- !u!70 &2775356525552475513
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 322673701078942236}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5903371ca914cbba3146a4561c810cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventory: {fileID: 11400000, guid: 2ea3a686804c12f4082b3ca2e88bdc50, type: 2}
-  equipment: {fileID: 11400000, guid: 8eaf4f81ab75c8d4e921a62481a84972, type: 2}
-  zeroFriction: {fileID: 6200000, guid: 88ad8cae2a037a34cba8fd5d5b278c80, type: 2}
-  maxFriction: {fileID: 6200000, guid: 1e5ccf836ee2a1e4aa423dbac9823d28, type: 2}
-  attackPoint: {fileID: 6965142838392775164}
-  grabPoint: {fileID: 4965103067962657513}
-  hand: {fileID: 7454346946762701173}
-  noWeaponSprite: {fileID: -1817734108, guid: 429fd4d48054d2b4b9c1787209b5cc01, type: 3}
-  withRangeWeaponSprite: {fileID: -1937701719, guid: 429fd4d48054d2b4b9c1787209b5cc01, type: 3}
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.875, y: 2.375}
+  m_Direction: 0
 --- !u!50 &322673701078942208
 Rigidbody2D:
   serializedVersion: 4
@@ -132,6 +128,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &322673701078942211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322673701078942236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5903371ca914cbba3146a4561c810cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zeroFriction: {fileID: 6200000, guid: 88ad8cae2a037a34cba8fd5d5b278c80, type: 2}
+  maxFriction: {fileID: 6200000, guid: 1e5ccf836ee2a1e4aa423dbac9823d28, type: 2}
 --- !u!114 &3424735711475696748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,22 +155,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mainCamera: {fileID: 0}
---- !u!70 &2775356525552475513
-CapsuleCollider2D:
+--- !u!114 &6693945845639171717
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 322673701078942236}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.875, y: 2.375}
-  m_Direction: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e61326f1d92575b4eac2c75c25c9815f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 11400000, guid: 2ea3a686804c12f4082b3ca2e88bdc50, type: 2}
+  equipment: {fileID: 11400000, guid: 8eaf4f81ab75c8d4e921a62481a84972, type: 2}
+  attackPoint: {fileID: 6965142838392775164}
+  grabPoint: {fileID: 4965103067962657513}
+  hand: {fileID: 7454346946762701173}
+  noWeaponSprite: {fileID: -1817734108, guid: 429fd4d48054d2b4b9c1787209b5cc01, type: 3}
+  withRangeWeaponSprite: {fileID: -1937701719, guid: 429fd4d48054d2b4b9c1787209b5cc01, type: 3}
 --- !u!1 &363204562507904158
 GameObject:
   m_ObjectHideFlags: 0

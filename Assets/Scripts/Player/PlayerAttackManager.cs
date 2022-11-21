@@ -2,7 +2,7 @@ using System;
 using Item.Weapon;
 using UnityEngine;
 
-public class PlayerAttack : MonoBehaviour
+public class PlayerAttackManager : MonoBehaviour
 {
     [SerializeField] private Camera _mainCamera;
 

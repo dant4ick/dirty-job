@@ -19,7 +19,7 @@ public class DropDownMenu : MonoBehaviour
             int idOfCurCell = FindIdOfChild(curCell);
             Item.Item itemInCurCell = _inventory.GetItemFromCell(idOfCurCell);
 
-            Player.PlayerController.Instance.DropWeapon(itemInCurCell, idOfCurCell, transform);
+            PlayerInventoryManager.Instance.DropWeapon(itemInCurCell, idOfCurCell, transform);
         }
     }
 

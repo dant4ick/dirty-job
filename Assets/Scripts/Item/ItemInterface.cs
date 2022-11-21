@@ -32,7 +32,7 @@ namespace Item
             if (_canPickUp)
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    if (Player.PlayerController.Instance.inventory.AddItem(_item))
+                    if (PlayerInventoryManager.Instance.inventory.AddItem(_item))
                         Destroy(gameObject);
                 }
         }
