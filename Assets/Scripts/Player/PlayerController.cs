@@ -124,8 +124,7 @@ namespace Player
                 
                 hand.SetActive(true);
                 
-                Transform rangeWeapon =
-                    Instantiate(equipment.GetRangeWeapon().PreFab, hand.transform).GetComponent<Transform>();
+                Transform rangeWeapon = Instantiate(equipment.GetRangeWeapon().PreFab, grabPoint.transform).GetComponent<Transform>();
                 rangeWeapon.GetComponent<PolygonCollider2D>().enabled = false;
                 Destroy(rangeWeapon.GetComponent<Rigidbody2D>());
                 rangeWeapon.position = grabPoint.position;

@@ -1,5 +1,7 @@
 using System.Collections;
+using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Item.Weapon
 {
@@ -20,7 +22,7 @@ namespace Item.Weapon
             _currentAmmo = _rangeWeapon.MaxAmmo;
         }
 
-        public void Shoot(Vector2 pointToShoot)
+        public void Shoot()
         {
             if (_isReloading)
             {
@@ -43,14 +45,12 @@ namespace Item.Weapon
             for (int bullet = 0; bullet < _rangeWeapon.NumberOfBulletsPerShot; bullet++)
             {
                 Vector2 firePointPosition = _firePoint.position;
-                Vector2 directionToShoot = pointToShoot - firePointPosition;
+                Vector2 directionToShoot = _firePoint.transform.rotation * Vector2.right;
                 float turn = Random.Range(-_rangeWeapon.SpreadDegrees, _rangeWeapon.SpreadDegrees) * Mathf.Deg2Rad;
 
                 // Applying a spread to the bullet using polar coordinate system 
                 float angleDir = Mathf.Atan2(directionToShoot.y, directionToShoot.x) + turn;
                 directionToShoot = new Vector2(Mathf.Cos(angleDir), Mathf.Sin(angleDir));
-                
-                // TODO: fix shooting towards shooter
 
                 RaycastHit2D hitInfo = Physics2D.Raycast(firePointPosition, directionToShoot);
 

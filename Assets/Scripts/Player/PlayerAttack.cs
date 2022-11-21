@@ -6,7 +6,7 @@ public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] private Camera _mainCamera;
 
-    public static Action<Vector2> shootInput;
+    public static Action shootInput;
     public static Action attackInput;
 
     // Update is called once per frame
@@ -14,9 +14,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            Vector2 mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
-            //RangeWeaponInterface weaponToShoot = GetComponentInChildren<RangeWeaponInterface>();
-            shootInput?.Invoke(mousePosition);
+            shootInput?.Invoke();
         }
         else if (Input.GetMouseButton(1))
         {
