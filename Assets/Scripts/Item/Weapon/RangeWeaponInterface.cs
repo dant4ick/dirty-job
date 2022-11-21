@@ -53,7 +53,6 @@ namespace Item.Weapon
                 // TODO: fix shooting towards shooter
 
                 RaycastHit2D hitInfo = Physics2D.Raycast(firePointPosition, directionToShoot);
-                Debug.Log(transform.rotation);
 
                 Debug.DrawRay(firePointPosition, directionToShoot, Color.black, 10f);
 

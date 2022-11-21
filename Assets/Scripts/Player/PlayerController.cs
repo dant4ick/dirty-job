@@ -1,18 +1,23 @@
+using System;
 using Item.Weapon;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Player
 {
     public class PlayerController : MonoBehaviour
     {
         private static PlayerController _instance;
-        public static PlayerController Instance { get { return _instance; } }
+
+        public static PlayerController Instance
+        {
+            get { return _instance; }
+        }
 
         public Inventory inventory;
         public Equipment equipment;
 
-        private CircleCollider2D _feetCollider;
-        private BoxCollider2D _headCollider;
+        private CapsuleCollider2D _playerCollider;
         private Rigidbody2D _rigidbody;
 
         private const float MoveSpeed = 6f;
@@ -20,27 +25,33 @@ namespace Player
 
         private static int _groundLayer;
 
+        [Header("Friction materials")] 
+        [SerializeField] private PhysicsMaterial2D zeroFriction;
+
+        [SerializeField] private PhysicsMaterial2D maxFriction;
+
         private GameObject _rangeWeapon;
         private GameObject _meleeWeapon;
 
-        [SerializeField] private Transform _attackPoint;
+        [Header("Attack")] 
+        [SerializeField] private Transform attackPoint;
+        [SerializeField] private Transform grabPoint;
 
-        [SerializeField] private GameObject _handPrefab;
-        [SerializeField] private Sprite _noWeaponSprite;
-        [SerializeField] private Sprite _withRangeWeaponSprite;
-        private GameObject _hand = null;
+        [Header("Player sprites")]
+        [SerializeField]
+        private GameObject hand;
+
+        [SerializeField] private Sprite noWeaponSprite;
+        [SerializeField] private Sprite withRangeWeaponSprite;
 
         private void Start()
         {
             _instance = this;
 
             _rigidbody = gameObject.GetComponent<Rigidbody2D>();
-            _feetCollider = gameObject.GetComponent<CircleCollider2D>();
-            _headCollider = gameObject.GetComponent<BoxCollider2D>();
-            
-            _groundLayer = LayerMask.GetMask("Ground");
+            _playerCollider = gameObject.GetComponent<CapsuleCollider2D>();
 
-            //UpdateEquipment();
+            _groundLayer = LayerMask.GetMask("Ground");
 
             equipment.OnWeaponListChanged += Equipment_OnWeaponListChanged;
         }
@@ -53,12 +64,28 @@ namespace Player
         private void FixedUpdate()
         {
             if (!IsGrounded()) return;
-            _rigidbody.velocity = _horizontalMovement != 0f ? new Vector2(_horizontalMovement * MoveSpeed, _rigidbody.velocity.y) : new Vector2(0f, _rigidbody.velocity.y);
+
+            if (_horizontalMovement == 0f)
+            {
+                _rigidbody.sharedMaterial = maxFriction;
+                return;
+            }
+
+            _rigidbody.sharedMaterial = zeroFriction;
+            _rigidbody.velocity = new Vector2(_horizontalMovement * MoveSpeed, _rigidbody.velocity.y);
         }
 
         private bool IsGrounded()
-        {       
-            return Physics2D.BoxCast(_feetCollider.bounds.center, new Vector2(1f, 1f), 0f, Vector2.down, 0.2f, _groundLayer);
+        {
+            var bounds = _playerCollider.bounds;
+            var radius = bounds.size.x * .4f;
+            var origin = (Vector2)bounds.center - new Vector2(0f, (bounds.size.y / 2) - radius);
+
+            var hitPoint = Physics2D.CircleCast(origin, radius, Vector2.down, .2f, _groundLayer);
+
+            Debug.DrawRay(hitPoint.point, hitPoint.normal);
+
+            return hitPoint;
         }
 
         private void Equipment_OnWeaponListChanged(object sender, System.EventArgs e)
@@ -73,35 +100,35 @@ namespace Player
                 PlayerAttack.attackInput -= _meleeWeapon.GetComponent<MeleeWeaponInterface>().Attack;
                 Destroy(_meleeWeapon);
             }
+
             if (_rangeWeapon != null)
             {
                 PlayerAttack.shootInput -= _rangeWeapon.GetComponent<RangeWeaponInterface>().Shoot;
                 Destroy(_rangeWeapon);
             }
-            if (_hand != null)
+
+            if (hand.activeSelf)
             {
-                Destroy(_hand);
+                hand.SetActive(false);
             }
 
             if (equipment.GetRangeWeapon() == null && equipment.GetMeleeWeapon() == null)
             {
-                transform.GetComponent<SpriteRenderer>().sprite = _noWeaponSprite;
+                transform.GetComponent<SpriteRenderer>().sprite = noWeaponSprite;
                 return;
             }
 
             if (equipment.GetRangeWeapon() != null)
             {
-                transform.GetComponent<SpriteRenderer>().sprite = _withRangeWeaponSprite;
-
-                Transform newHand = Instantiate(_handPrefab, transform).GetComponent<Transform>();
-                newHand.GetComponent<Pivot>().FixedUpdate();
-                Vector3 handPoint = newHand.GetChild(0).transform.position;
-                _hand = newHand.gameObject;
-
-                Transform rangeWeapon = Instantiate(equipment.GetRangeWeapon().PreFab, newHand).GetComponent<Transform>();
+                transform.GetComponent<SpriteRenderer>().sprite = withRangeWeaponSprite;
+                
+                hand.SetActive(true);
+                
+                Transform rangeWeapon =
+                    Instantiate(equipment.GetRangeWeapon().PreFab, hand.transform).GetComponent<Transform>();
                 rangeWeapon.GetComponent<PolygonCollider2D>().enabled = false;
                 Destroy(rangeWeapon.GetComponent<Rigidbody2D>());
-                rangeWeapon.position = handPoint;
+                rangeWeapon.position = grabPoint.position;
                 PlayerAttack.shootInput += rangeWeapon.GetComponent<RangeWeaponInterface>().Shoot;
 
                 _rangeWeapon = rangeWeapon.gameObject;
@@ -109,18 +136,19 @@ namespace Player
 
             if (equipment.GetMeleeWeapon() != null)
             {
-                Transform meleeWeapon = Instantiate(equipment.GetMeleeWeapon().PreFab, _attackPoint).GetComponent<Transform>();
+                Transform meleeWeapon = Instantiate(equipment.GetMeleeWeapon().PreFab, attackPoint)
+                    .GetComponent<Transform>();
                 meleeWeapon.GetComponent<PolygonCollider2D>().enabled = false;
                 Destroy(meleeWeapon.GetComponent<Rigidbody2D>());
 
                 meleeWeapon.GetComponent<SpriteRenderer>().sprite = null;
 
-                meleeWeapon.GetComponent<MeleeWeaponInterface>().attackPoint = _attackPoint;
+                meleeWeapon.GetComponent<MeleeWeaponInterface>().attackPoint = attackPoint;
 
                 PlayerAttack.attackInput += meleeWeapon.GetComponent<MeleeWeaponInterface>().Attack;
 
                 _meleeWeapon = meleeWeapon.gameObject;
-            }            
+            }
         }
 
         public void DropWeapon(Item.Item item, int positionInInventory, Transform objectInInventory)
