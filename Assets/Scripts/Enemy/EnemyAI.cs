@@ -7,14 +7,13 @@ public class EnemyAI : MonoBehaviour
 {
     [Header("Pathfinding")]
     [SerializeField] private List<Transform> patrolPath;
-    private int _patrolPointCount;
+    private int _currentPatrolPoint;
     public Transform target;
-    public float activateDistance = 50f;
     public float pathUpdateSeconds = 0.5f;
 
     [Header("Physics")]
     public float speed = 200f;
-    public float nextWaypointDistance = 5f;
+    public float nextWaypointDistance = 0.01f;
 
     [Header("Custom Behavior")]
     public bool calm;
@@ -36,7 +35,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private PhysicsMaterial2D maxFriction;
 
     public void Start()
-    {
+    {        
         seeker = GetComponent<Seeker>();
         _rigidbody = GetComponent<Rigidbody2D>();
         _collider = GetComponent<CapsuleCollider2D>();
@@ -59,15 +58,21 @@ public class EnemyAI : MonoBehaviour
         if (!seeker.IsDone())
             return;
 
+
         if (calm)
+        {
             CalmPatrolling();
+        }
         else
-            seeker.StartPath(_rigidbody.position, target.position, OnPathComplete);    
+            seeker.StartPath(transform.position, target.position, OnPathComplete);
+
+        //currentWaypoint++;
     }
 
     private void CalmPatrolling()
     {
-        seeker.StartPath(_rigidbody.position, patrolPath[_patrolPointCount].position, OnCalmPathComplete);
+        GraphNode startNode = AstarPath.active.GetNearest(transform.position).node;
+        seeker.StartPath((Vector3)startNode.position, patrolPath[_currentPatrolPoint].transform.position, OnCalmPathComplete);
     }
 
     private void PathFollow()
@@ -82,43 +87,26 @@ public class EnemyAI : MonoBehaviour
             return;
         }
 
-        if (currentWaypoint + 1 < path.vectorPath.Count)
+        if (path.vectorPath[currentWaypoint].x > transform.position.x)
         {
-            if (path.vectorPath[currentWaypoint+1].x > _rigidbody.position.x)
-            {
-                _horizontalMovement = 1;
+            _horizontalMovement = 1;
 
-                _rigidbody.velocity = new Vector2(_horizontalMovement * speed, _rigidbody.velocity.y);
-            }
-            else if (path.vectorPath[currentWaypoint+1].x < _rigidbody.position.x)
-            {
-                _horizontalMovement = -1;
-
-                _rigidbody.velocity = new Vector2(_horizontalMovement * speed, _rigidbody.velocity.y);
-            }
+            _rigidbody.velocity = new Vector2(_horizontalMovement * speed, _rigidbody.velocity.y);
         }
-        else
+        else if (path.vectorPath[currentWaypoint].x < transform.position.x)
         {
-            if (path.vectorPath[currentWaypoint].x > _rigidbody.position.x)
-            {
-                _horizontalMovement = 1;
+            _horizontalMovement = -1;
 
-                _rigidbody.velocity = new Vector2(_horizontalMovement * speed, _rigidbody.velocity.y);
-            }
-            else if (path.vectorPath[currentWaypoint].x < _rigidbody.position.x)
-            {
-                _horizontalMovement = -1;
-
-                _rigidbody.velocity = new Vector2(_horizontalMovement * speed, _rigidbody.velocity.y);
-            }
+            _rigidbody.velocity = new Vector2(_horizontalMovement * speed, _rigidbody.velocity.y);
         }
 
-        float distance = Vector2.Distance(_rigidbody.position, path.vectorPath[currentWaypoint]);
+        float distance = Vector2.Distance(transform.position, path.vectorPath[currentWaypoint]);
 
         if (distance < nextWaypointDistance)
         {
             currentWaypoint++;
-        }    
+        }
+
         if (directionLookEnabled)
         {
             if (_rigidbody.velocity.x > 0.05f)
@@ -137,14 +125,14 @@ public class EnemyAI : MonoBehaviour
         if (!p.error)
         {
             path = p;
-            currentWaypoint = 0;
 
-            if (path.vectorPath.Count <= 5)
-            {
-                _patrolPointCount++;
-                if (_patrolPointCount >= patrolPath.Count)
-                    _patrolPointCount = 0;                
-            }
+            if (path.path.Count > 1)
+                currentWaypoint = 1;
+
+            if (path.vectorPath.Count <= 2)
+                _currentPatrolPoint++;
+            if (_currentPatrolPoint >= patrolPath.Count)
+                _currentPatrolPoint = 0;
         }
     }
 
@@ -153,7 +141,9 @@ public class EnemyAI : MonoBehaviour
         if (!p.error)
         {
             path = p;
-            currentWaypoint = 0;
+
+            if (path.path.Count > 1)
+                currentWaypoint = 1;
         }
     }
 
@@ -170,4 +160,3 @@ public class EnemyAI : MonoBehaviour
         return hitPoint;
     }
 }
-
