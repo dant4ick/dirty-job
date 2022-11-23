@@ -89,9 +89,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4384004110052204681}
   - component: {fileID: 4384004110052204687}
+  - component: {fileID: 494385242171274640}
   - component: {fileID: -344066637860415413}
   - component: {fileID: 4384004110052204684}
-  - component: {fileID: 494385242171274640}
   m_Layer: 8
   m_Name: Pistol
   m_TagString: Untagged
@@ -168,6 +168,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!60 &494385242171274640
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4384004111075575900}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.18181819, y: 0.75}
+    oldSize: {x: 0.6875, y: 0.375}
+    newSize: {x: 0.6875, y: 0.375}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0, y: 0.03125}
+      - {x: -0.0625, y: -0.03125}
+      - {x: -0.125, y: -0.28125}
+      - {x: 0.1875, y: -0.21875}
+      - {x: 0.5625, y: -0.03125}
+      - {x: 0.5625, y: 0.09375}
 --- !u!50 &-344066637860415413
 Rigidbody2D:
   serializedVersion: 4
@@ -205,34 +236,3 @@ MonoBehaviour:
   _visualCuePreFab: {fileID: 6013516973862188284, guid: 72f36a85e1a5ea74cbbe4966304e7b53, type: 3}
   _spriteRenderer: {fileID: 4384004110052204687}
   _firePoint: {fileID: 4384004111039939741}
---- !u!60 &494385242171274640
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4384004111075575900}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.18181819, y: 0.75}
-    oldSize: {x: 0.6875, y: 0.375}
-    newSize: {x: 0.6875, y: 0.375}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0, y: 0.03125}
-      - {x: -0.0625, y: -0.03125}
-      - {x: -0.125, y: -0.28125}
-      - {x: 0.1875, y: -0.21875}
-      - {x: 0.5625, y: -0.03125}
-      - {x: 0.5625, y: 0.09375}

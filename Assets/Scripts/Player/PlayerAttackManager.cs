@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerAttackManager : MonoBehaviour
 {
-    [SerializeField] private Camera _mainCamera;
-
     public static Action shootInput;
     public static Action attackInput;
 

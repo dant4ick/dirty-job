@@ -52,18 +52,16 @@ namespace Item.Weapon
                 float angleDir = Mathf.Atan2(directionToShoot.y, directionToShoot.x) + turn;
                 directionToShoot = new Vector2(Mathf.Cos(angleDir), Mathf.Sin(angleDir));
 
-                RaycastHit2D hitInfo = Physics2D.Raycast(firePointPosition, directionToShoot);
+                RaycastHit2D hitInfo = Physics2D.Raycast(firePointPosition, directionToShoot, _rangeWeapon.EnemyLayers);
 
                 Debug.DrawRay(firePointPosition, directionToShoot, Color.black, 10f);
 
                 if (hitInfo)
                 {
-                    Enemy enemy = hitInfo.transform.GetComponent<Enemy>();
+                    HealthManager healthOfMortal = hitInfo.transform.GetComponent<HealthManager>();
 
-                    if (enemy != null)
-                    {
-                        enemy.TakeDamage(_rangeWeapon.AttackDamage);
-                    }
+                    if (healthOfMortal != null)
+                        healthOfMortal.TakeDamage();                 
                 }
             }
 

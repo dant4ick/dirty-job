@@ -8,11 +8,9 @@ abstract public class Weapon : Item.Item
 
     #region BASIC WEAPON STATS
         [Header("Basic Weapon Stats")]
-        [SerializeField] private int _attackDamage;
         [SerializeField] private float _attackRate;
     #endregion
 
-    public int AttackDamage { get { return _attackDamage; } }
     public float AttackRate { get { return _attackRate; } }
 
     public LayerMask EnemyLayers { get { return _enemyLayers; } }

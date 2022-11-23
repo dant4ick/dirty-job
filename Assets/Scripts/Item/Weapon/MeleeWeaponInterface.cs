@@ -12,7 +12,7 @@ namespace Item.Weapon
         private MeleeWeapon _meleeWeapon;
         private float _lastTimeAttack;
 
-        private delegate void Effects(Enemy enemy);
+        private delegate void Effects(HealthManager enemy);
         private Effects effects;
 
         protected override void Start()
@@ -32,12 +32,12 @@ namespace Item.Weapon
             }     
         }
 
-        private void DealDamage(Enemy enemy)
+        private void DealDamage(HealthManager enemy)
         {
-            enemy.TakeDamage(_meleeWeapon.AttackDamage);
+            enemy.TakeDamage();
         }
 
-        private void DealStun(Enemy enemy)
+        private void DealStun(HealthManager enemy)
         {
             enemy.TakeStun(5);
         }
@@ -55,7 +55,7 @@ namespace Item.Weapon
 
             foreach (Collider2D enemy in hitEnemies)
             {
-                effects(enemy.GetComponent<Enemy>());
+                effects(enemy.GetComponent<HealthManager>());
             }
 
             _lastTimeAttack = Time.time;

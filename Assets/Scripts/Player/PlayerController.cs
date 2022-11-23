@@ -14,6 +14,12 @@ namespace Player
             get { return _instance; }
         }
 
+        private Pivot _handPivot;
+
+        [Header("Objects for pivot")]
+        [SerializeField] private GameObject hand;
+        [SerializeField] private Camera mainCamera;
+
         private CapsuleCollider2D _playerCollider;
         private Rigidbody2D _rigidbody;
 
@@ -29,6 +35,7 @@ namespace Player
         private void Start()
         {
             _instance = this;
+            _handPivot = hand.GetComponent<Pivot>();
 
             _rigidbody = gameObject.GetComponent<Rigidbody2D>();
             _playerCollider = gameObject.GetComponent<CapsuleCollider2D>();
@@ -43,6 +50,8 @@ namespace Player
 
         private void FixedUpdate()
         {
+            _handPivot.ChangeRotation(mainCamera.ScreenToWorldPoint(Input.mousePosition));
+
             if (!IsGrounded()) return;
 
             if (_horizontalMovement == 0f)

@@ -5,30 +5,27 @@ namespace Player
 {
     public class Pivot : MonoBehaviour
     {
-        [SerializeField] private GameObject myPlayer;
-        [SerializeField] private Camera mainCamera;
-
-        public void FixedUpdate()
+        public void ChangeRotation(Vector3 target)
         {
-            Vector3 difference = mainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-
+            Vector3 difference = target - transform.position;
             difference.Normalize();
 
             float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-
             transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
 
             if (rotationZ < -90 || rotationZ > 90)
             {
-                if (myPlayer.transform.eulerAngles.y == 0)
+                if (transform.parent.transform.eulerAngles.y == 0)
                 {
                     transform.localRotation = Quaternion.Euler(180, 0, -rotationZ);
                 }
-                else if (myPlayer.transform.eulerAngles.y == 180)
+                else if (transform.parent.transform.eulerAngles.y == 180)
                 {
                     transform.localRotation = Quaternion.Euler(180, 180, -rotationZ);
                 }
             }
         }
+
+        
     }
 }

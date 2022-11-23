@@ -6,6 +6,8 @@ using Pathfinding;
 public class EnemyAI : MonoBehaviour
 {
     [Header("Pathfinding")]
+    [SerializeField] private List<Transform> patrolPath;
+    private int _patrolPointCount;
     public Transform target;
     public float activateDistance = 50f;
     public float pathUpdateSeconds = 0.5f;
@@ -15,6 +17,7 @@ public class EnemyAI : MonoBehaviour
     public float nextWaypointDistance = 5f;
 
     [Header("Custom Behavior")]
+    public bool calm;
     public bool followEnabled = true;
     public bool directionLookEnabled = true;
 
@@ -25,7 +28,6 @@ public class EnemyAI : MonoBehaviour
     private CapsuleCollider2D _collider;
 
     private float _horizontalMovement = 0;
-    private bool _pathUpdated = false;
     private static int _groundLayer;
 
 
@@ -39,13 +41,14 @@ public class EnemyAI : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         _collider = GetComponent<CapsuleCollider2D>();
         _groundLayer = LayerMask.GetMask("Ground");
+        calm = true;
 
         InvokeRepeating("UpdatePath", 0f, pathUpdateSeconds);
     }
 
     private void FixedUpdate()
     {
-        if (TargetInDistance() && followEnabled && IsGrounded())
+        if (followEnabled && IsGrounded())
         {
             PathFollow();
         }
@@ -53,11 +56,18 @@ public class EnemyAI : MonoBehaviour
 
     private void UpdatePath()
     {
-        if (followEnabled && TargetInDistance() && seeker.IsDone())
-        {
-            seeker.StartPath(_rigidbody.position, target.position, OnPathComplete);
-            _pathUpdated = true;
-        }
+        if (!seeker.IsDone())
+            return;
+
+        if (calm)
+            CalmPatrolling();
+        else
+            seeker.StartPath(_rigidbody.position, target.position, OnPathComplete);    
+    }
+
+    private void CalmPatrolling()
+    {
+        seeker.StartPath(_rigidbody.position, patrolPath[_patrolPointCount].position, OnCalmPathComplete);
     }
 
     private void PathFollow()
@@ -72,55 +82,39 @@ public class EnemyAI : MonoBehaviour
             return;
         }
 
-        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - _rigidbody.position).normalized;
-        //Vector2 force = direction * speed * Time.deltaTime;
-        //_rigidbody.AddForce(force);
-
-
-        float distance = Vector2.Distance(_rigidbody.position, path.vectorPath[currentWaypoint]);
-
-        if (_pathUpdated == true)
+        if (currentWaypoint + 1 < path.vectorPath.Count)
         {
-            _pathUpdated = false;
-            _rigidbody.velocity = new Vector2(_horizontalMovement * speed, _rigidbody.velocity.y);
+            if (path.vectorPath[currentWaypoint+1].x > _rigidbody.position.x)
+            {
+                _horizontalMovement = 1;
+
+                _rigidbody.velocity = new Vector2(_horizontalMovement * speed, _rigidbody.velocity.y);
+            }
+            else if (path.vectorPath[currentWaypoint+1].x < _rigidbody.position.x)
+            {
+                _horizontalMovement = -1;
+
+                _rigidbody.velocity = new Vector2(_horizontalMovement * speed, _rigidbody.velocity.y);
+            }
         }
         else
         {
-            if (path.vectorPath[currentWaypoint + 1] != null)
+            if (path.vectorPath[currentWaypoint].x > _rigidbody.position.x)
             {
-                if (path.vectorPath[currentWaypoint+1].x > _rigidbody.position.x)
-                {
-                    _horizontalMovement = 1;
+                _horizontalMovement = 1;
 
-                    _rigidbody.velocity = new Vector2(_horizontalMovement * speed, _rigidbody.velocity.y);
-                }
-                else if (path.vectorPath[currentWaypoint+1].x < _rigidbody.position.x)
-                {
-                    _horizontalMovement = -1;
-
-                    _rigidbody.velocity = new Vector2(_horizontalMovement * speed, _rigidbody.velocity.y);
-                }
+                _rigidbody.velocity = new Vector2(_horizontalMovement * speed, _rigidbody.velocity.y);
             }
-            else
+            else if (path.vectorPath[currentWaypoint].x < _rigidbody.position.x)
             {
-                if (path.vectorPath[currentWaypoint].x > _rigidbody.position.x)
-                {
-                    _horizontalMovement = 1;
+                _horizontalMovement = -1;
 
-                    _rigidbody.velocity = new Vector2(_horizontalMovement * speed, _rigidbody.velocity.y);
-                }
-                else if (path.vectorPath[currentWaypoint].x < _rigidbody.position.x)
-                {
-                    _horizontalMovement = -1;
-
-                    _rigidbody.velocity = new Vector2(_horizontalMovement * speed, _rigidbody.velocity.y);
-                }
+                _rigidbody.velocity = new Vector2(_horizontalMovement * speed, _rigidbody.velocity.y);
             }
-
-
         }
 
-        //float distance = Vector2.Distance(_rigidbody.position, path.vectorPath[currentWaypoint]);
+        float distance = Vector2.Distance(_rigidbody.position, path.vectorPath[currentWaypoint]);
+
         if (distance < nextWaypointDistance)
         {
             currentWaypoint++;
@@ -138,9 +132,20 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    private bool TargetInDistance()
+    private void OnCalmPathComplete(Path p)
     {
-        return Vector2.Distance(transform.position, target.transform.position) < activateDistance;
+        if (!p.error)
+        {
+            path = p;
+            currentWaypoint = 0;
+
+            if (path.vectorPath.Count <= 5)
+            {
+                _patrolPointCount++;
+                if (_patrolPointCount >= patrolPath.Count)
+                    _patrolPointCount = 0;                
+            }
+        }
     }
 
     private void OnPathComplete(Path p)

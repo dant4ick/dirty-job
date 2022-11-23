@@ -2,18 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class HealthManager : MonoBehaviour
 {
-    [SerializeField] private int _health = 1;
+    private bool _alive = true;
 
-    public void TakeDamage(int damage)
+    public void TakeDamage()
     {
-        _health -= damage;
-
-        if (_health <= 0)
-        {
-            Die();
-        }
+        Die();
     }
 
     public void TakeStun(float seconds)
@@ -28,6 +23,7 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
+        _alive = false;
         Debug.Log("DED");
     }
 }
