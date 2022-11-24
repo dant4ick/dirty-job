@@ -12,7 +12,7 @@ public class PlayerAttackManager : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            shootInput?.Invoke();
+            shootInput?.Invoke();            
         }
         else if (Input.GetMouseButton(1))
         {

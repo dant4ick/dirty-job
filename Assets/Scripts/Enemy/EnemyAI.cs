@@ -6,29 +6,39 @@ using Pathfinding;
 public class EnemyAI : MonoBehaviour
 {
     [Header("Pathfinding")]
-    [SerializeField] private List<Transform> patrolPath;
-    private int _currentPatrolPoint;
-    public Transform target;
     public float pathUpdateSeconds = 0.5f;
 
-    [Header("Physics")]
-    public float speed = 200f;
-    public float nextWaypointDistance = 0.01f;
-
-    [Header("Custom Behavior")]
-    public bool calm;
-    public bool followEnabled = true;
-    public bool directionLookEnabled = true;
+    [SerializeField] private List<Transform> patrolPath;
+    private int _currentPatrolPoint;
 
     private Path path;
     private int currentWaypoint = 0;
-    private Seeker seeker;
+
+    private Seeker _seeker;
+
+    [Header("Physics")]
+    public float speed = 8;
+    public float nextWaypointDistance = 0.5f;
+
     private Rigidbody2D _rigidbody;
     private CapsuleCollider2D _collider;
 
-    private float _horizontalMovement = 0;
-    private static int _groundLayer;
+    [SerializeField] private float slopeCheckDistance;
+    private float _slopeDownAngle;
+    private float _slopeDownAngleOld;
+    private float _slopeSideAngle;
+    private Vector2 _slopeNormalPerp;
+    private bool _isOnSlope;
 
+    private bool _isOnGround;
+    private static int _groundLayer;   
+
+    private float _horizontalMovement = 0;
+
+    [Header("Custom Behavior")]
+    public bool followEnabled = true;
+    public bool directionLookEnabled = true;
+    private AlarmManager _alarmManager;
 
     [Header("Friction materials")]
     [SerializeField] private PhysicsMaterial2D zeroFriction;
@@ -36,18 +46,24 @@ public class EnemyAI : MonoBehaviour
 
     public void Start()
     {        
-        seeker = GetComponent<Seeker>();
+        _seeker = GetComponent<Seeker>();
+
         _rigidbody = GetComponent<Rigidbody2D>();
         _collider = GetComponent<CapsuleCollider2D>();
+
         _groundLayer = LayerMask.GetMask("Ground");
-        calm = true;
+
+        _alarmManager = GetComponent<AlarmManager>();
 
         InvokeRepeating("UpdatePath", 0f, pathUpdateSeconds);
     }
 
     private void FixedUpdate()
     {
-        if (followEnabled && IsGrounded())
+        GroundCheck();
+        SlopeCheck();
+
+        if (followEnabled && _isOnGround)
         {
             PathFollow();
         }
@@ -55,24 +71,27 @@ public class EnemyAI : MonoBehaviour
 
     private void UpdatePath()
     {
-        if (!seeker.IsDone())
+        if (!_seeker.IsDone())
             return;
 
-
-        if (calm)
+        if (_alarmManager.alarmLevel == AlarmManager.AlarmLevel.Calm && patrolPath.Count > 1)
         {
             CalmPatrolling();
         }
-        else
-            seeker.StartPath(transform.position, target.position, OnPathComplete);
-
-        //currentWaypoint++;
+        else if (_alarmManager.alarmLevel == AlarmManager.AlarmLevel.Aware || _alarmManager.alarmLevel == AlarmManager.AlarmLevel.Concerned)
+        {
+            _seeker.StartPath(transform.position, _alarmManager.soundPosition, OnPathComplete);
+        }
+        else if (_alarmManager.alarmLevel == AlarmManager.AlarmLevel.Alarmed)
+        {
+            _seeker.StartPath(transform.position, _alarmManager.target.position, OnPathComplete);
+        }
     }
 
     private void CalmPatrolling()
     {
         GraphNode startNode = AstarPath.active.GetNearest(transform.position).node;
-        seeker.StartPath((Vector3)startNode.position, patrolPath[_currentPatrolPoint].transform.position, OnCalmPathComplete);
+        _seeker.StartPath((Vector3)startNode.position, patrolPath[_currentPatrolPoint].transform.position, OnCalmPathComplete);
     }
 
     private void PathFollow()
@@ -81,7 +100,6 @@ public class EnemyAI : MonoBehaviour
         {
             return;
         }
-
         if (currentWaypoint >= path.vectorPath.Count)
         {
             return;
@@ -91,22 +109,35 @@ public class EnemyAI : MonoBehaviour
         {
             _horizontalMovement = 1;
 
-            _rigidbody.velocity = new Vector2(_horizontalMovement * speed, _rigidbody.velocity.y);
+            if (_isOnSlope)
+            {
+                _rigidbody.velocity = new Vector2(-_horizontalMovement * speed * _slopeNormalPerp.x, -_horizontalMovement * speed * _slopeNormalPerp.y);
+            }
+            else
+            {
+                _rigidbody.velocity = new Vector2(_horizontalMovement * speed, 0f);
+            }
         }
         else if (path.vectorPath[currentWaypoint].x < transform.position.x)
         {
             _horizontalMovement = -1;
 
-            _rigidbody.velocity = new Vector2(_horizontalMovement * speed, _rigidbody.velocity.y);
+            if (_isOnSlope)
+            {
+                _rigidbody.velocity = new Vector2(-_horizontalMovement * speed * _slopeNormalPerp.x, -_horizontalMovement * speed * _slopeNormalPerp.y);
+            
+            }
+            else
+            {
+                _rigidbody.velocity = new Vector2(_horizontalMovement * speed, 0f);
+            }
         }
 
         float distance = Vector2.Distance(transform.position, path.vectorPath[currentWaypoint]);
-
         if (distance < nextWaypointDistance)
         {
             currentWaypoint++;
         }
-
         if (directionLookEnabled)
         {
             if (_rigidbody.velocity.x > 0.05f)
@@ -147,7 +178,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    private bool IsGrounded()
+    private void GroundCheck()
     {
         var bounds = _collider.bounds;
         var radius = bounds.size.x * .4f;
@@ -157,6 +188,55 @@ public class EnemyAI : MonoBehaviour
 
         Debug.DrawRay(hitPoint.point, hitPoint.normal);
 
-        return hitPoint;
+        _isOnGround = hitPoint;
+    }
+
+    private void SlopeCheck()
+    {
+        Vector2 checkPos = transform.position - new Vector3(0f, _collider.size.y / 2);
+
+        SlopeCheckHorizontal(checkPos);
+        SlopeCheckVertical(checkPos);
+    }
+
+    private void SlopeCheckHorizontal(Vector2 checkPos)
+    {
+        RaycastHit2D slopeHitFront = Physics2D.Raycast(checkPos, transform.right, slopeCheckDistance, _groundLayer);
+        RaycastHit2D slopeHitBack = Physics2D.Raycast(checkPos, -transform.right, slopeCheckDistance, _groundLayer);
+
+        if (slopeHitFront)
+        {
+            _isOnSlope = true;
+            _slopeSideAngle = Vector2.Angle(slopeHitFront.normal, Vector2.up);
+        }
+        else if (slopeHitBack)
+        {
+            _isOnSlope = true;
+            _slopeSideAngle = Vector2.Angle(slopeHitBack.normal, Vector2.up);
+        }
+        else
+        {
+            _slopeSideAngle = 0f;
+            _isOnSlope = false;
+        }
+    }
+
+    private void SlopeCheckVertical(Vector2 checkPos)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(checkPos, Vector2.down, slopeCheckDistance, _groundLayer);
+
+        if (hit)
+        {
+            _slopeNormalPerp = Vector2.Perpendicular(hit.normal).normalized;
+            _slopeDownAngle = Vector2.Angle(hit.normal, Vector2.up);
+
+            if (_slopeDownAngle != _slopeDownAngleOld)
+                _isOnSlope = true;
+
+            _slopeDownAngleOld = _slopeDownAngle;
+
+            Debug.DrawRay(hit.point, _slopeNormalPerp, Color.red);
+            Debug.DrawRay(hit.point, hit.normal, Color.white);
+        }
     }
 }

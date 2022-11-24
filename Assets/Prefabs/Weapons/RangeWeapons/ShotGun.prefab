@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9052703450674625146}
-  - component: {fileID: 4178690537149336417}
+  - component: {fileID: 3744984875102455384}
   m_Layer: 9
   m_Name: ColliderTrigger
   m_TagString: Untagged
@@ -25,15 +25,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6464956454261482239}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.343, y: -0.089, z: 0}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6805725542362686703}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &4178690537149336417
-PolygonCollider2D:
+--- !u!58 &3744984875102455384
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -46,22 +46,8 @@ PolygonCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 0.375}
-    newSize: {x: 1, y: 0.375}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.375, y: 0.1875}
-      - {x: -0.5, y: -0.1875}
-      - {x: -0.1875, y: -0.0625}
-      - {x: 0.375, y: 0}
-      - {x: 0.5, y: 0.1875}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &6805725542362686688
 GameObject:
   m_ObjectHideFlags: 0
@@ -72,7 +58,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6805725542362686703}
   - component: {fileID: 6805725542362686702}
-  - component: {fileID: 3429297004557078793}
+  - component: {fileID: 4503224885931672274}
   - component: {fileID: 1047022073655816121}
   - component: {fileID: 6805725542362686689}
   m_Layer: 8
@@ -90,7 +76,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6805725542362686688}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.4, y: 0.3, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -151,7 +137,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &3429297004557078793
+--- !u!60 &4503224885931672274
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -167,7 +153,7 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.125, y: 0.9166667}
     oldSize: {x: 1, y: 0.375}
     newSize: {x: 1, y: 0.375}
     adaptiveTilingThreshold: 0.5
@@ -176,11 +162,11 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.375, y: 0.1875}
-      - {x: -0.5, y: -0.1875}
-      - {x: -0.1875, y: -0.0625}
-      - {x: 0.375, y: 0}
-      - {x: 0.5, y: 0.1875}
+    - - {x: 0, y: 0.03125}
+      - {x: -0.125, y: -0.34375}
+      - {x: 0.1875, y: -0.21875}
+      - {x: 0.75, y: -0.15625}
+      - {x: 0.875, y: 0.03125}
 --- !u!50 &1047022073655816121
 Rigidbody2D:
   serializedVersion: 4

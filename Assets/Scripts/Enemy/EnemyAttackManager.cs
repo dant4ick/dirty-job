@@ -1,28 +1,33 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAttackManager : MonoBehaviour
 {
     public static Action shootCall;
 
-    [SerializeField] private GameObject enemyHand;
+    [SerializeField] private GameObject _enemyHand;
     private Player.Pivot _pivot;
 
     [SerializeField] Item.Weapon.RangeWeaponInterface rangeWeapon;
 
     private CapsuleCollider2D _collider;
-    private LayerMask _playerLayer;
-    
+    private AlarmManager _alarmManager;
+
+    private LayerMask _hitLayer;
+
+    public bool _canAttack = true;
 
     private void Start()
     {
-        _pivot = enemyHand.GetComponent<Player.Pivot>();
+        _pivot = _enemyHand.GetComponent<Player.Pivot>();
         _collider = gameObject.GetComponent<CapsuleCollider2D>();
-        _playerLayer = LayerMask.GetMask("Player");
+
+        _hitLayer = LayerMask.GetMask("Player", "Ground");
 
         shootCall += rangeWeapon.Shoot;
+
+        _alarmManager = GetComponent<AlarmManager>();
 
         rangeWeapon.GetComponent<PolygonCollider2D>().enabled = false;
         Destroy(rangeWeapon.GetComponent<Rigidbody2D>());
@@ -30,6 +35,9 @@ public class EnemyAttackManager : MonoBehaviour
 
     public void FixedUpdate()
     {
+        if (!_canAttack)
+            return;
+
         float forwardAngle = (Mathf.PI / 2 * transform.localScale.x * Mathf.Rad2Deg) + 45;
         for (int ray = 90; ray > 0; ray--)
         {
@@ -37,19 +45,35 @@ public class EnemyAttackManager : MonoBehaviour
             var directionToShoot = new Vector2(Mathf.Cos(angleDir), Mathf.Sin(angleDir));
 
             //Debug.DrawRay(_collider.bounds.center, directionToShoot, Color.blue);
-            RaycastHit2D hitInfo = Physics2D.Raycast(_collider.bounds.center, directionToShoot, 100f, _playerLayer);
+            RaycastHit2D hitInfo = Physics2D.Raycast(_collider.bounds.center, directionToShoot, 100f, _hitLayer);
 
-            if (hitInfo)
+            if (!hitInfo)
+                continue;
+
+            if (hitInfo.transform.gameObject.layer != LayerMask.NameToLayer("Player"))
+                continue;
+
+            Player.PlayerController player = hitInfo.transform.GetComponent<Player.PlayerController>();
+
+            if (player != null)
             {
-                Player.PlayerController player = hitInfo.transform.GetComponent<Player.PlayerController>();
-
-                if (player != null)
+                if (_alarmManager.alarmLevel == AlarmManager.AlarmLevel.Calm || _alarmManager.alarmLevel == AlarmManager.AlarmLevel.Concerned)
+                {
+                    _alarmManager.PlayerHasBeenSpoted(player.transform);
+                    return;
+                }
+                else if (_alarmManager.alarmLevel == AlarmManager.AlarmLevel.Alarmed || _alarmManager.alarmLevel == AlarmManager.AlarmLevel.Aware)
                 {
                     _pivot.ChangeRotation(hitInfo.point);
                     shootCall?.Invoke();
-                    return;
                 }
+                return;
             }
         }
+    }
+
+    public GameObject GetHand()
+    {
+        return _enemyHand;
     }
 }

@@ -22,6 +22,16 @@ namespace Item.Weapon
             _currentAmmo = _rangeWeapon.MaxAmmo;
         }
 
+        private void AlarmEnemies()
+        {
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, 200, LayerMask.GetMask("Enemy"));
+
+            foreach (Collider2D enemy in hitEnemies)
+            {
+                enemy.GetComponent<AlarmManager>().HearLoudSound(transform.position);
+            }
+        }
+
         public void Shoot()
         {
             if (_isReloading)
@@ -42,6 +52,8 @@ namespace Item.Weapon
 
             _currentAmmo--;
 
+            AlarmEnemies();
+
             for (int bullet = 0; bullet < _rangeWeapon.NumberOfBulletsPerShot; bullet++)
             {
                 Vector2 firePointPosition = _firePoint.position;
@@ -54,7 +66,7 @@ namespace Item.Weapon
 
                 RaycastHit2D hitInfo = Physics2D.Raycast(firePointPosition, directionToShoot, _rangeWeapon.EnemyLayers);
 
-                Debug.DrawRay(firePointPosition, directionToShoot, Color.black, 10f);
+                Debug.DrawRay(firePointPosition, directionToShoot, Color.black, 100f);
 
                 if (hitInfo)
                 {
@@ -68,7 +80,7 @@ namespace Item.Weapon
             _lastTimeAttack = Time.time;
         }
 
-        IEnumerator Reload()
+        private IEnumerator Reload()
         {
             _isReloading = true;
 

@@ -1050,7 +1050,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b14b5531dd10f0e48b273cfb9f43b456, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 1
 --- !u!50 &1475051037
 Rigidbody2D:
   serializedVersion: 4
@@ -1400,6 +1399,10 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 322673701078942211, guid: 8def48a74397b414c838348feda2ebbc, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 192911446}
     - target: {fileID: 322673701078942212, guid: 8def48a74397b414c838348feda2ebbc, type: 3}
       propertyPath: _mainCamera
       value: 

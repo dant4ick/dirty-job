@@ -42,8 +42,9 @@ namespace Item
             if (playerCollided.TryGetComponent<Player.PlayerController>(out var player))
             {
                 float heightOfObject = transform.GetComponent<PolygonCollider2D>().bounds.size.y;
+                float widthOfObject = transform.GetComponent<PolygonCollider2D>().bounds.size.x;
                 _visualCue.transform.rotation = _visualCueRotation;
-                _visualCue.transform.position = new Vector2(transform.GetComponent<PolygonCollider2D>().bounds.center.x, transform.position.y + heightOfObject + 0.15f);
+                _visualCue.transform.position = new Vector2(transform.position.x + widthOfObject / 2, transform.position.y + heightOfObject + 0.15f);
                 _visualCue.SetActive(true);
                 _canPickUp = true;
                 

@@ -24,6 +24,6 @@ public class HealthManager : MonoBehaviour
     void Die()
     {
         _alive = false;
-        Debug.Log("DED");
+        Debug.Log(this);
     }
 }
