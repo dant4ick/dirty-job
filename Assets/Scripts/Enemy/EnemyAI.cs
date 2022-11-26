@@ -31,7 +31,9 @@ public class EnemyAI : MonoBehaviour
     private bool _isOnSlope;
 
     private bool _isOnGround;
-    private static int _groundLayer;   
+    private bool _isOnPlatform;
+    private static int _groundLayer;
+    private static int _platformLayer;
 
     private float _horizontalMovement = 0;
 
@@ -52,6 +54,7 @@ public class EnemyAI : MonoBehaviour
         _collider = GetComponent<CapsuleCollider2D>();
 
         _groundLayer = LayerMask.GetMask("Ground");
+        _platformLayer = LayerMask.GetMask("Platform");
 
         _alarmManager = GetComponent<AlarmManager>();
 
@@ -61,9 +64,15 @@ public class EnemyAI : MonoBehaviour
     private void FixedUpdate()
     {
         GroundCheck();
+        PlatformCheck();
         SlopeCheck();
 
-        if (followEnabled && _isOnGround)
+        if (!followEnabled)
+        {
+            _rigidbody.sharedMaterial = maxFriction;
+            return;
+        }
+        if (_isOnGround || _isOnPlatform)
         {
             PathFollow();
         }
@@ -98,12 +107,32 @@ public class EnemyAI : MonoBehaviour
     {
         if (path == null)
         {
-            return;
+            _rigidbody.sharedMaterial = maxFriction;
+            return;            
         }
         if (currentWaypoint >= path.vectorPath.Count)
         {
+            _rigidbody.sharedMaterial = maxFriction;
             return;
         }
+
+        if (_isOnPlatform)
+        {
+            if (path.vectorPath[currentWaypoint].y < path.vectorPath[currentWaypoint - 1].y)
+            {
+                gameObject.layer = LayerMask.NameToLayer("EnemyThroughPlatform");
+            }
+            else
+            {
+                gameObject.layer = LayerMask.NameToLayer("Enemy");
+            }
+        }
+        else
+        {
+            gameObject.layer = LayerMask.NameToLayer("Enemy");
+        }
+
+        _rigidbody.sharedMaterial = zeroFriction;
 
         if (path.vectorPath[currentWaypoint].x > transform.position.x)
         {
@@ -132,6 +161,7 @@ public class EnemyAI : MonoBehaviour
                 _rigidbody.velocity = new Vector2(_horizontalMovement * speed, 0f);
             }
         }
+        
 
         float distance = Vector2.Distance(transform.position, path.vectorPath[currentWaypoint]);
         if (distance < nextWaypointDistance)
@@ -189,6 +219,19 @@ public class EnemyAI : MonoBehaviour
         Debug.DrawRay(hitPoint.point, hitPoint.normal);
 
         _isOnGround = hitPoint;
+    }
+
+    private void PlatformCheck()
+    {
+        var bounds = _collider.bounds;
+        var radius = bounds.size.x * .4f;
+        var origin = (Vector2)bounds.center - new Vector2(0f, (bounds.size.y / 2) - radius);
+
+        var hitPoint = Physics2D.CircleCast(origin, radius, Vector2.down, .2f, _platformLayer);
+
+        Debug.DrawRay(hitPoint.point, hitPoint.normal);
+
+        _isOnPlatform = hitPoint;
     }
 
     private void SlopeCheck()

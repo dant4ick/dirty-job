@@ -26,7 +26,17 @@ namespace Player
         private const float MoveSpeed = 6f;
         private float _horizontalMovement;
 
+        [SerializeField] private float slopeCheckDistance;
+        private float _slopeDownAngle;
+        private float _slopeDownAngleOld;
+        private float _slopeSideAngle;
+        private Vector2 _slopeNormalPerp;
+        private bool _isOnGround;
+        private bool _isOnSlope;
+        private bool _isOnPlatform;
+
         private static int _groundLayer;
+        private static int _platformLayer;
 
         [Header("Friction materials")] 
         [SerializeField] private PhysicsMaterial2D zeroFriction;
@@ -41,18 +51,30 @@ namespace Player
             _playerCollider = gameObject.GetComponent<CapsuleCollider2D>();
 
             _groundLayer = LayerMask.GetMask("Ground");
+            _platformLayer = LayerMask.GetMask("Platform");
         }
 
         private void Update()
         {
             _horizontalMovement = Input.GetAxisRaw("Horizontal");
+
+            if (Input.GetKey(KeyCode.S))
+            {
+                gameObject.layer = LayerMask.NameToLayer("PlayerThroughPlatform");
+            }
+            else
+            {
+                gameObject.layer = LayerMask.NameToLayer("Player");
+            }
         }
 
         private void FixedUpdate()
         {
             _handPivot.ChangeRotation(mainCamera.ScreenToWorldPoint(Input.mousePosition));
 
-            if (!IsGrounded()) return;
+            GroundCheck();
+            SlopeCheck();
+            PlatformCheck();
 
             if (_horizontalMovement == 0f)
             {
@@ -60,11 +82,24 @@ namespace Player
                 return;
             }
 
-            _rigidbody.sharedMaterial = zeroFriction;
-            _rigidbody.velocity = new Vector2(_horizontalMovement * MoveSpeed, _rigidbody.velocity.y);
+            if (_isOnGround || _isOnPlatform)
+            {
+                Move();
+            }            
         }
 
-        private bool IsGrounded()
+        private void Move()
+        {
+            _rigidbody.sharedMaterial = zeroFriction;
+
+            if (_isOnSlope)
+                _rigidbody.velocity = new Vector2(-_horizontalMovement * MoveSpeed * _slopeNormalPerp.x, -_horizontalMovement * MoveSpeed * _slopeNormalPerp.y);
+            else
+                _rigidbody.velocity = new Vector2(_horizontalMovement * MoveSpeed, _rigidbody.velocity.y);
+
+        }
+
+        private void GroundCheck()
         {
             var bounds = _playerCollider.bounds;
             var radius = bounds.size.x * .4f;
@@ -74,7 +109,69 @@ namespace Player
 
             Debug.DrawRay(hitPoint.point, hitPoint.normal);
 
-            return hitPoint;
+            _isOnGround = hitPoint;
+        }
+
+        private void PlatformCheck()
+        {
+            var bounds = _playerCollider.bounds;
+            var radius = bounds.size.x * .4f;
+            var origin = (Vector2)bounds.center - new Vector2(0f, (bounds.size.y / 2) - radius);
+
+            var hitPoint = Physics2D.CircleCast(origin, radius, Vector2.down, .2f, _platformLayer);
+
+            Debug.DrawRay(hitPoint.point, hitPoint.normal);
+
+            _isOnPlatform = hitPoint;
+        }
+
+        private void SlopeCheck()
+        {
+            Vector2 checkPos = transform.position - new Vector3(0f, _playerCollider.size.y / 2);
+
+            SlopeCheckHorizontal(checkPos);
+            SlopeCheckVertical(checkPos);
+        }
+
+        private void SlopeCheckHorizontal(Vector2 checkPos)
+        {
+            RaycastHit2D slopeHitFront = Physics2D.Raycast(checkPos, transform.right, slopeCheckDistance, _groundLayer);
+            RaycastHit2D slopeHitBack = Physics2D.Raycast(checkPos, -transform.right, slopeCheckDistance, _groundLayer);
+
+            if (slopeHitFront)
+            {
+                _isOnSlope = true;
+                _slopeSideAngle = Vector2.Angle(slopeHitFront.normal, Vector2.up);
+            }
+            else if (slopeHitBack)
+            {
+                _isOnSlope = true;
+                _slopeSideAngle = Vector2.Angle(slopeHitBack.normal, Vector2.up);
+            }
+            else
+            {
+                _slopeSideAngle = 0f;
+                _isOnSlope = false;
+            }
+        }
+
+        private void SlopeCheckVertical(Vector2 checkPos)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(checkPos, Vector2.down, slopeCheckDistance, _groundLayer);
+
+            if (hit)
+            {
+                _slopeNormalPerp = Vector2.Perpendicular(hit.normal).normalized;
+                _slopeDownAngle = Vector2.Angle(hit.normal, Vector2.up);
+
+                if (_slopeDownAngle != _slopeDownAngleOld)
+                    _isOnSlope = true;
+
+                _slopeDownAngleOld = _slopeDownAngle;
+
+                Debug.DrawRay(hit.point, _slopeNormalPerp, Color.red);
+                Debug.DrawRay(hit.point, hit.normal, Color.white);
+            }
         }
     }
 }

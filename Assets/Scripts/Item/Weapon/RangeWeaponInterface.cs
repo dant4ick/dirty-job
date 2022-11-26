@@ -22,16 +22,6 @@ namespace Item.Weapon
             _currentAmmo = _rangeWeapon.MaxAmmo;
         }
 
-        private void AlarmEnemies()
-        {
-            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, 200, LayerMask.GetMask("Enemy"));
-
-            foreach (Collider2D enemy in hitEnemies)
-            {
-                enemy.GetComponent<AlarmManager>().HearLoudSound(transform.position);
-            }
-        }
-
         public void Shoot()
         {
             if (_isReloading)
@@ -52,7 +42,7 @@ namespace Item.Weapon
 
             _currentAmmo--;
 
-            AlarmEnemies();
+            AlarmManager.AlarmEnemiesByLoudSound(transform, 200);
 
             for (int bullet = 0; bullet < _rangeWeapon.NumberOfBulletsPerShot; bullet++)
             {

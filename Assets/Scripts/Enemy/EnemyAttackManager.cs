@@ -23,7 +23,7 @@ public class EnemyAttackManager : MonoBehaviour
         _pivot = _enemyHand.GetComponent<Player.Pivot>();
         _collider = gameObject.GetComponent<CapsuleCollider2D>();
 
-        _hitLayer = LayerMask.GetMask("Player", "Ground");
+        _hitLayer = LayerMask.GetMask("Player", "PlayerThroughPlatform", "Ground");
 
         shootCall += rangeWeapon.Shoot;
 
@@ -50,14 +50,14 @@ public class EnemyAttackManager : MonoBehaviour
             if (!hitInfo)
                 continue;
 
-            if (hitInfo.transform.gameObject.layer != LayerMask.NameToLayer("Player"))
+            if (hitInfo.transform.gameObject.layer == LayerMask.NameToLayer("Ground"))
                 continue;
 
             Player.PlayerController player = hitInfo.transform.GetComponent<Player.PlayerController>();
 
             if (player != null)
             {
-                if (_alarmManager.alarmLevel == AlarmManager.AlarmLevel.Calm || _alarmManager.alarmLevel == AlarmManager.AlarmLevel.Concerned)
+                if (_alarmManager.alarmLevel == AlarmManager.AlarmLevel.Calm || _alarmManager.alarmLevel == AlarmManager.AlarmLevel.Concerned || _alarmManager.alarmLevel == AlarmManager.AlarmLevel.Aware)
                 {
                     _alarmManager.PlayerHasBeenSpoted(player.transform);
                     return;

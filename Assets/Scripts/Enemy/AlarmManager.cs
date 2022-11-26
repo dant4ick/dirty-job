@@ -42,10 +42,11 @@ public class AlarmManager : MonoBehaviour
 
     public void HearLoudSound(Vector2 soundPosition)
     {
-        if (alarmLevel == AlarmLevel.Aware || alarmLevel == AlarmLevel.Alarmed)
+        if (alarmLevel == AlarmLevel.Alarmed)
             return;
 
-        StartCoroutine(AlarmLevelChanged(AlarmLevel.Aware));
+        if (alarmLevel != AlarmLevel.Aware)
+            StartCoroutine(AlarmLevelChanged(AlarmLevel.Aware));
 
         this.soundPosition = soundPosition;
         alarmLevel = AlarmLevel.Aware;
@@ -97,6 +98,25 @@ public class AlarmManager : MonoBehaviour
 
             Destroy(_alarmedCue);
         }
+    }
 
+    static public void AlarmEnemiesByQuietSound(Transform point, int radius)
+    {
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(point.position, radius, LayerMask.GetMask("Enemy"));
+
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            enemy.GetComponent<AlarmManager>().HearQuietSound(point.position);
+        }
+    }
+
+    static public void AlarmEnemiesByLoudSound(Transform point, int radius)
+    {
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(point.position, radius, LayerMask.GetMask("Enemy"));
+
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            enemy.GetComponent<AlarmManager>().HearLoudSound(point.position);
+        }
     }
 }

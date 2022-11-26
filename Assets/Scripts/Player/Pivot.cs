@@ -17,10 +17,14 @@ namespace Player
             {
                 if (transform.parent.transform.eulerAngles.y == 0)
                 {
+                    //transform.parent.localScale = new Vector3(-1f * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+                    //transform.localScale = new Vector3(-1f * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
                     transform.localRotation = Quaternion.Euler(180, 0, -rotationZ);
                 }
                 else if (transform.parent.transform.eulerAngles.y == 180)
                 {
+                    //transform.parent.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+                    //transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
                     transform.localRotation = Quaternion.Euler(180, 180, -rotationZ);
                 }
             }

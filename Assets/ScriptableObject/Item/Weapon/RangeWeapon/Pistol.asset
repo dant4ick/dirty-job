@@ -17,8 +17,7 @@ MonoBehaviour:
   _prefab: {fileID: 4384004111075575900, guid: 9f6b078dd681dc141b8352caff8aace6, type: 3}
   _enemyLayers:
     serializedVersion: 2
-    m_Bits: 1152
-  _attackDamage: 100
+    m_Bits: 13440
   _attackRate: 1
   spreadDegrees: 5
   _penetration: 1
