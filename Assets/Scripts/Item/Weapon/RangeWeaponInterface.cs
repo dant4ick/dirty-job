@@ -22,7 +22,7 @@ namespace Item.Weapon
             _currentAmmo = _rangeWeapon.MaxAmmo;
         }
 
-        public void Shoot()
+        public void Shoot(LayerMask enemyLayer)
         {
             if (_isReloading)
             {
@@ -54,16 +54,23 @@ namespace Item.Weapon
                 float angleDir = Mathf.Atan2(directionToShoot.y, directionToShoot.x) + turn;
                 directionToShoot = new Vector2(Mathf.Cos(angleDir), Mathf.Sin(angleDir));
 
-                RaycastHit2D hitInfo = Physics2D.Raycast(firePointPosition, directionToShoot, _rangeWeapon.EnemyLayers);
+                RaycastHit2D hitInfo = Physics2D.Raycast(firePointPosition, directionToShoot, enemyLayer);
 
                 Debug.DrawRay(firePointPosition, directionToShoot, Color.black, 100f);
-
+                
                 if (hitInfo)
                 {
-                    HealthManager healthOfMortal = hitInfo.transform.GetComponent<HealthManager>();
+                    HealthManager mortal = hitInfo.transform.GetComponent<HealthManager>();
 
-                    if (healthOfMortal != null)
-                        healthOfMortal.TakeDamage();                 
+                    if (mortal != null)
+                    {
+                        Vector2 hitNormal = hitInfo.normal * -1;
+
+                        Quaternion rotation = Quaternion.Euler(hitNormal.x, hitNormal.y, 0f);
+
+                        mortal.TakeDamage();
+                        mortal.TakeBleed(_rangeWeapon.ParticleSystem, hitInfo.point, rotation);
+                    }
                 }
             }
 

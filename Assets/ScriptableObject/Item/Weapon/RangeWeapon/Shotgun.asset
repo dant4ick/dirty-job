@@ -19,6 +19,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 13440
   _attackRate: 2
+  _particleSystem: {fileID: 645099414429717669, guid: 89932a4499633274bbde2d85c2703cb7, type: 3}
   spreadDegrees: 20
   _penetration: 1
   _numberOfBulletsPerShot: 8

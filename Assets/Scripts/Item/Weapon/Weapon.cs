@@ -11,6 +11,10 @@ abstract public class Weapon : Item.Item
         [SerializeField] private float _attackRate;
     #endregion
 
+    [Header("Particle system")]
+    [SerializeField] private GameObject _particleSystem;
+
+    public GameObject ParticleSystem { get { return _particleSystem; } }
     public float AttackRate { get { return _attackRate; } }
 
     public LayerMask EnemyLayers { get { return _enemyLayers; } }

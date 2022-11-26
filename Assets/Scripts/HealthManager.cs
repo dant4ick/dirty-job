@@ -16,9 +16,9 @@ public class HealthManager : MonoBehaviour
         Debug.Log("STUN");
     }
 
-    public void TakeBleed()
+    public void TakeBleed(GameObject particleSystem, Vector2 position, Quaternion rotation)
     {
-        Debug.Log("BLEED");
+        Instantiate(particleSystem, position, rotation);
     }
 
     void Die()

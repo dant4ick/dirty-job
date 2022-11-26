@@ -27,8 +27,6 @@ namespace Item.Weapon
             {
                 if (effect == "Stun")
                     effects += DealStun;
-                if (effect == "Bleed")
-                    return;
             }     
         }
 

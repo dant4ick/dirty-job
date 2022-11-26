@@ -18,8 +18,8 @@ MonoBehaviour:
   _enemyLayers:
     serializedVersion: 2
     m_Bits: 128
-  _attackDamage: 100
   _attackRate: 2
+  _particleSystem: {fileID: 645099414429717669, guid: 8424ec91f29337d4b9212eaddfa29810, type: 3}
   _attackRange: 2
   effects:
   - Stun

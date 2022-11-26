@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb795c96ced7f5c4e8328e162170f68f, type: 3}
   m_Name: Pistol
   m_EditorClassIdentifier: 
-  _spriteInInventory: {fileID: 0}
+  _spriteInInventory: {fileID: 758425553, guid: a95088facd0fb2346a8d33b4b484416c, type: 3}
   _name: Pistol
   _prefab: {fileID: 4384004111075575900, guid: 9f6b078dd681dc141b8352caff8aace6, type: 3}
   _enemyLayers:
     serializedVersion: 2
     m_Bits: 13440
   _attackRate: 1
+  _particleSystem: {fileID: 645099414429717669, guid: 3c133a55f4f25d545a68b4cfd0837ee9, type: 3}
   spreadDegrees: 5
   _penetration: 1
   _numberOfBulletsPerShot: 1

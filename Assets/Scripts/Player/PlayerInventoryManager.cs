@@ -71,6 +71,7 @@ public class PlayerInventoryManager : MonoBehaviour
             Transform rangeWeapon = Instantiate(equipment.GetRangeWeapon().PreFab, grabPoint.transform).GetComponent<Transform>();
             rangeWeapon.GetComponent<PolygonCollider2D>().enabled = false;
             Destroy(rangeWeapon.GetComponent<Rigidbody2D>());
+            Destroy(rangeWeapon.GetComponentInChildren<CircleCollider2D>(true));
             rangeWeapon.position = grabPoint.position;
             PlayerAttackManager.shootInput += rangeWeapon.GetComponent<Item.Weapon.RangeWeaponInterface>().Shoot;
 
