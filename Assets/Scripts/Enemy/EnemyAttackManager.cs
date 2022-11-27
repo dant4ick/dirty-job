@@ -45,7 +45,7 @@ public class EnemyAttackManager : MonoBehaviour
         if (!_canAttack)
             return;
 
-        float forwardAngle = (Mathf.PI / 2 * transform.localScale.x * Mathf.Rad2Deg) + 45;
+        float forwardAngle = (Mathf.PI / 2 * transform.localScale.x * Mathf.Rad2Deg * -1) + 45;
 
         List<RaycastHit2D> hits = new List<RaycastHit2D>();
 
@@ -54,8 +54,8 @@ public class EnemyAttackManager : MonoBehaviour
             float angleDir = (forwardAngle + ray) * Mathf.Deg2Rad;
             var directionToShoot = new Vector2(Mathf.Cos(angleDir), Mathf.Sin(angleDir));
 
-            //Debug.DrawRay(_collider.bounds.center, directionToShoot, Color.blue);
-            RaycastHit2D hitInfo = Physics2D.Raycast(_collider.bounds.center, directionToShoot, 50f, _hitLayer);
+            //Debug.DrawRay(_collider.bounds.center + new Vector3(0f, 0.4375f, 0f), directionToShoot, Color.blue);
+            RaycastHit2D hitInfo = Physics2D.Raycast(_collider.bounds.center + new Vector3(0f, 0.4375f, 0f), directionToShoot, 50f, _hitLayer);
 
             if (!hitInfo)
                 continue;
@@ -67,6 +67,7 @@ public class EnemyAttackManager : MonoBehaviour
 
             if (player != null)
             {
+                Debug.DrawRay(_collider.bounds.center + new Vector3(0f, 0.4375f, 0f), directionToShoot, Color.blue, 100f);
                 hits.Add(hitInfo);                
 
                 if (_alarmManager.alarmLevel == AlarmManager.AlarmLevel.Calm || _alarmManager.alarmLevel == AlarmManager.AlarmLevel.Concerned || _alarmManager.alarmLevel == AlarmManager.AlarmLevel.Aware)

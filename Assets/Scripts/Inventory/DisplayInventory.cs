@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class DisplayInventory : MonoBehaviour
 {
-    public Inventory savedInventory;
+    [SerializeField] private Inventory savedInventory;
 
     public Inventory inventory;
     public Transform inventorySlotTemplate;
@@ -15,16 +15,36 @@ public class DisplayInventory : MonoBehaviour
     void Start()
     {
         inventory.SetCells();
-        savedInventory.SetCells();
+
+        if (savedInventory.GetLength() != 0)        
+            GetSavedInventory();        
+        else
+            savedInventory.SetCells();
+
         UpdateDisplay();
         inventory.OnItemListChanged += Inventory_OnItemListChanged;
-
-        inventory = savedInventory;
     }
+
     private void OnDestroy()
     {
         inventory.OnItemListChanged -= Inventory_OnItemListChanged;
+        //SaveInventory();
         inventory.Clear();
+    }
+
+    private void SaveInventory()
+    {
+        for (int cell = 0; cell < inventory.GetLength(); cell++)
+        {
+            savedInventory.SetItemToCell(inventory.GetItemFromCell(cell), cell);
+        }
+    }
+    private void GetSavedInventory()
+    {
+        for (int cell = 0; cell < savedInventory.GetLength(); cell++)
+        {
+            inventory.SetItemToCell(savedInventory.GetItemFromCell(cell), cell);
+        }
     }
 
     private void Inventory_OnItemListChanged(object sender, System.EventArgs e)

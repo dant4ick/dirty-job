@@ -40,7 +40,7 @@ public class PlayerInventoryManager : MonoBehaviour
     private void OnDestroy()
     {
         equipment.OnWeaponListChanged -= Equipment_OnWeaponListChanged;
-    }
+    }    
 
     private void Update()
     {

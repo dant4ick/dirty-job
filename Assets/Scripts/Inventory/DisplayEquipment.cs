@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class DisplayEquipment : MonoBehaviour
 {
+    [SerializeField] Equipment savedEquipment;
+
     public Equipment equipment;
     public Transform equipmentSlotTemplate;
     public Transform itemImageInEquipment;
@@ -13,12 +15,28 @@ public class DisplayEquipment : MonoBehaviour
     void Start()
     {
         equipment.SetCells();
+
+        if (savedEquipment.GetLenght() == 0)
+            savedEquipment.SetCells();
+        else
+            GetSavedEquipment();
+
         UpdateDisplay();
     }
-
     private void OnDestroy()
     {
         equipment.Clear();
+    }
+
+    private void SaveEquipment()
+    {
+        savedEquipment.SetMeleeWeapon(equipment.GetMeleeWeapon());
+        savedEquipment.SetRangeWeapon(equipment.GetRangeWeapon());
+    }
+    private void GetSavedEquipment()
+    {
+        equipment.SetMeleeWeapon(savedEquipment.GetMeleeWeapon());
+        equipment.SetRangeWeapon(savedEquipment.GetRangeWeapon());
     }
 
     private void Equipment_OnWeaponListChanged(object sender, System.EventArgs e)
