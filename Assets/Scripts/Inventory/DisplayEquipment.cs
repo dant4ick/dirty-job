@@ -16,6 +16,11 @@ public class DisplayEquipment : MonoBehaviour
         UpdateDisplay();
     }
 
+    private void OnDestroy()
+    {
+        equipment.Clear();
+    }
+
     private void Equipment_OnWeaponListChanged(object sender, System.EventArgs e)
     {
         UpdateDisplay();

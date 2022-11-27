@@ -10,6 +10,8 @@ public class HealthManager : MonoBehaviour
     [Header("Friction materials")]
     [SerializeField] private PhysicsMaterial2D maxFriction;
 
+    [SerializeField] private GameOverScreen gameOverScreen;
+
     public void TakeDamage()
     {
         Die();
@@ -32,6 +34,7 @@ public class HealthManager : MonoBehaviour
             Destroy(gameObject.GetComponent<Player.PlayerController>());
             Destroy(gameObject.GetComponent<PlayerAttackManager>());
             Destroy(gameObject.GetComponent<PlayerInventoryManager>());
+            gameOverScreen.GameOver();
         }
         else
         {

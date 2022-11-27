@@ -11,13 +11,18 @@ public class PlayerInventoryManager : MonoBehaviour
         get { return _instance; }
     }
 
+    public Inventory savedInventory;
+    public Equipment savedEquipment;
+
     public Inventory inventory;
     public Equipment equipment;
 
     private GameObject _rangeWeapon;
     private GameObject _meleeWeapon;
+    [Header("Inventory canvas")]
+    [SerializeField] private GameObject inventoryCanvas;
 
-    [Header("Attack")]
+    [Header("Weapon positions")]
     [SerializeField] private Transform attackPoint;
     [SerializeField] private Transform grabPoint;
 
@@ -30,6 +35,33 @@ public class PlayerInventoryManager : MonoBehaviour
     {
         _instance = this;
         equipment.OnWeaponListChanged += Equipment_OnWeaponListChanged;
+    }
+
+    private void OnDestroy()
+    {
+        equipment.OnWeaponListChanged -= Equipment_OnWeaponListChanged;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.Tab))
+        {
+            ShowInventory();
+        }
+        else
+        {
+            CloseInvenotory();
+        }
+    }
+
+    private void CloseInvenotory()
+    {
+        inventoryCanvas.SetActive(false);
+    }
+
+    private void ShowInventory()
+    {
+        inventoryCanvas.SetActive(true);
     }
 
     private void Equipment_OnWeaponListChanged(object sender, System.EventArgs e)
@@ -106,6 +138,9 @@ public class PlayerInventoryManager : MonoBehaviour
     private void OnApplicationQuit()
     {
         inventory.Clear();
+        equipment.Clear();
+
+        savedInventory.Clear();
         equipment.Clear();
     }
 }

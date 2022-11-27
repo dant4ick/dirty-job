@@ -35,6 +35,10 @@ public class EnemyAttackManager : MonoBehaviour
         rangeWeapon.GetComponent<PolygonCollider2D>().enabled = false;
         Destroy(rangeWeapon.GetComponent<Rigidbody2D>());
     }
+    private void OnDestroy()
+    {
+        shootCall -= rangeWeapon.Shoot;
+    }
 
     public void FixedUpdate()
     {

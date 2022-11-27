@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class DisplayInventory : MonoBehaviour
 {
+    public Inventory savedInventory;
+
     public Inventory inventory;
     public Transform inventorySlotTemplate;
     public Transform itemImageInInventory;
@@ -13,8 +15,16 @@ public class DisplayInventory : MonoBehaviour
     void Start()
     {
         inventory.SetCells();
+        savedInventory.SetCells();
         UpdateDisplay();
         inventory.OnItemListChanged += Inventory_OnItemListChanged;
+
+        inventory = savedInventory;
+    }
+    private void OnDestroy()
+    {
+        inventory.OnItemListChanged -= Inventory_OnItemListChanged;
+        inventory.Clear();
     }
 
     private void Inventory_OnItemListChanged(object sender, System.EventArgs e)

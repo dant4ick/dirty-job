@@ -316,7 +316,7 @@ Canvas:
   m_GameObject: {fileID: 173360554}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 2111946508}
   m_PlaneDistance: 100
   m_PixelPerfect: 1
@@ -407,7 +407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 915752775077787187
+  uniqueID: 3389912001128365664
   end: {fileID: 1881213494}
   costFactor: 1
   oneWay: 0
@@ -425,7 +425,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 6958791926177227374
+  uniqueID: 4443046657526474625
   end: {fileID: 927509849}
   costFactor: 1
   oneWay: 0
@@ -1338,6 +1338,10 @@ PrefabInstance:
       propertyPath: gameOverScreen
       value: 
       objectReference: {fileID: 173360559}
+    - target: {fileID: 6693945845639171717, guid: 8def48a74397b414c838348feda2ebbc, type: 3}
+      propertyPath: savedInventory
+      value: 
+      objectReference: {fileID: 11400000, guid: 8ed6aa2c58e44b049877447c8754d820, type: 2}
     - target: {fileID: 6693945845639171717, guid: 8def48a74397b414c838348feda2ebbc, type: 3}
       propertyPath: inventoryCanvas
       value: 
@@ -2252,7 +2256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 5056961132716734655
+  uniqueID: 6429634581969617743
   end: {fileID: 1971818866}
   costFactor: 1
   oneWay: 0
@@ -2443,7 +2447,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAAAYIeyegQ6oRwEAABgCAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFdUctuwjAQ/JXI51LlSUjPINRDKeLxARt7k6xIbGQ7lID499o8StvTrsazs7PjM9NKWfYWnNkCOnQNYy8B2wz7a7+VZIeZrEni60aDNJXSnSfMt+9TT0jHCSR5McnSIsJxlI3yEuMQRZLnZZRnacYujm0QNG82ULsR2betgzo4TslYkNwvSh3SUkfWeCsBO7oSOmy415OvgZfSMHAw3rHVPTqgNxhPl81giJsnahviu9UPt4LW/IdXIKj3I5GXRd5rQwd8SnRgdjc3B2h7/zBOrxakuwaNXSiBjxM+XO/j8JiPp+5J/J1lWcWLNM6xiCdFBnE5EmE8jnlWijRPyzwJ2VWcXOIE7RIltPZxvtqjfBqT949aKpI2mGvYN36n0PA1p1OnfsVAslJrrhHl503iEYRB7bbQCcVMkFV6jdaSrP0oO1/Y5RtQSwMEFAAACAgAABgh7KkaMhNuAAAAeQAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSMzTXUVBKL0osyCgGihiCOKWZKSB2tJJpWrKliZF5qqWRhaVpolGSboqBkZlRsmlSiom5SZK5sYFSLFB9SWVBql9ibipET0BiSUZaZl5KZl66XkB+Zl6JO8hspdhaAFBLAQItABQAAAgIAAAYIeyegQ6oRwEAABgCAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAAAYIeypGjITbgAAAHkAAAAJACQAAAAAAAAAAAAAAJQBAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAATQIAAAAA
+    dataString: UEsDBBQAAAgIAAAYIewVvx4ORwEAABgCAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFdUctuwjAQ/JXI51IZkxDoGYR6KEU8PmBx1smKxEa2QwmIf6/No7Q97Wo8Ozs7PjNrjGdvyZnNocHQMPaSsHW3v/YbTb6b6pI0vq4taKeMbSJhtnmfRMI2V5iJ0YiLlAvehx4qmSrFU5WJnA+GnF0C2yFYWa2hDCO6resANXCckPOgZVyUBqSmhryLVhJ2DIUHrLvXU6xJlLLQSXDRsbctBqB1KCaLqnMk3RP1Fcnd8oeroHb/4SUU1MaRfpRF2VpHB3xKNOB2NzcHqNv4MEyvFnS4Bp2fmwIfJ3yEPsYRsRhP2VLxd5ZlSo5TkeNYjMYZiG2v4GIoZLYt0jzd5gPOruIUEieoF6ih9o/zzR7105i+f9TCkPbJzMK+ijsLC18zOjXmVwyklVlJi6g/bxKPIBzasIVOWEwL8sau0HvSZRxl5wu7fANQSwMEFAAACAgAABgh7KkaMhNuAAAAeQAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSMzTXUVBKL0osyCgGihiCOKWZKSB2tJJpWrKliZF5qqWRhaVpolGSboqBkZlRsmlSiom5SZK5sYFSLFB9SWVBql9ibipET0BiSUZaZl5KZl66XkB+Zl6JO8hspdhaAFBLAQItABQAAAgIAAAYIewVvx4ORwEAABgCAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAAAYIeypGjITbgAAAHkAAAAJACQAAAAAAAAAAAAAAJQBAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAATQIAAAAA
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -2660,7 +2664,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 632ae7eb1d4ce49d38a1e38ee7efe7c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guid: 463a37985491e615-7be20ed377b17545
+  guid: b7fe52880240201a-efc4ff04f5270360
 --- !u!1 &1042880302
 GameObject:
   m_ObjectHideFlags: 0
@@ -14413,7 +14417,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 901164435138429625
+  uniqueID: 9019382135735446550
   end: {fileID: 1881213494}
   costFactor: 1
   oneWay: 0
@@ -14930,7 +14934,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 145734220960753648
+  uniqueID: 3615594773239247644
   end: {fileID: 290572851}
   costFactor: 1
   oneWay: 0
@@ -14948,7 +14952,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 2260062497855362317
+  uniqueID: 871746699592664391
   end: {fileID: 776541697}
   costFactor: 1
   oneWay: 0
@@ -15011,6 +15015,10 @@ PrefabInstance:
     - target: {fileID: 2840778201109489927, guid: 34e0d3af1fc7dc04f9c0b057b6d69059, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2840778201109489981, guid: 34e0d3af1fc7dc04f9c0b057b6d69059, type: 3}
+      propertyPath: nextWaypointDistance
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 2840778201109489982, guid: 34e0d3af1fc7dc04f9c0b057b6d69059, type: 3}
       propertyPath: m_Name

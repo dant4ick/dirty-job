@@ -10,6 +10,10 @@ public class Equipment : ScriptableObject
     //public List<EquipmentCell> WeaponList { get { return _weaponList; } }
 
     public event EventHandler OnWeaponListChanged;
+    private void OnDestroy()
+    {
+        _weaponList.Clear();
+    }
 
     public void SetCells()
     {
