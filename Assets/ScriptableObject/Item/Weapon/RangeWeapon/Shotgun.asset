@@ -18,10 +18,11 @@ MonoBehaviour:
   _enemyLayers:
     serializedVersion: 2
     m_Bits: 13440
-  _attackRate: 2
+  _attackRate: 1.5
   _particleSystem: {fileID: 645099414429717669, guid: 89932a4499633274bbde2d85c2703cb7, type: 3}
   spreadDegrees: 20
-  _penetration: 1
-  _numberOfBulletsPerShot: 8
-  _maxAmmo: 2
-  _reloadTime: 3
+  distance: 40
+  penetration: 1
+  numberOfBulletsPerShot: 8
+  maxAmmo: 2
+  reloadTime: 3

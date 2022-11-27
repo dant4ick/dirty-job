@@ -54,7 +54,7 @@ namespace Item.Weapon
                 float angleDir = Mathf.Atan2(directionToShoot.y, directionToShoot.x) + turn;
                 directionToShoot = new Vector2(Mathf.Cos(angleDir), Mathf.Sin(angleDir));
 
-                RaycastHit2D hitInfo = Physics2D.Raycast(firePointPosition, directionToShoot, enemyLayer);
+                RaycastHit2D hitInfo = Physics2D.Raycast(firePointPosition, directionToShoot, _rangeWeapon.Distance, enemyLayer);
 
                 Debug.DrawRay(firePointPosition, directionToShoot, Color.black, 100f);
                 

@@ -21,7 +21,8 @@ MonoBehaviour:
   _attackRate: 1
   _particleSystem: {fileID: 645099414429717669, guid: 3c133a55f4f25d545a68b4cfd0837ee9, type: 3}
   spreadDegrees: 5
-  _penetration: 1
-  _numberOfBulletsPerShot: 1
-  _maxAmmo: 8
-  _reloadTime: 2.5
+  distance: 70
+  penetration: 1
+  numberOfBulletsPerShot: 1
+  maxAmmo: 8
+  reloadTime: 2

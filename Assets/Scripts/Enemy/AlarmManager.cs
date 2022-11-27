@@ -75,9 +75,9 @@ public class AlarmManager : MonoBehaviour
         {
             _suspectCue = Instantiate(_suspectCuePreFab, transform, false);
             _suspectCue.transform.position = new Vector2(widthOfObject, transform.position.y + heightOfObject + 0.05f);
-        }           
+        }
         else if (nextAlarmLevel == AlarmLevel.Aware || nextAlarmLevel == AlarmLevel.Alarmed)
-        { 
+        {
             _enemyAttackManager._canAttack = false;
 
             _alarmedCue = Instantiate(_alarmedCuePreFab, transform, false);
@@ -97,7 +97,7 @@ public class AlarmManager : MonoBehaviour
             _enemyAttackManager._canAttack = true;
 
             Destroy(_alarmedCue);
-        }
+        }        
     }
 
     static public void AlarmEnemiesByQuietSound(Transform point, int radius)

@@ -51,7 +51,7 @@ public class EnemyAttackManager : MonoBehaviour
             var directionToShoot = new Vector2(Mathf.Cos(angleDir), Mathf.Sin(angleDir));
 
             //Debug.DrawRay(_collider.bounds.center, directionToShoot, Color.blue);
-            RaycastHit2D hitInfo = Physics2D.Raycast(_collider.bounds.center, directionToShoot, 100f, _hitLayer);
+            RaycastHit2D hitInfo = Physics2D.Raycast(_collider.bounds.center, directionToShoot, 50f, _hitLayer);
 
             if (!hitInfo)
                 continue;
