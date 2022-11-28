@@ -11,7 +11,7 @@ public class PlayerAttackManager : MonoBehaviour
 
     private void Start()
     {
-        _enemyLayers = LayerMask.GetMask("Enemy", "EnemyThroughPlatform");
+        _enemyLayers = LayerMask.GetMask("Enemy", "EnemyThroughPlatform", "Ground");
     }
 
     // Update is called once per frame

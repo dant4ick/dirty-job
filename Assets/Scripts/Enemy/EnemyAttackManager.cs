@@ -67,7 +67,7 @@ public class EnemyAttackManager : MonoBehaviour
 
             if (player != null)
             {
-                Debug.DrawRay(_collider.bounds.center + new Vector3(0f, 0.4375f, 0f), directionToShoot, Color.blue, 100f);
+                //Debug.DrawRay(_collider.bounds.center + new Vector3(0f, 0.4375f, 0f), directionToShoot, Color.blue, 100f);
                 hits.Add(hitInfo);                
 
                 if (_alarmManager.alarmLevel == AlarmManager.AlarmLevel.Calm || _alarmManager.alarmLevel == AlarmManager.AlarmLevel.Concerned || _alarmManager.alarmLevel == AlarmManager.AlarmLevel.Aware)
@@ -81,7 +81,7 @@ public class EnemyAttackManager : MonoBehaviour
         if (hits.Count != 0 && (_alarmManager.alarmLevel == AlarmManager.AlarmLevel.Alarmed || _alarmManager.alarmLevel == AlarmManager.AlarmLevel.Aware))
         {
             _pivot.ChangeRotation(hits[hits.Count/2].point);
-            shootCall?.Invoke(_playerLayers);
+            shootCall?.Invoke(_hitLayer);
         }
     }
 

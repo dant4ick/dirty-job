@@ -34,6 +34,7 @@ public class PlayerInventoryManager : MonoBehaviour
     private void Start()
     {
         _instance = this;
+        CloseInvenotory();
         equipment.OnWeaponListChanged += Equipment_OnWeaponListChanged;
     }
 
@@ -44,14 +45,18 @@ public class PlayerInventoryManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Tab))
+
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
-            ShowInventory();
-        }
-        else
-        {
-            CloseInvenotory();
-        }
+            if (inventoryCanvas.activeSelf)
+            {
+                CloseInvenotory();                
+            }
+            else
+            {
+                ShowInventory();
+            }
+        }        
     }
 
     private void CloseInvenotory()
