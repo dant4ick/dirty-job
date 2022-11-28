@@ -1325,6 +1325,30 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3774857600832012740, guid: 8def48a74397b414c838348feda2ebbc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3774857600832012740, guid: 8def48a74397b414c838348feda2ebbc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3774857600832012740, guid: 8def48a74397b414c838348feda2ebbc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3774857600832012740, guid: 8def48a74397b414c838348feda2ebbc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3774857600832012740, guid: 8def48a74397b414c838348feda2ebbc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3774857600832012740, guid: 8def48a74397b414c838348feda2ebbc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4804788563344420614, guid: 8def48a74397b414c838348feda2ebbc, type: 3}
       propertyPath: gameOverScreen
       value: 
@@ -1341,6 +1365,10 @@ PrefabInstance:
       propertyPath: inventoryCanvas
       value: 
       objectReference: {fileID: 1998257652}
+    - target: {fileID: 7454346946762701173, guid: 8def48a74397b414c838348feda2ebbc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8def48a74397b414c838348feda2ebbc, type: 3}
 --- !u!1 &348516730
@@ -13952,11 +13980,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4384004110052204681, guid: 9f6b078dd681dc141b8352caff8aace6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6
+      value: -4.791
       objectReference: {fileID: 0}
     - target: {fileID: 4384004110052204681, guid: 9f6b078dd681dc141b8352caff8aace6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.4
+      value: 5.927
       objectReference: {fileID: 0}
     - target: {fileID: 4384004110052204681, guid: 9f6b078dd681dc141b8352caff8aace6, type: 3}
       propertyPath: m_LocalPosition.z

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a95088facd0fb2346a8d33b4b484416c
+guid: 5e69be9462d5eec438dbd3e02ad93622
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,54 +117,155 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: _rangeWeapons_0
+      name: rangeWeapon_pistol
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 32
         width: 16
         height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.3125, y: 0.53125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -3.5, y: 2}
-        - {x: -4.5, y: 1}
-        - {x: -5.5, y: -3}
-        - {x: -0.5, y: -2}
-        - {x: 5.5, y: 1}
-        - {x: 5.5, y: 3}
+      - - {x: 5, y: 2}
+        - {x: 4, y: 2}
+        - {x: 4, y: 1}
+        - {x: -3, y: 1}
+        - {x: -3, y: 0}
+        - {x: -4, y: 0}
+        - {x: -4, y: -1}
+        - {x: -5, y: -1}
+        - {x: -5, y: -4}
+        - {x: -3, y: -4}
+        - {x: -3, y: -2}
+        - {x: -1, y: -2}
+        - {x: -1, y: -3}
+        - {x: 0, y: -3}
+        - {x: 0, y: -2}
+        - {x: 1, y: -2}
+        - {x: 1, y: -1}
+        - {x: 4, y: -1}
+        - {x: 4, y: 0}
+        - {x: 6, y: 0}
+        - {x: 6, y: 1}
+        - {x: 5, y: 1}
       tessellationDetail: 0
       bones: []
-      spriteID: 26fc2d26633dddc4eb1d5d32ba9de26b
-      internalID: 758425553
+      spriteID: 8161cf0dbc4772f40bd3addda0b7d4f6
+      internalID: -890569039
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: _rangeWeapons_1
+      name: rangeWeapon_shotgun
       rect:
         serializedVersion: 2
-        x: 16
-        y: 0
+        x: 32
+        y: 32
         width: 16
         height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.1875, y: 0.53125}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -6, y: 3}
-        - {x: -8, y: -3}
-        - {x: -3, y: -1}
-        - {x: 6, y: 0}
-        - {x: 8, y: 3}
+      - - {x: -6, y: 1}
+        - {x: -6, y: 0}
+        - {x: -7, y: 0}
+        - {x: -7, y: -2}
+        - {x: -8, y: -2}
+        - {x: -8, y: -5}
+        - {x: -6, y: -5}
+        - {x: -6, y: -3}
+        - {x: -5, y: -3}
+        - {x: -5, y: -2}
+        - {x: -4, y: -2}
+        - {x: -4, y: -3}
+        - {x: -3, y: -3}
+        - {x: -3, y: -2}
+        - {x: -2, y: -2}
+        - {x: -2, y: -1}
+        - {x: 1, y: -1}
+        - {x: 1, y: -2}
+        - {x: 6, y: -2}
+        - {x: 6, y: -1}
+        - {x: 8, y: -1}
+        - {x: 8, y: 1}
       tessellationDetail: 0
       bones: []
-      spriteID: 7293c3e8fbd7c0c4f93e182d04742b36
-      internalID: 1333967535
+      spriteID: bf5945c9b07cbd7439612da3777c8632
+      internalID: -2055253188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rangeWeapon_sniperRifleIcon
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c870eb1cfc69520448564419cc7137c5
+      internalID: -806273445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rangeWeapon_sniperRifle
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 16
+      alignment: 9
+      pivot: {x: 0.40625, y: 0.53125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: 1}
+        - {x: 4, y: 5}
+        - {x: 3, y: 5}
+        - {x: 3, y: 4}
+        - {x: -6, y: 4}
+        - {x: -6, y: 1}
+        - {x: -15, y: 1}
+        - {x: -15, y: 0}
+        - {x: -16, y: 0}
+        - {x: -16, y: -3}
+        - {x: -10, y: -3}
+        - {x: -10, y: -2}
+        - {x: -4, y: -2}
+        - {x: -4, y: -1}
+        - {x: -3, y: -1}
+        - {x: -3, y: -2}
+        - {x: -2, y: -2}
+        - {x: -2, y: -3}
+        - {x: -1, y: -3}
+        - {x: -1, y: -2}
+        - {x: 0, y: -2}
+        - {x: 0, y: -1}
+        - {x: 11, y: -1}
+        - {x: 11, y: 0}
+        - {x: 16, y: 0}
+        - {x: 16, y: 1}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 221ca8735fb5ddc4dbd9cea14b7f21a2
+      internalID: 765610642
       vertices: []
       indices: 
       edges: []
@@ -180,8 +281,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      _rangeWeapons_1: 1333967535
-      _rangeWeapons_0: 758425553
+      rangeWeapon_4: -367037318
+      rangeWeapon_shotgun: -2055253188
+      rangeWeapon_pistol: -890569039
+      rangeWeapon_sniperRifleIcon: -806273445
+      rangeWeapon_sniperRifle: 765610642
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

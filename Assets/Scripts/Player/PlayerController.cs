@@ -38,12 +38,24 @@ namespace Player
         private static int _groundLayer;
         private static int _platformLayer;
 
+        [SerializeField] private Animator animator;
+        private static readonly int CharacterIdle = Animator.StringToHash("Character_Idle");
+        private static readonly int CharacterIdleNoHand = Animator.StringToHash("Character_IdleNoHand");
+        private static readonly int CharacterRun = Animator.StringToHash("Character_Run");
+        private static readonly int CharacterAttackBat = Animator.StringToHash("Character_AttackBat");
+        private static readonly int CharacterAttackKnife = Animator.StringToHash("Character_AttackKnife");
+        private int _currentAnimation;
+        private bool _isFacingRight;
+
         [Header("Friction materials")] 
         [SerializeField] private PhysicsMaterial2D zeroFriction;
         [SerializeField] private PhysicsMaterial2D maxFriction;
 
         private void Start()
         {
+            _currentAnimation = CharacterIdle;
+            _isFacingRight = false;
+
             _instance = this;
             _handPivot = hand.GetComponent<Pivot>();
 
@@ -52,20 +64,41 @@ namespace Player
 
             _groundLayer = LayerMask.GetMask("Ground");
             _platformLayer = LayerMask.GetMask("Platform");
+            
         }
 
         private void Update()
         {
             _horizontalMovement = Input.GetAxisRaw("Horizontal");
 
-            if (Input.GetKey(KeyCode.S))
+            gameObject.layer = LayerMask.NameToLayer(Input.GetKey(KeyCode.S) ? "PlayerThroughPlatform" : "Player");
+
+            // Animation manager
+            if (Input.GetAxisRaw("Horizontal") < 0f && !_isFacingRight)
             {
-                gameObject.layer = LayerMask.NameToLayer("PlayerThroughPlatform");
+                Flip();
             }
-            else
+            if (Input.GetAxisRaw("Horizontal") > 0f && _isFacingRight)
             {
-                gameObject.layer = LayerMask.NameToLayer("Player");
+                Flip();
             }
+            if (_isOnGround)
+            {
+                ChangeAnimationState((_horizontalMovement != 0f) ? CharacterRun : CharacterIdle);
+            }
+        }
+        
+        private void Flip()
+        {
+            _isFacingRight = !_isFacingRight;
+            transform.localScale = new Vector3(transform.localScale.x * -1f, 1f, 1f);
+        }
+        
+        private void ChangeAnimationState(int newAnimation)
+        {
+            if (newAnimation == _currentAnimation) return;
+            animator.Play(newAnimation);
+            _currentAnimation = newAnimation;
         }
 
         private void FixedUpdate()

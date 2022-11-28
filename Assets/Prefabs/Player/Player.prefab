@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3424735711475696748}
   - component: {fileID: 6693945845639171717}
   - component: {fileID: 4804788563344420614}
+  - component: {fileID: 2127257172212073833}
   m_Layer: 10
   m_Name: Player
   m_TagString: Untagged
@@ -54,7 +55,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.3125}
   m_Size: {x: 0.875, y: 2.375}
   m_Direction: 0
 --- !u!50 &322673701078942208
@@ -119,7 +120,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: -1937701719, guid: 429fd4d48054d2b4b9c1787209b5cc01, type: 3}
+  m_Sprite: {fileID: 1386612669, guid: 667e88aa9cc77104caac70f558a560cc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -145,6 +146,7 @@ MonoBehaviour:
   hand: {fileID: 7454346946762701173}
   mainCamera: {fileID: 0}
   slopeCheckDistance: 0
+  animator: {fileID: 2127257172212073833}
   zeroFriction: {fileID: 6200000, guid: 88ad8cae2a037a34cba8fd5d5b278c80, type: 2}
   maxFriction: {fileID: 6200000, guid: 1e5ccf836ee2a1e4aa423dbac9823d28, type: 2}
 --- !u!114 &3424735711475696748
@@ -171,8 +173,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e61326f1d92575b4eac2c75c25c9815f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  savedInventory: {fileID: 0}
+  savedEquipment: {fileID: 0}
   inventory: {fileID: 11400000, guid: 2ea3a686804c12f4082b3ca2e88bdc50, type: 2}
   equipment: {fileID: 11400000, guid: 8eaf4f81ab75c8d4e921a62481a84972, type: 2}
+  inventoryCanvas: {fileID: 0}
   attackPoint: {fileID: 6965142838392775164}
   grabPoint: {fileID: 4965103067962657513}
   hand: {fileID: 7454346946762701173}
@@ -190,8 +195,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89d5da0d234298b4580d9b8f299d9a42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAlive: 1
   hand: {fileID: 7454346946762701173}
   maxFriction: {fileID: 6200000, guid: 1e5ccf836ee2a1e4aa423dbac9823d28, type: 2}
+  gameOverScreen: {fileID: 0}
+--- !u!95 &2127257172212073833
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322673701078942236}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 96870f7017900644d91d3e156c45fdb9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &363204562507904158
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,7 +329,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3774857600832012740
 Transform:
   m_ObjectHideFlags: 0
