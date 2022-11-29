@@ -34,6 +34,7 @@ public class TransitionNextLevel : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 _visualCue.SetActive(false);
+                PlayerInventoryManager.Instance.SaveInventoryAndEquipment();
                 //DontDestroyOnLoad(inventoryCanvas);
                 SceneManager.LoadScene(nextScene.name);
             }

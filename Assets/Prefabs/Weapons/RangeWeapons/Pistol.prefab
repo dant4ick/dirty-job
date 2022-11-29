@@ -90,8 +90,8 @@ GameObject:
   - component: {fileID: 4384004110052204681}
   - component: {fileID: 4384004110052204687}
   - component: {fileID: -344066637860415413}
-  - component: {fileID: 4384004110052204684}
   - component: {fileID: 476903687023762189}
+  - component: {fileID: 4384004110052204684}
   m_Layer: 8
   m_Name: Pistol
   m_TagString: Untagged
@@ -189,22 +189,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &4384004110052204684
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4384004111075575900}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20aa60874931c224d94fd6cdb89ef5b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _item: {fileID: 11400000, guid: 3c95bbab8c12aba41a3a578035a9b181, type: 2}
-  _visualCuePreFab: {fileID: 6013516973862188284, guid: 72f36a85e1a5ea74cbbe4966304e7b53, type: 3}
-  _spriteRenderer: {fileID: 4384004110052204687}
-  _firePoint: {fileID: 4384004111039939741}
 --- !u!60 &476903687023762189
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -252,3 +236,18 @@ PolygonCollider2D:
       - {x: 0.5625, y: -0.03125}
       - {x: 0.5625, y: 0.03125}
       - {x: 0.5, y: 0.03125}
+--- !u!114 &4384004110052204684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4384004111075575900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20aa60874931c224d94fd6cdb89ef5b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _item: {fileID: 11400000, guid: 3c95bbab8c12aba41a3a578035a9b181, type: 2}
+  _visualCuePreFab: {fileID: 6013516973862188284, guid: 72f36a85e1a5ea74cbbe4966304e7b53, type: 3}
+  _firePoint: {fileID: 4384004111039939741}

@@ -147,12 +147,23 @@ public class PlayerInventoryManager : MonoBehaviour
         Destroy(objectInInventory.gameObject);
     }
 
+    public void SaveInventoryAndEquipment()
+    {
+        for (int cell = 0; cell < inventory.GetLength(); cell++)
+        {
+            savedInventory.SetItemToCell(inventory.GetItemFromCell(cell), cell);
+        }
+
+        savedEquipment.SetMeleeWeapon(equipment.GetMeleeWeapon());
+        savedEquipment.SetRangeWeapon(equipment.GetRangeWeapon());
+    }
+
     private void OnApplicationQuit()
     {
         inventory.Clear();
         equipment.Clear();
 
         savedInventory.Clear();
-        equipment.Clear();
+        savedEquipment.Clear();
     }
 }

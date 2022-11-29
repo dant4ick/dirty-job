@@ -23,6 +23,10 @@ namespace Item.Weapon
 
         public void Shoot(LayerMask enemyLayer)
         {
+            if (_rangeWeapon == null)
+            {
+                return;
+            }
             if (_isReloading)
             {
                 return;
@@ -46,7 +50,8 @@ namespace Item.Weapon
             for (int bullet = 0; bullet < _rangeWeapon.NumberOfBulletsPerShot; bullet++)
             {
                 Vector2 firePointPosition = _firePoint.position;
-                Vector2 directionToShoot = _firePoint.transform.rotation * Vector2.right;
+                Vector2 directionToShoot = _firePoint.transform.rotation * Vector2.right * transform.lossyScale.x;
+
                 float turn = Random.Range(-_rangeWeapon.SpreadDegrees, _rangeWeapon.SpreadDegrees) * Mathf.Deg2Rad;
 
                 // Applying a spread to the bullet using polar coordinate system 

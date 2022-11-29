@@ -7,7 +7,9 @@ public class SoundOnInteract : MonoBehaviour
     private bool _isActive;
     private bool _canInteract;
 
-    [SerializeField] private GameObject _visualCuePreFab;
+    [SerializeField] private Vector2 soundDistance;
+
+    [SerializeField] private GameObject visualCuePreFab;
     private GameObject _visualCue;
     private Quaternion _visualCueRotation;
 
@@ -16,7 +18,7 @@ public class SoundOnInteract : MonoBehaviour
         float heightOfObject = transform.GetComponent<Collider2D>().bounds.size.y;
         float widthOfObject = transform.GetComponent<Collider2D>().bounds.size.x;
 
-        _visualCue = Instantiate(_visualCuePreFab, transform, false);
+        _visualCue = Instantiate(visualCuePreFab, transform, false);
 
         _visualCue.SetActive(false);
 
@@ -34,7 +36,7 @@ public class SoundOnInteract : MonoBehaviour
             {
                 _visualCue.SetActive(false);
                 _isActive = false;
-                AlarmManager.AlarmEnemiesByQuietSound(transform, new Vector2(30, 1));                
+                AlarmManager.AlarmEnemiesByQuietSound(transform, soundDistance);                
             }
     }
 
@@ -60,4 +62,9 @@ public class SoundOnInteract : MonoBehaviour
         _visualCue.SetActive(false);
         _canInteract = false;
     }
+
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.DrawCube(transform.position, soundDistance);
+    //}
 }
