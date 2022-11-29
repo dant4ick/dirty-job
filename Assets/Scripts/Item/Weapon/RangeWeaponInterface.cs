@@ -7,7 +7,6 @@ namespace Item.Weapon
 {
     public class RangeWeaponInterface : ItemInterface
     {
-        [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private Transform _firePoint;
         private RangeWeapon _rangeWeapon;
         private int _currentAmmo;
@@ -54,22 +53,34 @@ namespace Item.Weapon
                 float angleDir = Mathf.Atan2(directionToShoot.y, directionToShoot.x) + turn;
                 directionToShoot = new Vector2(Mathf.Cos(angleDir), Mathf.Sin(angleDir));
 
-                RaycastHit2D hitInfo = Physics2D.Raycast(firePointPosition, directionToShoot, _rangeWeapon.Distance, enemyLayer);
-
-                Debug.DrawRay(firePointPosition, directionToShoot, Color.black, 100f);
-                
-                if (hitInfo)
+                for (int penetration = 0; penetration < _rangeWeapon.Penetration; penetration++)
                 {
-                    HealthManager mortal = hitInfo.transform.GetComponent<HealthManager>();
+                    RaycastHit2D hitInfo;
 
-                    if (mortal != null)
+                    if (_rangeWeapon.Penetration > 1)
                     {
-                        Vector2 hitNormal = hitInfo.normal * -1;
+                        hitInfo = Physics2D.Raycast(firePointPosition, directionToShoot, _rangeWeapon.Distance, _rangeWeapon.EnemyLayers);
+                    }
+                    else
+                    {
+                        hitInfo = Physics2D.Raycast(firePointPosition, directionToShoot, _rangeWeapon.Distance, enemyLayer);
+                    }
 
-                        Quaternion rotation = Quaternion.Euler(hitNormal.x, hitNormal.y, 0f);
+                    Debug.DrawRay(firePointPosition, directionToShoot, Color.black, 100f);
 
-                        mortal.TakeDamage();
-                        mortal.TakeBleed(_rangeWeapon.ParticleSystem, hitInfo.point, rotation);
+                    if (hitInfo)
+                    {
+                        HealthManager mortal = hitInfo.transform.GetComponent<HealthManager>();
+
+                        if (mortal != null)
+                        {
+                            Vector2 hitNormal = hitInfo.normal * -1;
+
+                            Quaternion rotation = Quaternion.Euler(hitNormal.x, hitNormal.y, 0f);
+
+                            mortal.TakeDamage();
+                            mortal.TakeBleed(_rangeWeapon.ParticleSystem, hitInfo.point, rotation);
+                        }
                     }
                 }
             }

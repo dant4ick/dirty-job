@@ -7,7 +7,6 @@ namespace Item.Weapon
 {
     public class MeleeWeaponInterface : ItemInterface
     {
-        [SerializeField] private SpriteRenderer _spriteRenderer;
         public Transform attackPoint;
         private MeleeWeapon _meleeWeapon;
         private float _lastTimeAttack;
@@ -33,6 +32,7 @@ namespace Item.Weapon
         private void DealDamage(HealthManager enemy)
         {
             enemy.TakeDamage();
+            enemy.TakeBleed(_meleeWeapon.ParticleSystem);
         }
 
         private void DealStun(HealthManager enemy)

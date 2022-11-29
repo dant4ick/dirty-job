@@ -10,7 +10,7 @@ public class EnemyAttackManager : MonoBehaviour
     [SerializeField] private GameObject _enemyHand;
     private Player.Pivot _pivot;
 
-    [SerializeField] Item.Weapon.RangeWeaponInterface rangeWeapon;
+    public Item.Weapon.RangeWeaponInterface rangeWeapon;
 
     private CapsuleCollider2D _collider;
     private AlarmManager _alarmManager;

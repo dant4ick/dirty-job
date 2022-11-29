@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 645099414429717667}
   - component: {fileID: 645099414429717666}
   m_Layer: 0
-  m_Name: BloodParticlesForPistol
+  m_Name: BloodParticlesForKnife
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -805,7 +805,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
     arc:
-      value: 60
+      value: 360
       mode: 0
       spread: 0
       speed:
@@ -977,8 +977,8 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 3
-        scalar: 90
-        minScalar: 70
+        scalar: 200
+        minScalar: 175
         maxCurve:
           serializedVersion: 2
           m_Curve:
@@ -4839,7 +4839,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 5
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0

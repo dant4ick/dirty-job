@@ -21,6 +21,10 @@ public class HealthManager : MonoBehaviour
     {
         Debug.Log("STUN");
     }
+    public void TakeBleed(GameObject particleSystem)
+    {
+        Instantiate(particleSystem, transform.position, new Quaternion());
+    }
 
     public void TakeBleed(GameObject particleSystem, Vector2 position, Quaternion rotation)
     {
@@ -38,10 +42,15 @@ public class HealthManager : MonoBehaviour
         }
         else
         {
+            Instantiate(gameObject.GetComponent<EnemyAttackManager>().rangeWeapon.Item.PreFab.gameObject, transform.position, new Quaternion());            
+
             Destroy(gameObject.GetComponent<Pathfinding.Seeker>());
             Destroy(gameObject.GetComponent<EnemyAI>());
             Destroy(gameObject.GetComponent<EnemyAttackManager>());
             Destroy(gameObject.GetComponent<AlarmManager>());
+
+            for (int child = 0; child < transform.childCount; child++)
+                Destroy(transform.GetChild(0).gameObject);
         }
 
         gameObject.GetComponent<Rigidbody2D>().sharedMaterial = maxFriction;

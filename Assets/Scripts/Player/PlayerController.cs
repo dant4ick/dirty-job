@@ -1,5 +1,6 @@
 using System;
 using Item.Weapon;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -14,7 +15,12 @@ namespace Player
             get { return _instance; }
         }
 
+        private static PlayerAttackManager _playerAttackManager;
+        private static PlayerInventoryManager _playerInventoryManager;
+
         private Pivot _handPivot;
+        private bool _canAttack;
+        private float _attackCooldown;
 
         [Header("Objects for pivot")]
         [SerializeField] private GameObject hand;
@@ -45,16 +51,19 @@ namespace Player
         private static readonly int CharacterAttackBat = Animator.StringToHash("Character_AttackBat");
         private static readonly int CharacterAttackKnife = Animator.StringToHash("Character_AttackKnife");
         private int _currentAnimation;
-        private bool _isFacingRight;
+        private bool _isFacingLeft;
 
-        [Header("Friction materials")] 
+        [Header("Friction materials")]
         [SerializeField] private PhysicsMaterial2D zeroFriction;
         [SerializeField] private PhysicsMaterial2D maxFriction;
 
         private void Start()
         {
+            _playerAttackManager = GetComponent<PlayerAttackManager>();
+            _playerInventoryManager = GetComponent<PlayerInventoryManager>();
+
             _currentAnimation = CharacterIdle;
-            _isFacingRight = false;
+            _isFacingLeft = false;
 
             _instance = this;
             _handPivot = hand.GetComponent<Pivot>();
@@ -64,36 +73,74 @@ namespace Player
 
             _groundLayer = LayerMask.GetMask("Ground");
             _platformLayer = LayerMask.GetMask("Platform");
-            
+
+            _canAttack = true;
+            _attackCooldown = 0.5f;
         }
 
         private void Update()
         {
+            if (!_canAttack)
+                return;
+            if (!_isOnGround && !_isOnPlatform)
+            {
+                ChangeAnimationState(CharacterIdle);
+                return;
+            }
+
+            if (Input.GetMouseButton(1))
+            {
+                _horizontalMovement = 0f;
+                hand.SetActive(true);
+                ChangeAnimationState(CharacterIdleNoHand);
+                if (Input.GetMouseButton(0))
+                {
+                    _playerAttackManager.Shoot();
+                }
+                return;
+            }
+            else
+            {
+                hand.SetActive(false);
+            }
+
+            MeleeWeapon meleeWeapon = _playerInventoryManager.equipment.GetMeleeWeapon();
+
+            if (meleeWeapon != null)
+            {
+                if (Input.GetKey(KeyCode.F))
+                {
+                    _horizontalMovement = 0f;
+                    StartCoroutine(MeleeAttack(meleeWeapon));
+                    return;
+                }              
+            }
+
             _horizontalMovement = Input.GetAxisRaw("Horizontal");
 
             gameObject.layer = LayerMask.NameToLayer(Input.GetKey(KeyCode.S) ? "PlayerThroughPlatform" : "Player");
 
             // Animation manager
-            if (Input.GetAxisRaw("Horizontal") < 0f && !_isFacingRight)
+            if (Input.GetAxisRaw("Horizontal") < 0f && !_isFacingLeft)
             {
                 Flip();
             }
-            if (Input.GetAxisRaw("Horizontal") > 0f && _isFacingRight)
+            if (Input.GetAxisRaw("Horizontal") > 0f && _isFacingLeft)
             {
                 Flip();
             }
-            if (_isOnGround)
+            if (_isOnGround || _isOnPlatform)
             {
                 ChangeAnimationState((_horizontalMovement != 0f) ? CharacterRun : CharacterIdle);
             }
         }
-        
+
         private void Flip()
         {
-            _isFacingRight = !_isFacingRight;
+            _isFacingLeft = !_isFacingLeft;
             transform.localScale = new Vector3(transform.localScale.x * -1f, 1f, 1f);
         }
-        
+
         private void ChangeAnimationState(int newAnimation)
         {
             if (newAnimation == _currentAnimation) return;
@@ -118,7 +165,7 @@ namespace Player
             if (_isOnGround || _isOnPlatform)
             {
                 Move();
-            }            
+            }
         }
 
         private void Move()
@@ -144,7 +191,6 @@ namespace Player
 
             _isOnGround = hitPoint;
         }
-
         private void PlatformCheck()
         {
             var bounds = _playerCollider.bounds;
@@ -157,7 +203,6 @@ namespace Player
 
             _isOnPlatform = hitPoint;
         }
-
         private void SlopeCheck()
         {
             Vector2 checkPos = transform.position - new Vector3(0f, _playerCollider.size.y / 2);
@@ -165,7 +210,6 @@ namespace Player
             SlopeCheckHorizontal(checkPos);
             SlopeCheckVertical(checkPos);
         }
-
         private void SlopeCheckHorizontal(Vector2 checkPos)
         {
             RaycastHit2D slopeHitFront = Physics2D.Raycast(checkPos, transform.right, slopeCheckDistance, _groundLayer);
@@ -187,7 +231,6 @@ namespace Player
                 _isOnSlope = false;
             }
         }
-
         private void SlopeCheckVertical(Vector2 checkPos)
         {
             RaycastHit2D hit = Physics2D.Raycast(checkPos, Vector2.down, slopeCheckDistance, _groundLayer);
@@ -205,6 +248,30 @@ namespace Player
                 Debug.DrawRay(hit.point, _slopeNormalPerp, Color.red);
                 Debug.DrawRay(hit.point, hit.normal, Color.white);
             }
+        }
+
+        private IEnumerator MeleeAttack(MeleeWeapon meleeWeapon)
+        {
+            _canAttack = false;
+            _playerAttackManager.Attack();
+
+            StartCoroutine(PlayAttackAnimation(meleeWeapon));
+
+            yield return new WaitForSeconds(_attackCooldown);
+
+            _canAttack = true;
+        }
+
+        private IEnumerator PlayAttackAnimation(MeleeWeapon meleeWeapon)
+        {
+            if (meleeWeapon.Name == "Bat")
+                ChangeAnimationState(CharacterAttackBat);
+            else
+                ChangeAnimationState(CharacterAttackKnife);
+
+            yield return new WaitForSeconds(0.25f);
+
+            ChangeAnimationState(CharacterIdle);
         }
     }
 }

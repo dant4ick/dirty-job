@@ -1,48 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class SoundOnInteract : MonoBehaviour
+public class TransitionNextLevel : MonoBehaviour
 {
-    private bool _isActive;
-    private bool _canInteract;
-
-    [SerializeField] private GameObject _visualCuePreFab;
+    [SerializeField] private GameObject visualCuePreFab;
+    [SerializeField] private GameObject inventoryCanvas;
     private GameObject _visualCue;
     private Quaternion _visualCueRotation;
 
-    private void Start()
+    private bool _canInteract;
+    // Start is called before the first frame update
+    void Start()
     {
         float heightOfObject = transform.GetComponent<Collider2D>().bounds.size.y;
         float widthOfObject = transform.GetComponent<Collider2D>().bounds.size.x;
 
-        _visualCue = Instantiate(_visualCuePreFab, transform, false);
+        _visualCue = Instantiate(visualCuePreFab, transform, false);
 
         _visualCue.SetActive(false);
 
         _visualCue.transform.position = new Vector2(transform.GetComponent<Collider2D>().bounds.center.x, transform.position.y + heightOfObject + 0.15f);
         _visualCueRotation = _visualCue.transform.rotation;
 
-        _isActive = true;
         _canInteract = false;
     }
 
     private void Update()
     {
-        if (_canInteract && _isActive)
+        if (_canInteract)
             if (Input.GetKeyDown(KeyCode.E))
             {
                 _visualCue.SetActive(false);
-                _isActive = false;
-                AlarmManager.AlarmEnemiesByQuietSound(transform, new Vector2(30, 1));                
+                //DontDestroyOnLoad(inventoryCanvas);
+                SceneManager.LoadScene("TestPlaygroundScene");
             }
     }
 
     private void OnTriggerStay2D(Collider2D playerCollided)
     {
-        if (!_isActive)
-            return;
-
         if (playerCollided.TryGetComponent<Player.PlayerController>(out var player))
         {
             float heightOfObject = transform.GetComponent<Collider2D>().bounds.size.y;
@@ -51,7 +48,6 @@ public class SoundOnInteract : MonoBehaviour
             _visualCue.transform.position = new Vector2(transform.position.x, transform.position.y + heightOfObject / 2 + 0.0625f);
             _visualCue.SetActive(true);
             _canInteract = true;
-
         }
     }
 

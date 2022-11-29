@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 645099414429717667}
   - component: {fileID: 645099414429717666}
   m_Layer: 0
-  m_Name: BloodParticlesForPistol
+  m_Name: BloodParticlesForSniperRifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -977,8 +977,8 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 3
-        scalar: 90
-        minScalar: 70
+        scalar: 350
+        minScalar: 300
         maxCurve:
           serializedVersion: 2
           m_Curve:

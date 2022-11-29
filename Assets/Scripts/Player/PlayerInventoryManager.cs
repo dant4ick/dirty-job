@@ -20,7 +20,7 @@ public class PlayerInventoryManager : MonoBehaviour
     private GameObject _rangeWeapon;
     private GameObject _meleeWeapon;
     [Header("Inventory canvas")]
-    [SerializeField] private GameObject inventoryCanvas;
+    [SerializeField] private GameObject inventoryScreen;
 
     [Header("Weapon positions")]
     [SerializeField] private Transform attackPoint;
@@ -34,21 +34,29 @@ public class PlayerInventoryManager : MonoBehaviour
     private void Start()
     {
         _instance = this;
-        CloseInvenotory();
+        ShowInventory();
         equipment.OnWeaponListChanged += Equipment_OnWeaponListChanged;
     }
 
     private void OnDestroy()
     {
         equipment.OnWeaponListChanged -= Equipment_OnWeaponListChanged;
+
+        if (_meleeWeapon != null)
+        {
+            PlayerAttackManager.attackInput -= _meleeWeapon.GetComponent<Item.Weapon.MeleeWeaponInterface>().Attack;
+        }
+        if (_rangeWeapon != null)
+        {
+            PlayerAttackManager.shootInput -= _rangeWeapon.GetComponent<Item.Weapon.RangeWeaponInterface>().Shoot;
+        }
     }    
 
     private void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            if (inventoryCanvas.activeSelf)
+            if (inventoryScreen.activeSelf)
             {
                 CloseInvenotory();                
             }
@@ -61,12 +69,12 @@ public class PlayerInventoryManager : MonoBehaviour
 
     private void CloseInvenotory()
     {
-        inventoryCanvas.SetActive(false);
+        inventoryScreen.SetActive(false);
     }
 
     private void ShowInventory()
     {
-        inventoryCanvas.SetActive(true);
+        inventoryScreen.SetActive(true);
     }
 
     private void Equipment_OnWeaponListChanged(object sender, System.EventArgs e)
@@ -103,7 +111,7 @@ public class PlayerInventoryManager : MonoBehaviour
         {
             transform.GetComponent<SpriteRenderer>().sprite = withRangeWeaponSprite;
 
-            hand.SetActive(true);
+            //hand.SetActive(true);
 
             Transform rangeWeapon = Instantiate(equipment.GetRangeWeapon().PreFab, grabPoint.transform).GetComponent<Transform>();
             rangeWeapon.GetComponent<PolygonCollider2D>().enabled = false;
@@ -117,8 +125,7 @@ public class PlayerInventoryManager : MonoBehaviour
 
         if (equipment.GetMeleeWeapon() != null)
         {
-            Transform meleeWeapon = Instantiate(equipment.GetMeleeWeapon().PreFab, attackPoint)
-                .GetComponent<Transform>();
+            Transform meleeWeapon = Instantiate(equipment.GetMeleeWeapon().PreFab, attackPoint).GetComponent<Transform>();
             meleeWeapon.GetComponent<PolygonCollider2D>().enabled = false;
             Destroy(meleeWeapon.GetComponent<Rigidbody2D>());
 

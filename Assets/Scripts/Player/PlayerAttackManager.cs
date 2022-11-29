@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerAttackManager : MonoBehaviour
 {
+    [SerializeField] private GameObject _emptySniperRifle;
+    [SerializeField] private GameObject _equipmentPanel;
+
     public static Action<LayerMask> shootInput;
     public static Action attackInput;
 
@@ -14,16 +17,27 @@ public class PlayerAttackManager : MonoBehaviour
         _enemyLayers = LayerMask.GetMask("Enemy", "EnemyThroughPlatform", "Ground");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Shoot()
     {
-        if (Input.GetMouseButton(0))
-        {
-            shootInput?.Invoke(_enemyLayers);            
-        }
-        else if (Input.GetMouseButton(1))
-        {
-            attackInput?.Invoke();
-        }
+        shootInput?.Invoke(_enemyLayers);
+        PlayerInventoryManager playerInventoryManager = GetComponent<PlayerInventoryManager>();
+
+        if (playerInventoryManager.equipment.GetRangeWeapon() == null)       
+            return;
+
+        if (playerInventoryManager.equipment.GetRangeWeapon().Name != "Sniper Rifle")
+            return;
+
+        playerInventoryManager.equipment.SetRangeWeapon(null);
+        Destroy(_equipmentPanel.transform.GetChild(0).GetChild(1).gameObject);
+
+        GameObject emptySniperRifle = Instantiate(_emptySniperRifle, transform.position, new Quaternion());
+
+        emptySniperRifle.GetComponent<Rigidbody2D>().AddForce(new Vector2(2000f * -transform.localScale.x, 3f));
+    }
+
+    public void Attack()
+    {
+        attackInput?.Invoke();
     }
 }

@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb795c96ced7f5c4e8328e162170f68f, type: 3}
-  m_Name: Pistol
+  m_Name: Sniper Rifle
   m_EditorClassIdentifier: 
-  _spriteInInventory: {fileID: -890569039, guid: 5e69be9462d5eec438dbd3e02ad93622, type: 3}
-  _name: Pistol
-  _prefab: {fileID: 4384004111075575900, guid: 9f6b078dd681dc141b8352caff8aace6, type: 3}
+  _spriteInInventory: {fileID: -806273445, guid: 5e69be9462d5eec438dbd3e02ad93622, type: 3}
+  _name: Sniper Rifle
+  _prefab: {fileID: 8273178324466297866, guid: ddb280959e71f3b40865472789f1d1f1, type: 3}
   _enemyLayers:
     serializedVersion: 2
-    m_Bits: 13440
-  _attackRate: 1
-  _particleSystem: {fileID: 645099414429717669, guid: 3c133a55f4f25d545a68b4cfd0837ee9, type: 3}
-  spreadDegrees: 5
-  distance: 70
-  penetration: 1
+    m_Bits: 8320
+  _attackRate: 0
+  _particleSystem: {fileID: 645099414429717669, guid: 6db061fe8c32bcf43a0ba358451dc6fa, type: 3}
+  spreadDegrees: 0
+  distance: 1000
+  penetration: 100
   numberOfBulletsPerShot: 1
-  maxAmmo: 8
-  reloadTime: 2
+  maxAmmo: 1
+  reloadTime: 99999

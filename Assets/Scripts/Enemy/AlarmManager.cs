@@ -20,6 +20,7 @@ public class AlarmManager : MonoBehaviour
     private GameObject _alarmedCue;
 
     public AlarmLevel alarmLevel = AlarmLevel.Calm;
+    private float reactionTime = 0.5f;
     public Vector2 soundPosition;
     public Transform target;
 
@@ -84,7 +85,7 @@ public class AlarmManager : MonoBehaviour
             _alarmedCue.transform.position = new Vector2(widthOfObject, transform.position.y + heightOfObject + 0.05f);
         }
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(reactionTime);
 
         _enemyAI.followEnabled = true;
         if (nextAlarmLevel == AlarmLevel.Concerned)
@@ -97,7 +98,17 @@ public class AlarmManager : MonoBehaviour
             _enemyAttackManager._canAttack = true;
 
             Destroy(_alarmedCue);
-        }        
+        }   
+    }
+
+    static public void AlarmEnemiesByQuietSound(Transform point, Vector2 size)
+    {
+        Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(point.position, size, 0, LayerMask.GetMask("Enemy"));
+
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            enemy.GetComponent<AlarmManager>().HearQuietSound(point.position);
+        }
     }
 
     static public void AlarmEnemiesByQuietSound(Transform point, int radius)

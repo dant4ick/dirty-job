@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb795c96ced7f5c4e8328e162170f68f, type: 3}
   m_Name: Shotgun
   m_EditorClassIdentifier: 
-  _spriteInInventory: {fileID: 0}
+  _spriteInInventory: {fileID: -2055253188, guid: 5e69be9462d5eec438dbd3e02ad93622, type: 3}
   _name: Shotgun
   _prefab: {fileID: 6805725542362686688, guid: 197c5cf29bac8d347ba0bb3586d340c7, type: 3}
   _enemyLayers:
