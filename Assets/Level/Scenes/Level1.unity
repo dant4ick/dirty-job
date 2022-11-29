@@ -14932,6 +14932,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visualCuePreFab: {fileID: 6013516973862188284, guid: 72f36a85e1a5ea74cbbe4966304e7b53, type: 3}
+  inventoryCanvas: {fileID: 1998257652}
 --- !u!61 &1890966744
 BoxCollider2D:
   m_ObjectHideFlags: 0
