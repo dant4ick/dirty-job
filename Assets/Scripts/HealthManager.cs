@@ -12,6 +12,9 @@ public class HealthManager : MonoBehaviour
 
     [SerializeField] private GameOverScreen gameOverScreen;
 
+    [SerializeField] private Animator animator;
+    private static readonly int EnemyDeath = Animator.StringToHash("Enemy_Death");
+
     public void TakeDamage()
     {
         Die();
@@ -42,6 +45,8 @@ public class HealthManager : MonoBehaviour
         }
         else
         {
+            animator.Play(EnemyDeath);
+
             Instantiate(gameObject.GetComponent<EnemyAttackManager>().rangeWeapon.Item.PreFab.gameObject, transform.position, new Quaternion());            
 
             Destroy(gameObject.GetComponent<Pathfinding.Seeker>());

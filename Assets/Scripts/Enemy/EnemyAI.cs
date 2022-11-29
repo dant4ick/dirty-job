@@ -46,6 +46,11 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private PhysicsMaterial2D zeroFriction;
     [SerializeField] private PhysicsMaterial2D maxFriction;
 
+    [SerializeField] private Animator animator;
+    private static readonly int EnemyIdle = Animator.StringToHash("Enemy_Idle");
+    private static readonly int EnemyRun = Animator.StringToHash("Enemy_Run");
+    private static readonly int EnemyIdleNoHand = Animator.StringToHash("Enemy_IdleNoHand");
+    private int _currentAnimation;
     public void Start()
     {        
         _seeker = GetComponent<Seeker>();
@@ -69,6 +74,7 @@ public class EnemyAI : MonoBehaviour
 
         if (!followEnabled)
         {
+            ChangeAnimationState(EnemyIdle);
             _rigidbody.sharedMaterial = maxFriction;
             return;
         }
@@ -107,11 +113,13 @@ public class EnemyAI : MonoBehaviour
     {
         if (path == null)
         {
+            ChangeAnimationState(EnemyIdle);
             _rigidbody.sharedMaterial = maxFriction;
             return;            
         }
         if (currentWaypoint >= path.vectorPath.Count)
         {
+            ChangeAnimationState(EnemyIdle);
             _rigidbody.sharedMaterial = maxFriction;
             return;
         }
@@ -136,6 +144,8 @@ public class EnemyAI : MonoBehaviour
 
         if (path.vectorPath[currentWaypoint].x > transform.position.x)
         {
+            ChangeAnimationState(EnemyRun);
+
             _horizontalMovement = 1;
 
             if (_isOnSlope)
@@ -149,6 +159,8 @@ public class EnemyAI : MonoBehaviour
         }
         else if (path.vectorPath[currentWaypoint].x < transform.position.x)
         {
+            ChangeAnimationState(EnemyRun);
+
             _horizontalMovement = -1;
 
             if (_isOnSlope)
@@ -162,7 +174,6 @@ public class EnemyAI : MonoBehaviour
             }
         }
         
-
         float distance = Vector2.Distance(transform.position, path.vectorPath[currentWaypoint]);
         if (distance < nextWaypointDistance)
         {
@@ -281,5 +292,11 @@ public class EnemyAI : MonoBehaviour
             Debug.DrawRay(hit.point, _slopeNormalPerp, Color.red);
             Debug.DrawRay(hit.point, hit.normal, Color.white);
         }
+    }
+    private void ChangeAnimationState(int newAnimation)
+    {
+        if (newAnimation == _currentAnimation) return;
+        animator.Play(newAnimation);
+        _currentAnimation = newAnimation;
     }
 }

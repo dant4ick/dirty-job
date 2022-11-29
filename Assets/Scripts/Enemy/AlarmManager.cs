@@ -75,14 +75,14 @@ public class AlarmManager : MonoBehaviour
         if (nextAlarmLevel == AlarmLevel.Concerned)
         {
             _suspectCue = Instantiate(_suspectCuePreFab, transform, false);
-            _suspectCue.transform.position = new Vector2(widthOfObject, transform.position.y + heightOfObject + 0.05f);
+            _suspectCue.transform.position = new Vector2(transform.position.x, transform.position.y + heightOfObject + 0.0625f);
         }
         else if (nextAlarmLevel == AlarmLevel.Aware || nextAlarmLevel == AlarmLevel.Alarmed)
         {
             _enemyAttackManager._canAttack = false;
 
             _alarmedCue = Instantiate(_alarmedCuePreFab, transform, false);
-            _alarmedCue.transform.position = new Vector2(widthOfObject, transform.position.y + heightOfObject + 0.05f);
+            _alarmedCue.transform.position = new Vector2(transform.position.x, transform.position.y + heightOfObject + 0.0625f);
         }
 
         yield return new WaitForSeconds(reactionTime);
