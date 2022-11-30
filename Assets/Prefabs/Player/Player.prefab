@@ -179,6 +179,7 @@ MonoBehaviour:
   savedEquipment: {fileID: 11400000, guid: 6ddc5828b95c6494faa335af576abb6e, type: 2}
   inventory: {fileID: 11400000, guid: 2ea3a686804c12f4082b3ca2e88bdc50, type: 2}
   equipment: {fileID: 11400000, guid: 8eaf4f81ab75c8d4e921a62481a84972, type: 2}
+  shownItems: {fileID: 11400000, guid: 28d7e35a92a796341ab4ff81b702cbb6, type: 2}
   inventoryScreen: {fileID: 0}
   attackPoint: {fileID: 6965142838392775164}
   grabPoint: {fileID: 4965103067962657513}
@@ -201,6 +202,7 @@ MonoBehaviour:
   hand: {fileID: 7454346946762701173}
   maxFriction: {fileID: 6200000, guid: 1e5ccf836ee2a1e4aa423dbac9823d28, type: 2}
   gameOverScreen: {fileID: 0}
+  dialogueBeforeDeath: {fileID: 0}
   animator: {fileID: 2127257172212073833}
 --- !u!95 &2127257172212073833
 Animator:

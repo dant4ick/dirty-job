@@ -3,7 +3,7 @@ using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Item.Weapon
+namespace Item
 {
     public class RangeWeaponInterface : ItemInterface
     {

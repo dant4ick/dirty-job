@@ -41,6 +41,7 @@ public class EnemyAI : MonoBehaviour
     public bool followEnabled = true;
     public bool directionLookEnabled = true;
     private AlarmManager _alarmManager;
+    private EnemyAttackManager _attackManager;
 
     [Header("Friction materials")]
     [SerializeField] private PhysicsMaterial2D zeroFriction;
@@ -62,6 +63,7 @@ public class EnemyAI : MonoBehaviour
         _platformLayer = LayerMask.GetMask("Platform");
 
         _alarmManager = GetComponent<AlarmManager>();
+        _attackManager = GetComponent<EnemyAttackManager>();
 
         InvokeRepeating("UpdatePath", 0f, pathUpdateSeconds);
     }
@@ -72,7 +74,15 @@ public class EnemyAI : MonoBehaviour
         PlatformCheck();
         SlopeCheck();
 
-        if (!followEnabled)
+        bool attackCheck = _attackManager.CheckForAttack();
+
+        if (attackCheck)
+        {
+            ChangeAnimationState(EnemyIdleNoHand);
+            _rigidbody.sharedMaterial = maxFriction;
+            return;
+        }
+        else if (!followEnabled)
         {
             ChangeAnimationState(EnemyIdle);
             _rigidbody.sharedMaterial = maxFriction;
@@ -80,6 +90,7 @@ public class EnemyAI : MonoBehaviour
         }
         if (_isOnGround || _isOnPlatform)
         {
+            GetComponent<EnemyAttackManager>().GetHand().SetActive(false);
             PathFollow();
         }
     }

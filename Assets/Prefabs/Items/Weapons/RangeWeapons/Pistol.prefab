@@ -156,7 +156,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 5
   m_Sprite: {fileID: -890569039, guid: 5e69be9462d5eec438dbd3e02ad93622, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -248,6 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20aa60874931c224d94fd6cdb89ef5b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _item: {fileID: 11400000, guid: 3c95bbab8c12aba41a3a578035a9b181, type: 2}
-  _visualCuePreFab: {fileID: 6013516973862188284, guid: 72f36a85e1a5ea74cbbe4966304e7b53, type: 3}
+  item: {fileID: 11400000, guid: 3c95bbab8c12aba41a3a578035a9b181, type: 2}
+  visualCuePreFab: {fileID: 6013516973862188284, guid: 72f36a85e1a5ea74cbbe4966304e7b53, type: 3}
+  firstTimePickUpCanvas: {fileID: 7897507176153783567, guid: 4fc7b14d155e61e43b70ff6b4247ae62, type: 3}
   _firePoint: {fileID: 4384004111039939741}

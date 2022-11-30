@@ -94,7 +94,7 @@ public class AlarmManager : MonoBehaviour
         }
         else if (nextAlarmLevel == AlarmLevel.Aware || nextAlarmLevel == AlarmLevel.Alarmed)
         {
-            _enemyAttackManager.GetHand().SetActive(true);
+            //_enemyAttackManager.GetHand().SetActive(true);
             _enemyAttackManager._canAttack = true;
 
             Destroy(_alarmedCue);

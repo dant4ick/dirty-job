@@ -1,5 +1,4 @@
 using System;
-using Item.Weapon;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -24,7 +23,7 @@ namespace Player
 
         [Header("Objects for pivot")]
         [SerializeField] private GameObject hand;
-        [SerializeField] private Camera mainCamera;
+        public Camera mainCamera;
 
         private CapsuleCollider2D _playerCollider;
         private Rigidbody2D _rigidbody;
@@ -80,6 +79,8 @@ namespace Player
 
         private void Update()
         {
+            if (LayerMask.LayerToName(gameObject.layer) == "Dead")
+                return;
             if (!_canAttack)
                 return;
             if (!_isOnGround && !_isOnPlatform)

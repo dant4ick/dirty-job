@@ -17,6 +17,8 @@ public class PlayerInventoryManager : MonoBehaviour
     public Inventory inventory;
     public Equipment equipment;
 
+    public AlreadyShownItems shownItems;
+
     private GameObject _rangeWeapon;
     private GameObject _meleeWeapon;
     [Header("Inventory canvas")]
@@ -44,11 +46,11 @@ public class PlayerInventoryManager : MonoBehaviour
 
         if (_meleeWeapon != null)
         {
-            PlayerAttackManager.attackInput -= _meleeWeapon.GetComponent<Item.Weapon.MeleeWeaponInterface>().Attack;
+            PlayerAttackManager.attackInput -= _meleeWeapon.GetComponent<Item.MeleeWeaponInterface>().Attack;
         }
         if (_rangeWeapon != null)
         {
-            PlayerAttackManager.shootInput -= _rangeWeapon.GetComponent<Item.Weapon.RangeWeaponInterface>().Shoot;
+            PlayerAttackManager.shootInput -= _rangeWeapon.GetComponent<Item.RangeWeaponInterface>().Shoot;
         }
     }    
 
@@ -86,13 +88,13 @@ public class PlayerInventoryManager : MonoBehaviour
     {
         if (_meleeWeapon != null)
         {
-            PlayerAttackManager.attackInput -= _meleeWeapon.GetComponent<Item.Weapon.MeleeWeaponInterface>().Attack;
+            PlayerAttackManager.attackInput -= _meleeWeapon.GetComponent<Item.MeleeWeaponInterface>().Attack;
             Destroy(_meleeWeapon);
         }
 
         if (_rangeWeapon != null)
         {
-            PlayerAttackManager.shootInput -= _rangeWeapon.GetComponent<Item.Weapon.RangeWeaponInterface>().Shoot;
+            PlayerAttackManager.shootInput -= _rangeWeapon.GetComponent<Item.RangeWeaponInterface>().Shoot;
             Destroy(_rangeWeapon);
         }
 
@@ -118,7 +120,7 @@ public class PlayerInventoryManager : MonoBehaviour
             Destroy(rangeWeapon.GetComponent<Rigidbody2D>());
             Destroy(rangeWeapon.GetComponentInChildren<CircleCollider2D>(true));
             rangeWeapon.position = grabPoint.position;
-            PlayerAttackManager.shootInput += rangeWeapon.GetComponent<Item.Weapon.RangeWeaponInterface>().Shoot;
+            PlayerAttackManager.shootInput += rangeWeapon.GetComponent<Item.RangeWeaponInterface>().Shoot;
 
             _rangeWeapon = rangeWeapon.gameObject;
         }
@@ -131,17 +133,24 @@ public class PlayerInventoryManager : MonoBehaviour
 
             meleeWeapon.GetComponent<SpriteRenderer>().sprite = null;
 
-            meleeWeapon.GetComponent<Item.Weapon.MeleeWeaponInterface>().attackPoint = attackPoint;
+            meleeWeapon.GetComponent<Item.MeleeWeaponInterface>().attackPoint = attackPoint;
 
-            PlayerAttackManager.attackInput += meleeWeapon.GetComponent<Item.Weapon.MeleeWeaponInterface>().Attack;
+            PlayerAttackManager.attackInput += meleeWeapon.GetComponent<Item.MeleeWeaponInterface>().Attack;
 
             _meleeWeapon = meleeWeapon.gameObject;
         }
     }
 
-    public void DropWeapon(Item.Item item, int positionInInventory, Transform objectInInventory)
+    public void DropItem(Item.Item item, int positionInInventory, Transform objectInInventory)
     {
         Instantiate(item.PreFab, transform.position, transform.rotation);
+        inventory.SetItemToCell(null, positionInInventory);
+
+        Destroy(objectInInventory.gameObject);
+    }
+
+    public void DestroyItem(int positionInInventory, Transform objectInInventory)
+    {
         inventory.SetItemToCell(null, positionInInventory);
 
         Destroy(objectInInventory.gameObject);
@@ -165,5 +174,7 @@ public class PlayerInventoryManager : MonoBehaviour
 
         savedInventory.Clear();
         savedEquipment.Clear();
+
+        shownItems.Clear();
     }
 }

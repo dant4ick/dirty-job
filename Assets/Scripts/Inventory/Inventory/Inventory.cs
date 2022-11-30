@@ -9,7 +9,16 @@ public class Inventory : ScriptableObject
     [SerializeField] private List<InventoryCell> _itemList = new List<InventoryCell>();
     public event EventHandler OnItemListChanged;
 
-    //public List<InventoryCell> ItemList { get { return _itemList; } }
+    public bool IsFullCheck()
+    {
+        foreach (InventoryCell cell in _itemList)
+        {
+            if (cell.GetItem() == null)
+                return false;
+        }
+
+        return true;
+    }
 
     public int GetLength()
     {

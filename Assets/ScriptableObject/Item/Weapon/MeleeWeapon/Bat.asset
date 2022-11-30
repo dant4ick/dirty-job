@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spriteInInventory: {fileID: 1073164891, guid: 4f2f2928c8b2c5a489a0bab946e27812, type: 3}
   _name: Bat
+  _description: Knife, but better
   _prefab: {fileID: 8613582706276230804, guid: e073e4f67544bed45914aeb9f47ca11e, type: 3}
   _enemyLayers:
     serializedVersion: 2

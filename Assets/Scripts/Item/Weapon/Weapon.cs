@@ -7,8 +7,8 @@ abstract public class Weapon : Item.Item
     [SerializeField] private LayerMask _enemyLayers;
 
     #region BASIC WEAPON STATS
-        [Header("Basic Weapon Stats")]
-        [SerializeField] private float _attackRate;
+    [Header("Basic Weapon Stats")]
+    [SerializeField] private float _attackRate;
     #endregion
 
     [Header("Particle system")]

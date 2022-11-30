@@ -11,6 +11,7 @@ public class HealthManager : MonoBehaviour
     [SerializeField] private PhysicsMaterial2D maxFriction;
 
     [SerializeField] private GameOverScreen gameOverScreen;
+    [SerializeField] private GameObject dialogueBeforeDeath;
 
     [SerializeField] private Animator animator;
     private static readonly int EnemyDeath = Animator.StringToHash("Enemy_Death");
@@ -34,9 +35,26 @@ public class HealthManager : MonoBehaviour
         Instantiate(particleSystem, position, rotation);
     }
 
-    void Die()
+    public void TakeSubstance()
     {
-        if (gameObject.layer == LayerMask.NameToLayer("Player"))
+        gameObject.layer = LayerMask.NameToLayer("Dead");
+        StartCoroutine(DieSlowly());
+    }
+
+    private IEnumerator DieSlowly()
+    {
+        Transform dialogueToSay = Instantiate(dialogueBeforeDeath, transform).transform.GetChild(0);
+        dialogueToSay.GetComponent<DialogueAboveEnemy>().mainCamera = transform.GetComponent<Player.PlayerController>().mainCamera;
+        dialogueToSay.GetComponent<DialogueAboveEnemy>().inputPhrase.Add("I'm feel kinda funny");        
+        
+        yield return new WaitForSeconds(3f);
+
+        Die();
+    }
+
+    private void Die()
+    {
+        if (gameObject.layer == LayerMask.NameToLayer("Player") || gameObject.layer == LayerMask.NameToLayer("Dead"))
         {
             Destroy(gameObject.GetComponent<Player.PlayerController>());
             Destroy(gameObject.GetComponent<PlayerAttackManager>());
@@ -52,7 +70,7 @@ public class HealthManager : MonoBehaviour
             Destroy(gameObject.GetComponent<Pathfinding.Seeker>());
             Destroy(gameObject.GetComponent<EnemyAI>());
             Destroy(gameObject.GetComponent<EnemyAttackManager>());
-            Destroy(gameObject.GetComponent<AlarmManager>());
+            //Destroy(gameObject.GetComponent<AlarmManager>());
 
             for (int child = 0; child < transform.childCount; child++)
                 Destroy(transform.GetChild(0).gameObject);

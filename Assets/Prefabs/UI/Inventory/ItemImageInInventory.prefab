@@ -117,7 +117,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42625fc467e9195438a1e35777216602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inventory: {fileID: 11400000, guid: 2ea3a686804c12f4082b3ca2e88bdc50, type: 2}
+  inventory: {fileID: 11400000, guid: 2ea3a686804c12f4082b3ca2e88bdc50, type: 2}
+  itemsInMedKit:
+  - {fileID: 11400000, guid: 7618f35b2793d064d8579e1d2994ff77, type: 2}
+  - {fileID: 11400000, guid: 7618f35b2793d064d8579e1d2994ff77, type: 2}
+  - {fileID: 11400000, guid: 4f7b7918a38c57647b8bfd510a624919, type: 2}
 --- !u!1001 &13730965392351632
 PrefabInstance:
   m_ObjectHideFlags: 0

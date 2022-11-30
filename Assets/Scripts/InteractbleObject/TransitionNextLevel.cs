@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class TransitionNextLevel : MonoBehaviour
 {
     [SerializeField] private GameObject visualCuePreFab;
-    [SerializeField] private GameObject inventoryCanvas;
     [SerializeField] private Object nextScene;
     private GameObject _visualCue;
     private Quaternion _visualCueRotation;
@@ -35,7 +34,6 @@ public class TransitionNextLevel : MonoBehaviour
             {
                 _visualCue.SetActive(false);
                 PlayerInventoryManager.Instance.SaveInventoryAndEquipment();
-                //DontDestroyOnLoad(inventoryCanvas);
                 SceneManager.LoadScene(nextScene.name);
             }
     }

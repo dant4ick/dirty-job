@@ -10,7 +10,7 @@ public class EnemyAttackManager : MonoBehaviour
     [SerializeField] private GameObject _enemyHand;
     private Player.Pivot _pivot;
 
-    public Item.Weapon.RangeWeaponInterface rangeWeapon;
+    public Item.RangeWeaponInterface rangeWeapon;
 
     private CapsuleCollider2D _collider;
     private AlarmManager _alarmManager;
@@ -40,10 +40,10 @@ public class EnemyAttackManager : MonoBehaviour
         shootCall -= rangeWeapon.Shoot;
     }
 
-    public void FixedUpdate()
+    public bool CheckForAttack()
     {
         if (!_canAttack)
-            return;
+            return false;
 
         float forwardAngle = (Mathf.PI / 2 * transform.localScale.x * Mathf.Rad2Deg * -1) + 45;
 
@@ -55,7 +55,7 @@ public class EnemyAttackManager : MonoBehaviour
             var directionToShoot = new Vector2(Mathf.Cos(angleDir), Mathf.Sin(angleDir));
 
             //Debug.DrawRay(_collider.bounds.center + new Vector3(0f, 0.4375f, 0f), directionToShoot, Color.blue);
-            RaycastHit2D hitInfo = Physics2D.Raycast(_collider.bounds.center + new Vector3(0f, 0.4375f, 0f), directionToShoot, 50f, _hitLayer);
+            RaycastHit2D hitInfo = Physics2D.Raycast(_collider.bounds.center + new Vector3(0f, 0.4375f, 0f), directionToShoot, 15f, _hitLayer);
 
             if (!hitInfo)
                 continue;
@@ -68,21 +68,41 @@ public class EnemyAttackManager : MonoBehaviour
             if (player != null)
             {
                 //Debug.DrawRay(_collider.bounds.center + new Vector3(0f, 0.4375f, 0f), directionToShoot, Color.blue, 100f);
-                hits.Add(hitInfo);                
+                hits.Add(hitInfo);
 
-                if (_alarmManager.alarmLevel == AlarmManager.AlarmLevel.Calm || _alarmManager.alarmLevel == AlarmManager.AlarmLevel.Concerned || _alarmManager.alarmLevel == AlarmManager.AlarmLevel.Aware)
-                {
-                    _alarmManager.PlayerHasBeenSpoted(player.transform);
-                    return;
-                }
+                if (SpotPlayer(player))
+                    return false;
             }
         }
 
-        if (hits.Count != 0 && (_alarmManager.alarmLevel == AlarmManager.AlarmLevel.Alarmed || _alarmManager.alarmLevel == AlarmManager.AlarmLevel.Aware))
+        if (Attack(hits))
+            return true;
+
+        return false;
+    }
+
+    private bool SpotPlayer(Player.PlayerController playerToSpot)
+    {
+        if (_alarmManager.alarmLevel == AlarmManager.AlarmLevel.Calm || _alarmManager.alarmLevel == AlarmManager.AlarmLevel.Concerned || _alarmManager.alarmLevel == AlarmManager.AlarmLevel.Aware)
         {
-            _pivot.ChangeRotation(hits[hits.Count/2].point);
-            shootCall?.Invoke(_hitLayer);
+            _alarmManager.PlayerHasBeenSpoted(playerToSpot.transform);
+            return true;
         }
+        return false;
+    }
+
+    private bool Attack(List<RaycastHit2D> hitsWithPlayer)
+    {
+        if (hitsWithPlayer.Count != 0 && (_alarmManager.alarmLevel == AlarmManager.AlarmLevel.Alarmed || _alarmManager.alarmLevel == AlarmManager.AlarmLevel.Aware))
+        {
+            _enemyHand.gameObject.SetActive(true);
+            _pivot.ChangeRotation(hitsWithPlayer[hitsWithPlayer.Count / 2].point);
+            shootCall?.Invoke(_hitLayer);
+
+            return true;
+        }
+
+        return false;
     }
 
     public GameObject GetHand()

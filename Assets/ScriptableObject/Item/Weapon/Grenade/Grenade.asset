@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb795c96ced7f5c4e8328e162170f68f, type: 3}
+  m_Name: Grenade
+  m_EditorClassIdentifier: 
+  _spriteInInventory: {fileID: -1130493216, guid: 429fd4d48054d2b4b9c1787209b5cc01, type: 3}
+  _name: Grenade
+  _description: I heard some clinking sound...
+  _prefab: {fileID: 1812647670511312704, guid: 25d1bae761666cd4e933ee55f64234c9, type: 3}
+  _enemyLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  _attackRate: 1e+17
+  _particleSystem: {fileID: 645099414429717669, guid: 4d3aa1868f9530a49ad9bdc02292e81c, type: 3}
+  spreadDegrees: 0
+  distance: 0
+  penetration: 0
+  numberOfBulletsPerShot: 0
+  maxAmmo: 0
+  reloadTime: 1e+21

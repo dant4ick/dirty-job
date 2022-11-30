@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Item.Weapon
+namespace Item
 {
     public class MeleeWeaponInterface : ItemInterface
     {
@@ -20,24 +20,13 @@ namespace Item.Weapon
 
             _meleeWeapon = (MeleeWeapon)Item;
 
-            effects += DealDamage;
-            
-            foreach (String effect in _meleeWeapon.effects)
-            {
-                if (effect == "Stun")
-                    effects += DealStun;
-            }     
+            effects += DealDamage;  
         }
 
         private void DealDamage(HealthManager enemy)
         {
             enemy.TakeDamage();
             enemy.TakeBleed(_meleeWeapon.ParticleSystem);
-        }
-
-        private void DealStun(HealthManager enemy)
-        {
-            enemy.TakeStun(5);
         }
 
         public void Attack()
@@ -47,13 +36,16 @@ namespace Item.Weapon
                 return;
             }
 
-            Debug.Log(_meleeWeapon.EnemyLayers.value);
-
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, _meleeWeapon.AttackRange, _meleeWeapon.EnemyLayers);
-
             foreach (Collider2D enemy in hitEnemies)
             {
                 effects(enemy.GetComponent<HealthManager>());
+            }
+
+            Collider2D[] hitProps = Physics2D.OverlapCircleAll(attackPoint.position, _meleeWeapon.AttackRange, LayerMask.GetMask("Breakable"));
+            foreach (Collider2D prop in hitProps)
+            {
+                prop.GetComponent<BreakObject>().Break();
             }
 
             _lastTimeAttack = Time.time;

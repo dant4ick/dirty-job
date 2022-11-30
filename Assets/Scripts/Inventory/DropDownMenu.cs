@@ -5,21 +5,47 @@ using UnityEngine.UI;
 
 public class DropDownMenu : MonoBehaviour
 {
-    [SerializeField] private Inventory _inventory;
+    [SerializeField] private Inventory inventory;
+    [SerializeField] private List<Item.Item> itemsInMedKit;
 
     public void InputValue(int value)
     {
         if (value == 0)
         {
+            Transform curCell = transform.parent;
+            int idOfCurCell = FindIdOfChild(curCell);
+            Item.Item itemInCurCell = inventory.GetItemFromCell(idOfCurCell);
 
+            if (itemInCurCell is Weapon)
+            {
+                Weapon weaponToKillYourself = (Weapon)itemInCurCell;
+                Transform player = PlayerInventoryManager.Instance.transform;
+                Instantiate(weaponToKillYourself.ParticleSystem, player.position, player.rotation);
+                player.GetComponent<HealthManager>().TakeDamage();
+            }
+            else if (itemInCurCell.Name == "Syringe")
+            {
+                Player.PlayerController.Instance.GetComponent<HealthManager>().TakeSubstance();
+
+                PlayerInventoryManager.Instance.DestroyItem(idOfCurCell, transform);
+            }
+            else if (itemInCurCell.Name == "Medkit")
+            {
+                PlayerInventoryManager.Instance.DestroyItem(idOfCurCell, transform);
+
+                foreach (Item.Item item in itemsInMedKit)
+                {
+                    Instantiate(item.PreFab, Player.PlayerController.Instance.transform.position, Player.PlayerController.Instance.transform.rotation);   
+                }                
+            }
         }
         else
         {
             Transform curCell = transform.parent;
             int idOfCurCell = FindIdOfChild(curCell);
-            Item.Item itemInCurCell = _inventory.GetItemFromCell(idOfCurCell);
+            Item.Item itemInCurCell = inventory.GetItemFromCell(idOfCurCell);
 
-            PlayerInventoryManager.Instance.DropWeapon(itemInCurCell, idOfCurCell, transform);
+            PlayerInventoryManager.Instance.DropItem(itemInCurCell, idOfCurCell, transform);
         }
     }
 
