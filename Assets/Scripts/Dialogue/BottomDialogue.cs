@@ -11,8 +11,15 @@ public class BottomDialogue : MonoBehaviour
 
     [SerializeField] private List<string> inputPhrase;
     [SerializeField] private List<Sprite> speakerImage;
+    [SerializeField] private List<string> caracterTalking;
 
     [SerializeField] private float delay;
+
+    [SerializeField] private GameObject boss;
+
+    [SerializeField] private AudioClip clipForBlondie;
+    [SerializeField] private AudioClip clipForMentor;
+    [SerializeField] private AudioClip clipForBoss;
 
     private void Start()
     {
@@ -27,6 +34,13 @@ public class BottomDialogue : MonoBehaviour
 
             for (int character = 0; character < inputPhrase[phrase].Length; character++)
             {
+                if (caracterTalking[phrase] == "Mentor")
+                    SoundManager.PlayEnvironmentSound(clipForMentor);
+                else if (caracterTalking[phrase] == "Blondie")
+                    SoundManager.PlayEnvironmentSound(clipForBlondie);
+                else if (caracterTalking[phrase] == "Boss")
+                    SoundManager.PlayEnvironmentSound(clipForBoss);
+
                 dialogueText.text += inputPhrase[phrase][character];
                 yield return new WaitForSeconds(delay);
             }
@@ -35,6 +49,8 @@ public class BottomDialogue : MonoBehaviour
         }
 
         this.gameObject.SetActive(false);
+
+
     }
 
     private void ShowDialogue()

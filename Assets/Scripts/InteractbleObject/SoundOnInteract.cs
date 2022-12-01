@@ -13,6 +13,8 @@ public class SoundOnInteract : MonoBehaviour
     private GameObject _visualCue;
     private Quaternion _visualCueRotation;
 
+    [SerializeField] private AudioClip clip;
+
     private void Start()
     {
         float heightOfObject = transform.GetComponent<Collider2D>().bounds.size.y;
@@ -36,6 +38,7 @@ public class SoundOnInteract : MonoBehaviour
             {
                 _visualCue.SetActive(false);
                 _isActive = false;
+                SoundManager.PlayEnvironmentSound(clip);
                 AlarmManager.AlarmEnemiesByQuietSound(transform, soundDistance);                
             }
     }
@@ -53,7 +56,6 @@ public class SoundOnInteract : MonoBehaviour
             _visualCue.transform.position = new Vector2(transform.position.x, transform.position.y + heightOfObject / 2 + 0.0625f);
             _visualCue.SetActive(true);
             _canInteract = true;
-
         }
     }
 

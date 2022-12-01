@@ -14,8 +14,11 @@ abstract public class Weapon : Item.Item
     [Header("Particle system")]
     [SerializeField] private GameObject _particleSystem;
 
+    [Header("Sound")]
+    [SerializeField] private AudioClip _soundOnAttack;
+
+    public AudioClip SoundOnAttack { get { return _soundOnAttack; } }
     public GameObject ParticleSystem { get { return _particleSystem; } }
     public float AttackRate { get { return _attackRate; } }
-
     public LayerMask EnemyLayers { get { return _enemyLayers; } }
 }

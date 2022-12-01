@@ -12,10 +12,14 @@ public class DialogueSkipable : MonoBehaviour
 
     [SerializeField] private List<string> inputPhrase;
     [SerializeField] private List<Sprite> speakerImage;
+    [SerializeField] private List<string> caracterTalking;
 
     [SerializeField] private float delay;
 
     private bool _skip = false;
+
+    [SerializeField] private AudioClip clipForBlondie;
+    [SerializeField] private AudioClip clipForMentor;
 
     private void Start()
     {
@@ -37,6 +41,11 @@ public class DialogueSkipable : MonoBehaviour
             {
                 if (_skip)
                     break;
+
+                if (caracterTalking[phrase] == "Mentor")
+                    SoundManager.PlayEnvironmentSound(clipForMentor);
+                else if (caracterTalking[phrase] == "Blondie")
+                    SoundManager.PlayEnvironmentSound(clipForBlondie);
 
                 dialogueText.text += inputPhrase[phrase][character];
                 yield return new WaitForSeconds(delay);

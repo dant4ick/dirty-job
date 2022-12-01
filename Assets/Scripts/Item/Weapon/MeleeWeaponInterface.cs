@@ -36,6 +36,8 @@ namespace Item
                 return;
             }
 
+            SoundManager.PlayWeaponSound(_meleeWeapon.SoundOnAttack);
+
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, _meleeWeapon.AttackRange, _meleeWeapon.EnemyLayers);
             foreach (Collider2D enemy in hitEnemies)
             {

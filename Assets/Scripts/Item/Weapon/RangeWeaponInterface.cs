@@ -45,6 +45,8 @@ namespace Item
 
             _currentAmmo--;
 
+            SoundManager.PlayWeaponSound(_rangeWeapon.SoundOnAttack);
+
             AlarmManager.AlarmEnemiesByLoudSound(transform, 200);
 
             for (int bullet = 0; bullet < _rangeWeapon.NumberOfBulletsPerShot; bullet++)
@@ -96,6 +98,7 @@ namespace Item
         private IEnumerator Reload()
         {
             _isReloading = true;
+            SoundManager.PlayWeaponSound(_rangeWeapon.SoundOnReload);
 
             yield return new WaitForSeconds(_rangeWeapon.ReloadTime);
             _currentAmmo = _rangeWeapon.MaxAmmo;

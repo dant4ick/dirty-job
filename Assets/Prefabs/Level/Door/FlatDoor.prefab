@@ -73,6 +73,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilemapDoorOpened: {fileID: 2082049681327434650}
   tilemapDoorClosed: {fileID: 5025692475506246377}
+  openSound: {fileID: 8300000, guid: 1c9545c277dcbad47bf197a35f6043aa, type: 3}
+  closeSound: {fileID: 8300000, guid: 2e42ffced59dc0f42977da6a1103b5bd, type: 3}
 --- !u!1 &3611283120047560205
 GameObject:
   m_ObjectHideFlags: 0

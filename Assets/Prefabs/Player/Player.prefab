@@ -206,6 +206,7 @@ MonoBehaviour:
   gameOverScreen: {fileID: 0}
   dialogueBeforeDeath: {fileID: 0}
   animator: {fileID: 2127257172212073833}
+  clip: {fileID: 8300000, guid: 83cc4b7cc6ef8eb44939fb4cd86aacab, type: 3}
 --- !u!114 &-6572752518179019562
 MonoBehaviour:
   m_ObjectHideFlags: 0

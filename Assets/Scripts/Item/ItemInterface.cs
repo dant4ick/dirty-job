@@ -59,6 +59,7 @@ namespace Item
                 Weapon weaponToKillYourself = (Weapon)item;
                 Transform player = PlayerInventoryManager.Instance.transform;
                 Instantiate(weaponToKillYourself.ParticleSystem, player.position, player.rotation);
+                SoundManager.PlayWeaponSound(weaponToKillYourself.SoundOnAttack);
                 player.GetComponent<HealthManager>().TakeDamage();                
             }
             else

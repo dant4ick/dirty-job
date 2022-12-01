@@ -194,10 +194,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAlive: 1
   hand: {fileID: 6589016010940905330}
+  dropOnDeath: 1
   maxFriction: {fileID: 6200000, guid: 1e5ccf836ee2a1e4aa423dbac9823d28, type: 2}
   gameOverScreen: {fileID: 0}
   dialogueBeforeDeath: {fileID: 0}
   animator: {fileID: 6177460689589361523}
+  clip: {fileID: 8300000, guid: 83cc4b7cc6ef8eb44939fb4cd86aacab, type: 3}
 --- !u!114 &6589016010649705852
 MonoBehaviour:
   m_ObjectHideFlags: 0

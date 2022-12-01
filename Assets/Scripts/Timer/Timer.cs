@@ -16,6 +16,8 @@ public class Timer : MonoBehaviour
 
     private TextMeshProUGUI _text;
 
+    [SerializeField] AudioClip clip;
+
     private void Start()
     {
         timerOn = true;
@@ -49,6 +51,8 @@ public class Timer : MonoBehaviour
                 {
                     enemiesToGo[enemy].GetComponent<AlarmManager>().GoToSound(positionsToGo[enemy]);
                 }
+
+                SoundManager.PlayMicrowaveSound(clip);
 
                 Destroy(transform.parent.parent.gameObject);
             }

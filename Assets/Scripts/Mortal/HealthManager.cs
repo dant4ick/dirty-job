@@ -17,6 +17,8 @@ public class HealthManager : MonoBehaviour
     [SerializeField] private Animator animator;
     private static readonly int EnemyDeath = Animator.StringToHash("Enemy_Death");
 
+    [SerializeField] private AudioClip clip;
+
     public void TakeDamage()
     {
         Die();
@@ -55,6 +57,8 @@ public class HealthManager : MonoBehaviour
 
     private void Die()
     {
+        SoundManager.PlayCaracterSound(clip);
+
         if (gameObject.layer == LayerMask.NameToLayer("Player") || gameObject.layer == LayerMask.NameToLayer("Dead"))
         {
             Destroy(gameObject.GetComponent<Player.PlayerController>());

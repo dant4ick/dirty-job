@@ -21,6 +21,8 @@ MonoBehaviour:
     m_Bits: 0
   _attackRate: 1e+17
   _particleSystem: {fileID: 645099414429717669, guid: 4d3aa1868f9530a49ad9bdc02292e81c, type: 3}
+  _soundOnAttack: {fileID: 8300000, guid: 03b4849932b7cd8418a6a6c320372ba1, type: 3}
+  _soundOnReload: {fileID: 0}
   spreadDegrees: 0
   distance: 0
   penetration: 0

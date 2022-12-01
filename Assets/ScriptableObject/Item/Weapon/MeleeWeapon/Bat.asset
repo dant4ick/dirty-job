@@ -21,6 +21,7 @@ MonoBehaviour:
     m_Bits: 8320
   _attackRate: 0.5
   _particleSystem: {fileID: 645099414429717669, guid: 8424ec91f29337d4b9212eaddfa29810, type: 3}
+  _soundOnAttack: {fileID: 8300000, guid: c24aef541059dfa48af74e0eb4c28784, type: 3}
   _attackRange: 2
   effects:
   - Stun

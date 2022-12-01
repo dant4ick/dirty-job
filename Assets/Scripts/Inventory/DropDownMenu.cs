@@ -8,6 +8,9 @@ public class DropDownMenu : MonoBehaviour
     [SerializeField] private Inventory inventory;
     [SerializeField] private List<Item.Item> itemsInMedKit;
 
+    [SerializeField] private AudioClip clipForUse;
+    [SerializeField] private AudioClip clipForDrop;
+
     public void InputValue(int value)
     {
         if (value == 0)
@@ -15,6 +18,8 @@ public class DropDownMenu : MonoBehaviour
             Transform curCell = transform.parent;
             int idOfCurCell = FindIdOfChild(curCell);
             Item.Item itemInCurCell = inventory.GetItemFromCell(idOfCurCell);
+
+            SoundManager.PlayEnvironmentSound(clipForUse);
 
             if (itemInCurCell is Weapon)
             {
@@ -44,6 +49,8 @@ public class DropDownMenu : MonoBehaviour
         }
         else
         {
+            SoundManager.PlayEnvironmentSound(clipForDrop);
+
             Transform curCell = transform.parent;
             int idOfCurCell = FindIdOfChild(curCell);
             Item.Item itemInCurCell = inventory.GetItemFromCell(idOfCurCell);
