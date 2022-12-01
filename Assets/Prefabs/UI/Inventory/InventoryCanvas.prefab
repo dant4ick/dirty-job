@@ -192,7 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93012a399366c314f9ec839efcc0f227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  savedInventory: {fileID: 0}
+  savedInventory: {fileID: 11400000, guid: 8ed6aa2c58e44b049877447c8754d820, type: 2}
   inventory: {fileID: 11400000, guid: 2ea3a686804c12f4082b3ca2e88bdc50, type: 2}
   inventorySlotTemplate: {fileID: 3235489055988082706, guid: a0c8dce121125294da98415e92a81510, type: 3}
   itemImageInInventory: {fileID: 3636334309245757307, guid: 91bdbf0ac6625ad47b27a75a62b40e84, type: 3}
@@ -334,7 +334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aaab36b68c485f4191c7d729e66ed87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  savedEquipment: {fileID: 0}
+  savedEquipment: {fileID: 11400000, guid: 6ddc5828b95c6494faa335af576abb6e, type: 2}
   equipment: {fileID: 11400000, guid: 8eaf4f81ab75c8d4e921a62481a84972, type: 2}
   equipmentSlotTemplate: {fileID: 3235489055988082706, guid: 793a1fccb93768640b27f6d7e7fc7f5f, type: 3}
   itemImageInEquipment: {fileID: 3636334309245757307, guid: 91bdbf0ac6625ad47b27a75a62b40e84, type: 3}

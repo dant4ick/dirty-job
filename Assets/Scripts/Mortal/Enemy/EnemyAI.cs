@@ -100,9 +100,12 @@ public class EnemyAI : MonoBehaviour
         if (!_seeker.IsDone())
             return;
 
-        if (_alarmManager.alarmLevel == AlarmManager.AlarmLevel.Calm && patrolPath.Count > 1)
+        if (_alarmManager.alarmLevel == AlarmManager.AlarmLevel.Calm)
         {
-            CalmPatrolling();
+            if (patrolPath.Count > 1)
+                CalmPatrolling();
+            else if (_alarmManager.target != null)
+                GoToSoundCalm();
         }
         else if (_alarmManager.alarmLevel == AlarmManager.AlarmLevel.Aware || _alarmManager.alarmLevel == AlarmManager.AlarmLevel.Concerned)
         {
@@ -112,6 +115,12 @@ public class EnemyAI : MonoBehaviour
         {
             _seeker.StartPath(transform.position, _alarmManager.target.position, OnPathComplete);
         }
+    }
+
+    private void GoToSoundCalm()
+    {
+        GraphNode startNode = AstarPath.active.GetNearest(transform.position).node;
+        _seeker.StartPath((Vector3)startNode.position, _alarmManager.target.position, OnPathComplete);
     }
 
     private void CalmPatrolling()

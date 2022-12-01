@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3424735711475696748}
   - component: {fileID: 6693945845639171717}
   - component: {fileID: 4804788563344420614}
+  - component: {fileID: -6572752518179019562}
   - component: {fileID: 2127257172212073833}
   m_Layer: 10
   m_Name: Player
@@ -200,10 +201,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAlive: 1
   hand: {fileID: 7454346946762701173}
+  dropOnDeath: 0
   maxFriction: {fileID: 6200000, guid: 1e5ccf836ee2a1e4aa423dbac9823d28, type: 2}
   gameOverScreen: {fileID: 0}
   dialogueBeforeDeath: {fileID: 0}
   animator: {fileID: 2127257172212073833}
+--- !u!114 &-6572752518179019562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322673701078942236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809d1c9a07ee884c9e579b7ba80836a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseCanvas: {fileID: 7158288733264642423, guid: c9383c04a7b662a4abcf9405aac149b0, type: 3}
 --- !u!95 &2127257172212073833
 Animator:
   serializedVersion: 4
@@ -391,7 +406,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: -1130493216, guid: 429fd4d48054d2b4b9c1787209b5cc01, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

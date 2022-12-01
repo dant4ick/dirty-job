@@ -6,6 +6,7 @@ public class HealthManager : MonoBehaviour
 {
     public bool isAlive = true;
     [SerializeField] private GameObject hand;
+    [SerializeField] private bool dropOnDeath = true;
 
     [Header("Friction materials")]
     [SerializeField] private PhysicsMaterial2D maxFriction;
@@ -65,7 +66,8 @@ public class HealthManager : MonoBehaviour
         {
             animator.Play(EnemyDeath);
 
-            Instantiate(gameObject.GetComponent<EnemyAttackManager>().rangeWeapon.Item.PreFab.gameObject, transform.position, new Quaternion());            
+            if (dropOnDeath)
+                Instantiate(gameObject.GetComponent<EnemyAttackManager>().rangeWeapon.Item.PreFab.gameObject, transform.position, new Quaternion());            
 
             Destroy(gameObject.GetComponent<Pathfinding.Seeker>());
             Destroy(gameObject.GetComponent<EnemyAI>());

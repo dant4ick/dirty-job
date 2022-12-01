@@ -26,4 +26,4 @@ MonoBehaviour:
   penetration: 100
   numberOfBulletsPerShot: 1
   maxAmmo: 1
-  reloadTime: 99999
+  reloadTime: 1e+18

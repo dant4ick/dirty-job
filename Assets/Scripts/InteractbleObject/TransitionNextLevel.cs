@@ -10,10 +10,14 @@ public class TransitionNextLevel : MonoBehaviour
     private GameObject _visualCue;
     private Quaternion _visualCueRotation;
 
+    private int nextLevelToLoad;
+
     private bool _canInteract;
     // Start is called before the first frame update
     void Start()
     {
+        nextLevelToLoad = SceneManager.GetActiveScene().buildIndex + 1;
+
         float heightOfObject = transform.GetComponent<Collider2D>().bounds.size.y;
         float widthOfObject = transform.GetComponent<Collider2D>().bounds.size.x;
 
@@ -34,7 +38,7 @@ public class TransitionNextLevel : MonoBehaviour
             {
                 _visualCue.SetActive(false);
                 PlayerInventoryManager.Instance.SaveInventoryAndEquipment();
-                SceneManager.LoadScene(nextScene.name);
+                SceneManager.LoadScene(nextLevelToLoad);
             }
     }
 
