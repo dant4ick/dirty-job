@@ -26,10 +26,3 @@ public class RangeWeapon : Weapon
     public int MaxAmmo { get { return maxAmmo; } }
     public float ReloadTime { get { return reloadTime; } }
 
-    // Start is called before the first frame update
-
-    //protected void BulletHit(Enemy enemy)
-    //{
-    //    enemy.TakeDamage(AttackDamage);
-    //}
-}
