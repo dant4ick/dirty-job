@@ -16425,39 +16425,39 @@ PrefabInstance:
     - target: {fileID: 3802860931932244071, guid: 13bcc75d3e460e54da257c8aecf7c8b4, type: 3}
       propertyPath: speakerImage.Array.data[0]
       value: 
-      objectReference: {fileID: 1869197423, guid: ce85a6a8ca8e433589c5993cc6c0332e, type: 3}
+      objectReference: {fileID: -1582733417, guid: 49fd216b46ca47c78d1b60f0440ff764, type: 3}
     - target: {fileID: 3802860931932244071, guid: 13bcc75d3e460e54da257c8aecf7c8b4, type: 3}
       propertyPath: speakerImage.Array.data[1]
       value: 
-      objectReference: {fileID: -720386073, guid: ce85a6a8ca8e433589c5993cc6c0332e, type: 3}
+      objectReference: {fileID: -1226354846, guid: 49fd216b46ca47c78d1b60f0440ff764, type: 3}
     - target: {fileID: 3802860931932244071, guid: 13bcc75d3e460e54da257c8aecf7c8b4, type: 3}
       propertyPath: speakerImage.Array.data[2]
       value: 
-      objectReference: {fileID: 1869197423, guid: ce85a6a8ca8e433589c5993cc6c0332e, type: 3}
+      objectReference: {fileID: -1582733417, guid: 49fd216b46ca47c78d1b60f0440ff764, type: 3}
     - target: {fileID: 3802860931932244071, guid: 13bcc75d3e460e54da257c8aecf7c8b4, type: 3}
       propertyPath: speakerImage.Array.data[3]
       value: 
-      objectReference: {fileID: -720386073, guid: ce85a6a8ca8e433589c5993cc6c0332e, type: 3}
+      objectReference: {fileID: -1226354846, guid: 49fd216b46ca47c78d1b60f0440ff764, type: 3}
     - target: {fileID: 3802860931932244071, guid: 13bcc75d3e460e54da257c8aecf7c8b4, type: 3}
       propertyPath: speakerImage.Array.data[4]
       value: 
-      objectReference: {fileID: 1869197423, guid: ce85a6a8ca8e433589c5993cc6c0332e, type: 3}
+      objectReference: {fileID: -1582733417, guid: 49fd216b46ca47c78d1b60f0440ff764, type: 3}
     - target: {fileID: 3802860931932244071, guid: 13bcc75d3e460e54da257c8aecf7c8b4, type: 3}
       propertyPath: speakerImage.Array.data[5]
       value: 
-      objectReference: {fileID: -720386073, guid: ce85a6a8ca8e433589c5993cc6c0332e, type: 3}
+      objectReference: {fileID: -1226354846, guid: 49fd216b46ca47c78d1b60f0440ff764, type: 3}
     - target: {fileID: 3802860931932244071, guid: 13bcc75d3e460e54da257c8aecf7c8b4, type: 3}
       propertyPath: speakerImage.Array.data[6]
       value: 
-      objectReference: {fileID: 1869197423, guid: ce85a6a8ca8e433589c5993cc6c0332e, type: 3}
+      objectReference: {fileID: -1582733417, guid: 49fd216b46ca47c78d1b60f0440ff764, type: 3}
     - target: {fileID: 3802860931932244071, guid: 13bcc75d3e460e54da257c8aecf7c8b4, type: 3}
       propertyPath: speakerImage.Array.data[7]
       value: 
-      objectReference: {fileID: -720386073, guid: ce85a6a8ca8e433589c5993cc6c0332e, type: 3}
+      objectReference: {fileID: -1226354846, guid: 49fd216b46ca47c78d1b60f0440ff764, type: 3}
     - target: {fileID: 3802860931932244071, guid: 13bcc75d3e460e54da257c8aecf7c8b4, type: 3}
       propertyPath: speakerImage.Array.data[8]
       value: 
-      objectReference: {fileID: 1869197423, guid: ce85a6a8ca8e433589c5993cc6c0332e, type: 3}
+      objectReference: {fileID: -1582733417, guid: 49fd216b46ca47c78d1b60f0440ff764, type: 3}
     - target: {fileID: 3802860931932244071, guid: 13bcc75d3e460e54da257c8aecf7c8b4, type: 3}
       propertyPath: caracterTalking.Array.data[0]
       value: Mentor

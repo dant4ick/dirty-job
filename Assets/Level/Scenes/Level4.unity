@@ -227,33 +227,61 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 165007980}
     - target: {fileID: 3802860931932244071, guid: 13bcc75d3e460e54da257c8aecf7c8b4, type: 3}
+      propertyPath: delay
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 3802860931932244071, guid: 13bcc75d3e460e54da257c8aecf7c8b4, type: 3}
       propertyPath: inputPhrase.Array.size
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3802860931932244071, guid: 13bcc75d3e460e54da257c8aecf7c8b4, type: 3}
       propertyPath: speakerImage.Array.size
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3802860931932244071, guid: 13bcc75d3e460e54da257c8aecf7c8b4, type: 3}
       propertyPath: inputPhrase.Array.data[0]
-      value: asdasdasdasdasdasdasdasdasdasdasdasda
+      value: I've been waiting for you....
       objectReference: {fileID: 0}
     - target: {fileID: 3802860931932244071, guid: 13bcc75d3e460e54da257c8aecf7c8b4, type: 3}
       propertyPath: inputPhrase.Array.data[1]
-      value: 
+      value: What?
+      objectReference: {fileID: 0}
+    - target: {fileID: 3802860931932244071, guid: 13bcc75d3e460e54da257c8aecf7c8b4, type: 3}
+      propertyPath: inputPhrase.Array.data[2]
+      value: You must be wondering how did i know this....
+      objectReference: {fileID: 0}
+    - target: {fileID: 3802860931932244071, guid: 13bcc75d3e460e54da257c8aecf7c8b4, type: 3}
+      propertyPath: inputPhrase.Array.data[3]
+      value: I was pretty loud...
+      objectReference: {fileID: 0}
+    - target: {fileID: 3802860931932244071, guid: 13bcc75d3e460e54da257c8aecf7c8b4, type: 3}
+      propertyPath: inputPhrase.Array.data[4]
+      value: Yeah...
       objectReference: {fileID: 0}
     - target: {fileID: 3802860931932244071, guid: 13bcc75d3e460e54da257c8aecf7c8b4, type: 3}
       propertyPath: caracterTalking.Array.size
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3802860931932244071, guid: 13bcc75d3e460e54da257c8aecf7c8b4, type: 3}
       propertyPath: speakerImage.Array.data[0]
       value: 
-      objectReference: {fileID: 21300000, guid: 78e922937f318664989f82f37bd197ab, type: 3}
+      objectReference: {fileID: -756501346, guid: 49fd216b46ca47c78d1b60f0440ff764, type: 3}
     - target: {fileID: 3802860931932244071, guid: 13bcc75d3e460e54da257c8aecf7c8b4, type: 3}
       propertyPath: speakerImage.Array.data[1]
       value: 
-      objectReference: {fileID: 1962912808, guid: 1063ae9ccdab0f249b3a45b11b32a980, type: 3}
+      objectReference: {fileID: -1226354846, guid: 49fd216b46ca47c78d1b60f0440ff764, type: 3}
+    - target: {fileID: 3802860931932244071, guid: 13bcc75d3e460e54da257c8aecf7c8b4, type: 3}
+      propertyPath: speakerImage.Array.data[2]
+      value: 
+      objectReference: {fileID: -756501346, guid: 49fd216b46ca47c78d1b60f0440ff764, type: 3}
+    - target: {fileID: 3802860931932244071, guid: 13bcc75d3e460e54da257c8aecf7c8b4, type: 3}
+      propertyPath: speakerImage.Array.data[3]
+      value: 
+      objectReference: {fileID: -1226354846, guid: 49fd216b46ca47c78d1b60f0440ff764, type: 3}
+    - target: {fileID: 3802860931932244071, guid: 13bcc75d3e460e54da257c8aecf7c8b4, type: 3}
+      propertyPath: speakerImage.Array.data[4]
+      value: 
+      objectReference: {fileID: -756501346, guid: 49fd216b46ca47c78d1b60f0440ff764, type: 3}
     - target: {fileID: 3802860931932244071, guid: 13bcc75d3e460e54da257c8aecf7c8b4, type: 3}
       propertyPath: caracterTalking.Array.data[0]
       value: Boss
@@ -261,6 +289,18 @@ PrefabInstance:
     - target: {fileID: 3802860931932244071, guid: 13bcc75d3e460e54da257c8aecf7c8b4, type: 3}
       propertyPath: caracterTalking.Array.data[1]
       value: Blondie
+      objectReference: {fileID: 0}
+    - target: {fileID: 3802860931932244071, guid: 13bcc75d3e460e54da257c8aecf7c8b4, type: 3}
+      propertyPath: caracterTalking.Array.data[2]
+      value: Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 3802860931932244071, guid: 13bcc75d3e460e54da257c8aecf7c8b4, type: 3}
+      propertyPath: caracterTalking.Array.data[3]
+      value: Blondie
+      objectReference: {fileID: 0}
+    - target: {fileID: 3802860931932244071, guid: 13bcc75d3e460e54da257c8aecf7c8b4, type: 3}
+      propertyPath: caracterTalking.Array.data[4]
+      value: Boss
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13bcc75d3e460e54da257c8aecf7c8b4, type: 3}

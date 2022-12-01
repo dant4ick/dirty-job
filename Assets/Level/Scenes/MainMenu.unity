@@ -511,8 +511,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Dirty Work
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 776a2b6e59ce7be49ba918cacef9439d, type: 2}
-  m_sharedMaterial: {fileID: 6488425685082378674, guid: 776a2b6e59ce7be49ba918cacef9439d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -857,13 +857,13 @@ MonoBehaviour:
   - Okay. Wait, why can you be late, but not me?
   - You're an intern
   speakerImage:
-  - {fileID: 1512937374, guid: 95e1065a6fb64844db48e24584600035, type: 3}
-  - {fileID: 549267299, guid: 95e1065a6fb64844db48e24584600035, type: 3}
-  - {fileID: 1512937374, guid: 95e1065a6fb64844db48e24584600035, type: 3}
-  - {fileID: 549267299, guid: 95e1065a6fb64844db48e24584600035, type: 3}
-  - {fileID: 1512937374, guid: 95e1065a6fb64844db48e24584600035, type: 3}
-  - {fileID: 549267299, guid: 95e1065a6fb64844db48e24584600035, type: 3}
-  - {fileID: 1512937374, guid: 95e1065a6fb64844db48e24584600035, type: 3}
+  - {fileID: -1582733417, guid: 49fd216b46ca47c78d1b60f0440ff764, type: 3}
+  - {fileID: -1226354846, guid: 49fd216b46ca47c78d1b60f0440ff764, type: 3}
+  - {fileID: -1582733417, guid: 49fd216b46ca47c78d1b60f0440ff764, type: 3}
+  - {fileID: -1226354846, guid: 49fd216b46ca47c78d1b60f0440ff764, type: 3}
+  - {fileID: -1582733417, guid: 49fd216b46ca47c78d1b60f0440ff764, type: 3}
+  - {fileID: -1226354846, guid: 49fd216b46ca47c78d1b60f0440ff764, type: 3}
+  - {fileID: -1582733417, guid: 49fd216b46ca47c78d1b60f0440ff764, type: 3}
   caracterTalking:
   - Mentor
   - Blondie
