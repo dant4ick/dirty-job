@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spriteInInventory: {fileID: -890569039, guid: 5e69be9462d5eec438dbd3e02ad93622, type: 3}
   _name: Pistol
-  _description: 
+  _description: Haha, classic.
   _prefab: {fileID: 4384004111075575900, guid: 9f6b078dd681dc141b8352caff8aace6, type: 3}
   _enemyLayers:
     serializedVersion: 2

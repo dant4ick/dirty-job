@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4567a6041478bac449cdad877f110d4d, type: 3}
   m_Name: BrokenAmpule
   m_EditorClassIdentifier: 
-  _spriteInInventory: {fileID: 0}
+  _spriteInInventory: {fileID: 949128141, guid: 32c8196c312a6a84ab6439e465a4d976, type: 3}
   _name: BrokenAmpule
+  _description: Useless. Ugh.
   _prefab: {fileID: 3909625143405635254, guid: 9845cfdf111707749b42d50fd9b07b69, type: 3}

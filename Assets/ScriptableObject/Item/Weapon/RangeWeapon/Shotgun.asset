@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spriteInInventory: {fileID: -2055253188, guid: 5e69be9462d5eec438dbd3e02ad93622, type: 3}
   _name: Shotgun
-  _description: Now i can kill even more
+  _description: Now i can kill even more.
   _prefab: {fileID: 6805725542362686688, guid: 197c5cf29bac8d347ba0bb3586d340c7, type: 3}
   _enemyLayers:
     serializedVersion: 2

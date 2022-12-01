@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spriteInInventory: {fileID: -806273445, guid: 5e69be9462d5eec438dbd3e02ad93622, type: 3}
   _name: Sniper Rifle
-  _description: Really powerfull weapon, that can shot trough walls
+  _description: Looks sick! Now I'm a god!
   _prefab: {fileID: 8273178324466297866, guid: ddb280959e71f3b40865472789f1d1f1, type: 3}
   _enemyLayers:
     serializedVersion: 2

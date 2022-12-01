@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4567a6041478bac449cdad877f110d4d, type: 3}
   m_Name: Medkit
   m_EditorClassIdentifier: 
-  _spriteInInventory: {fileID: 21300000, guid: 6cc407197a6adbc4eab5be1b0d5cbe45, type: 3}
+  _spriteInInventory: {fileID: 1260339515, guid: 32c8196c312a6a84ab6439e465a4d976, type: 3}
   _name: Medkit
-  _description: Nice, but how to even use it?
+  _description: Nice, but how do I even use it?
   _prefab: {fileID: 1076795127529406730, guid: 304a95637df76a84ebbb465c8bbde8a0, type: 3}
