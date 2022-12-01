@@ -56,17 +56,14 @@ public class PlayerInventoryManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKey(KeyCode.Tab))
         {
-            if (inventoryScreen.activeSelf)
-            {
-                CloseInvenotory();                
-            }
-            else
-            {
-                ShowInventory();
-            }
+            inventoryScreen.SetActive(true);
         }        
+        else
+        {
+            inventoryScreen.SetActive(false);
+        }
     }
 
     private void CloseInvenotory()

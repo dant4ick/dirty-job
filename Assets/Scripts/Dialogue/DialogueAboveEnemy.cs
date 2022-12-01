@@ -1,19 +1,33 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
 public class DialogueAboveEnemy : MonoBehaviour
 {
+    [SerializeField] private GameObject dialogueCanvas;
     [SerializeField] private TMP_Text dialogueText;
-    [SerializeField] private float delay;
+    [SerializeField] private float delayBeforeNextPhrase;
+    public float delay;
+
+    public List<GameObject> nextOneToSayLine;
+    public List<string> line;
 
     public Camera mainCamera;
     public List<string> inputPhrase;
 
     private bool _check = true;
+
+    private void Start()
+    {
+        float heightOfObject = transform.parent.parent.GetComponent<Collider2D>().bounds.size.y;
+        float widthOfObject = transform.parent.parent.GetComponent<Collider2D>().bounds.size.x;
+
+        transform.parent.transform.position = new Vector2(transform.parent.parent.position.x, transform.parent.parent.position.y + heightOfObject + 0.5f);
+    }
 
     private void Update()
     {
@@ -51,14 +65,33 @@ public class DialogueAboveEnemy : MonoBehaviour
                 text.isRightToLeftText = false;
                 yield return new WaitForSeconds(delay);
             }
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(delayBeforeNextPhrase);
             text.text = null;
         }
+
+        if (nextOneToSayLine != null)
+        if (nextOneToSayLine.Count != 0)
+        {
+            GameObject nextDialogueCanvas = Instantiate(dialogueCanvas, nextOneToSayLine[0].transform);
+            Transform dialogueToSay = nextDialogueCanvas.transform.GetChild(0);
+            dialogueToSay.GetComponent<DialogueAboveEnemy>().mainCamera = Player.PlayerController.Instance.mainCamera;
+            dialogueToSay.GetComponent<DialogueAboveEnemy>().inputPhrase[0] = line[0];
+            dialogueToSay.GetComponent<DialogueAboveEnemy>().delay = 0.05f;
+
+            nextOneToSayLine.RemoveAt(0);
+            line.RemoveAt(0);
+
+            dialogueToSay.GetComponent<DialogueAboveEnemy>().nextOneToSayLine = nextOneToSayLine;
+            dialogueToSay.GetComponent<DialogueAboveEnemy>().line = line;
+        }
+
+        Destroy(transform.parent.gameObject);
     }
 
     private void ShowDialogue()
     {
         _check = false;
+
         StartCoroutine(WriteText(inputPhrase, dialogueText, delay));
     }
 }

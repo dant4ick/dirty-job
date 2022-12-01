@@ -19,9 +19,12 @@ public class DropDownMenu : MonoBehaviour
             if (itemInCurCell is Weapon)
             {
                 Weapon weaponToKillYourself = (Weapon)itemInCurCell;
-                Transform player = PlayerInventoryManager.Instance.transform;
-                Instantiate(weaponToKillYourself.ParticleSystem, player.position, player.rotation);
-                player.GetComponent<HealthManager>().TakeDamage();
+                if (weaponToKillYourself.ParticleSystem != null)
+                {                   
+                    Transform player = PlayerInventoryManager.Instance.transform;
+                    Instantiate(weaponToKillYourself.ParticleSystem, player.position, player.rotation);
+                    player.GetComponent<HealthManager>().TakeDamage();
+                }
             }
             else if (itemInCurCell.Name == "Syringe")
             {

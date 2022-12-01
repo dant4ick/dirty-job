@@ -30,6 +30,11 @@ public class AlarmManager : MonoBehaviour
         _enemyAttackManager = GetComponent<EnemyAttackManager>();
     }
 
+    public void GoToSound(Transform target)
+    {
+        this.target = target;
+    }
+
     public void HearQuietSound(Vector2 soundPosition)
     {
         if (alarmLevel == AlarmLevel.Concerned || alarmLevel == AlarmLevel.Aware || alarmLevel == AlarmLevel.Alarmed)
