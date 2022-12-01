@@ -18,6 +18,7 @@ public class HealthManager : MonoBehaviour
     private static readonly int EnemyDeath = Animator.StringToHash("Enemy_Death");
 
     [SerializeField] private AudioClip clip;
+    [SerializeField] private GameObject dialogue;
 
     public void TakeDamage()
     {
@@ -78,14 +79,24 @@ public class HealthManager : MonoBehaviour
             Destroy(gameObject.GetComponent<EnemyAttackManager>());
             //Destroy(gameObject.GetComponent<AlarmManager>());
 
+            Destroy(gameObject.GetComponent<BossAI>());
+
             for (int child = 0; child < transform.childCount; child++)
                 Destroy(transform.GetChild(0).gameObject);
+
+            if (gameOverScreen != null)
+                gameOverScreen.GameOver();
+
+            if (dialogue != null)
+                Destroy(dialogue);
+
         }
 
-        gameObject.GetComponent<Rigidbody2D>().sharedMaterial = maxFriction;
 
         hand.SetActive(false);
         gameObject.layer = LayerMask.NameToLayer("Dead");
+
+
         isAlive = false;
     }
 }

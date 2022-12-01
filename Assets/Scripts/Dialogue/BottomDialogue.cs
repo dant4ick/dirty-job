@@ -48,6 +48,9 @@ public class BottomDialogue : MonoBehaviour
             dialogueText.text = null;
         }
 
+        if (boss != null)
+            boss.transform.localScale = new Vector3(-1, boss.transform.localScale.y, boss.transform.localScale.z);
+
         this.gameObject.SetActive(false);
 
 
