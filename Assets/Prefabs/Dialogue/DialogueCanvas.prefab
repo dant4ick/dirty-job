@@ -119,7 +119,7 @@ MonoBehaviour:
   inputPhrase: []
   speakerImage: []
   caracterTalking: []
-  delay: 0.3
+  delay: 0.05
   boss: {fileID: 0}
   clipForBlondie: {fileID: 8300000, guid: 725a40e2036216945aae28bd11944b2a, type: 3}
   clipForMentor: {fileID: 8300000, guid: 6068dc44b23b31547ab39557760c51cc, type: 3}
@@ -268,8 +268,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a8b0de6ed7d76344f9fc57ea1e425bfa, type: 2}
-  m_sharedMaterial: {fileID: -5998501737252440206, guid: a8b0de6ed7d76344f9fc57ea1e425bfa, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3090142617466454bac6185de57bc57c, type: 2}
+  m_sharedMaterial: {fileID: -6240524192860071432, guid: 3090142617466454bac6185de57bc57c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -293,8 +293,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 48
+  m_fontSizeBase: 48
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

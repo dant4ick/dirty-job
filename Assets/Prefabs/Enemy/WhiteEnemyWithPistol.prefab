@@ -200,6 +200,7 @@ MonoBehaviour:
   dialogueBeforeDeath: {fileID: 0}
   animator: {fileID: 6177460689589361523}
   clip: {fileID: 8300000, guid: 83cc4b7cc6ef8eb44939fb4cd86aacab, type: 3}
+  dialogue: {fileID: 0}
 --- !u!114 &6589016010649705852
 MonoBehaviour:
   m_ObjectHideFlags: 0
