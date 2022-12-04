@@ -120,7 +120,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 5
   m_Sprite: {fileID: 1386612669, guid: 667e88aa9cc77104caac70f558a560cc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -207,6 +207,7 @@ MonoBehaviour:
   dialogueBeforeDeath: {fileID: 0}
   animator: {fileID: 2127257172212073833}
   clip: {fileID: 8300000, guid: 83cc4b7cc6ef8eb44939fb4cd86aacab, type: 3}
+  dialogue: {fileID: 0}
 --- !u!114 &-6572752518179019562
 MonoBehaviour:
   m_ObjectHideFlags: 0
