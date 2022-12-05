@@ -48,9 +48,9 @@ public class BossAI : MonoBehaviour
     [SerializeField] private PhysicsMaterial2D maxFriction;
 
     [SerializeField] private Animator animator;
-    private static readonly int EnemyIdle = Animator.StringToHash("Enemy_Idle");
+    private static readonly int EnemyIdle = Animator.StringToHash("Boss_Idle");
     private static readonly int EnemyRun = Animator.StringToHash("Enemy_Run");
-    private static readonly int EnemyIdleNoHand = Animator.StringToHash("Enemy_IdleNoHand");
+    private static readonly int EnemyIdleNoHand = Animator.StringToHash("Boss_IdleNoHand");
     private int _currentAnimation;
     public void Start()
     {

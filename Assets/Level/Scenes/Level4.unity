@@ -384,6 +384,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6177460689589361523, guid: aaabb21d50f87754d9bbc33bbe0d9add, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e55db891b4ddd1e45b0772d95253fab3, type: 2}
     - target: {fileID: 6589016010649705796, guid: aaabb21d50f87754d9bbc33bbe0d9add, type: 3}
       propertyPath: followEnabled
       value: 0
@@ -392,6 +396,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 6589016010649705849, guid: aaabb21d50f87754d9bbc33bbe0d9add, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 50773491, guid: 31577321dd62f904b82c5091103607f8, type: 3}
     - target: {fileID: 6589016010649705853, guid: aaabb21d50f87754d9bbc33bbe0d9add, type: 3}
       propertyPath: alarmLevel
       value: 3
@@ -448,6 +456,14 @@ PrefabInstance:
       propertyPath: gameOverScreen
       value: 
       objectReference: {fileID: 1033873381}
+    - target: {fileID: 6589016010940905329, guid: aaabb21d50f87754d9bbc33bbe0d9add, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 705091aa7f6ca304f8d34c49e52ba57b, type: 3}
+    - target: {fileID: 6589016010940905330, guid: aaabb21d50f87754d9bbc33bbe0d9add, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6589016010649705796, guid: aaabb21d50f87754d9bbc33bbe0d9add, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: aaabb21d50f87754d9bbc33bbe0d9add, type: 3}

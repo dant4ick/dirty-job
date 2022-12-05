@@ -125,7 +125,7 @@ TextureImporter:
         width: 64
         height: 48
       alignment: 9
-      pivot: {x: 0.390625, y: 0.5}
+      pivot: {x: 0.390625, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -146,7 +146,7 @@ TextureImporter:
         width: 64
         height: 48
       alignment: 9
-      pivot: {x: 0.390625, y: 0.5}
+      pivot: {x: 0.390625, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -167,7 +167,7 @@ TextureImporter:
         width: 64
         height: 48
       alignment: 9
-      pivot: {x: 0.390625, y: 0.5}
+      pivot: {x: 0.390625, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -188,7 +188,7 @@ TextureImporter:
         width: 64
         height: 48
       alignment: 9
-      pivot: {x: 0.390625, y: 0.5}
+      pivot: {x: 0.390625, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -209,7 +209,7 @@ TextureImporter:
         width: 64
         height: 48
       alignment: 9
-      pivot: {x: 0.390625, y: 0.5}
+      pivot: {x: 0.390625, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -230,7 +230,7 @@ TextureImporter:
         width: 64
         height: 48
       alignment: 9
-      pivot: {x: 0.390625, y: 0.5}
+      pivot: {x: 0.390625, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -251,7 +251,7 @@ TextureImporter:
         width: 64
         height: 48
       alignment: 9
-      pivot: {x: 0.390625, y: 0.5}
+      pivot: {x: 0.390625, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -272,7 +272,7 @@ TextureImporter:
         width: 64
         height: 48
       alignment: 9
-      pivot: {x: 0.390625, y: 0.5}
+      pivot: {x: 0.390625, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -293,7 +293,7 @@ TextureImporter:
         width: 64
         height: 48
       alignment: 9
-      pivot: {x: 0.390625, y: 0.5}
+      pivot: {x: 0.390625, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -314,7 +314,7 @@ TextureImporter:
         width: 64
         height: 48
       alignment: 9
-      pivot: {x: 0.390625, y: 0.5}
+      pivot: {x: 0.390625, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -335,7 +335,7 @@ TextureImporter:
         width: 64
         height: 48
       alignment: 9
-      pivot: {x: 0.390625, y: 0.5}
+      pivot: {x: 0.390625, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -356,7 +356,7 @@ TextureImporter:
         width: 64
         height: 48
       alignment: 9
-      pivot: {x: 0.390625, y: 0.5}
+      pivot: {x: 0.390625, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -377,7 +377,7 @@ TextureImporter:
         width: 64
         height: 48
       alignment: 9
-      pivot: {x: 0.390625, y: 0.5}
+      pivot: {x: 0.390625, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -398,7 +398,7 @@ TextureImporter:
         width: 64
         height: 48
       alignment: 9
-      pivot: {x: 0.390625, y: 0.5}
+      pivot: {x: 0.390625, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -419,7 +419,7 @@ TextureImporter:
         width: 64
         height: 48
       alignment: 9
-      pivot: {x: 0.390625, y: 0.5}
+      pivot: {x: 0.390625, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -442,7 +442,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      bossAnimations_Idle_2: 897942734
+      bossAnimations_IdleNoHand_3: 1404675917
       bossAnimations_Idle_0: 50773491
       bossAnimations_Death_0: -722735180
       bossAnimations_Idle_4: 1876325334
@@ -456,7 +456,7 @@ TextureImporter:
       bossAnimations_IdleNoHand_1: 260381122
       bossAnimations_IdleNoHand_2: 2101076758
       bossAnimations_Death_3: 839915188
-      bossAnimations_IdleNoHand_3: 1404675917
+      bossAnimations_Idle_2: 897942734
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
