@@ -71,8 +71,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a8b0de6ed7d76344f9fc57ea1e425bfa, type: 2}
-  m_sharedMaterial: {fileID: -5998501737252440206, guid: a8b0de6ed7d76344f9fc57ea1e425bfa, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3090142617466454bac6185de57bc57c, type: 2}
+  m_sharedMaterial: {fileID: -6240524192860071432, guid: 3090142617466454bac6185de57bc57c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -158,7 +158,6 @@ MonoBehaviour:
   line: []
   mainCamera: {fileID: 0}
   inputPhrase: []
-  clip: {fileID: 0}
 --- !u!1 &3707862205551043901
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,7 +241,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &1261671697020577848
 MonoBehaviour:
   m_ObjectHideFlags: 0

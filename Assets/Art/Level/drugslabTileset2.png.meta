@@ -155,7 +155,8 @@ TextureImporter:
       outline: []
       physicsShape:
       - - {x: -4, y: 8}
-        - {x: -8, y: 4}
+        - {x: -7, y: 5}
+        - {x: -8, y: 5}
         - {x: -8, y: -8}
         - {x: 8, y: -8}
         - {x: 8, y: 8}
@@ -171,20 +172,18 @@ TextureImporter:
       name: drugslabTileset2_2
       rect:
         serializedVersion: 2
-        x: 100
+        x: 96
         y: 96
-        width: 12
-        height: 12
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: 4, y: 4}
-        - {x: -4, y: -4}
-        - {x: -6, y: -6}
-        - {x: 6, y: -6}
-        - {x: 6, y: 6}
+      - - {x: -4, y: -8}
+        - {x: 8, y: -8}
+        - {x: 8, y: 4}
       tessellationDetail: 0
       bones: []
       spriteID: 5667adbdb6203a748b1e99da512ef5f6
@@ -232,7 +231,8 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -8, y: 5}
+      - - {x: -7, y: 5}
+        - {x: -8, y: 4}
         - {x: -8, y: -8}
         - {x: 8, y: -8}
         - {x: 8, y: 5}
@@ -275,18 +275,16 @@ TextureImporter:
         serializedVersion: 2
         x: 96
         y: 64
-        width: 12
-        height: 12
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -6, y: 6}
-        - {x: -6, y: -6}
-        - {x: 6, y: -6}
-        - {x: 4, y: -4}
-        - {x: -4, y: 4}
+      - - {x: -8, y: 4}
+        - {x: -8, y: -8}
+        - {x: 4, y: -8}
       tessellationDetail: 0
       bones: []
       spriteID: eb437567c45a1174c8f1da22a8ea0e1b
@@ -334,11 +332,12 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: 4, y: 8}
+      - - {x: 7, y: 5}
+        - {x: 4, y: 8}
         - {x: -8, y: 8}
         - {x: -8, y: -8}
         - {x: 8, y: -8}
-        - {x: 8, y: 4}
+        - {x: 8, y: 5}
       tessellationDetail: 0
       bones: []
       spriteID: ce2adcaaacf0a9f4c8a58bc152523f9f
@@ -363,7 +362,8 @@ TextureImporter:
       - - {x: -8, y: 5}
         - {x: -8, y: -8}
         - {x: 8, y: -8}
-        - {x: 8, y: 5}
+        - {x: 8, y: 4}
+        - {x: 7, y: 5}
       tessellationDetail: 0
       bones: []
       spriteID: aa800bae080fbc64d84140eb91f03f01
