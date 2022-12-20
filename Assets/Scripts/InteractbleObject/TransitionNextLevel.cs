@@ -38,6 +38,7 @@ public class TransitionNextLevel : MonoBehaviour
             {
                 _visualCue.SetActive(false);
                 PlayerInventoryManager.Instance.SaveInventoryAndEquipment();
+                SoundManager.instance.MusicSource.Stop();
                 SceneManager.LoadScene(nextLevelToLoad);
             }
     }

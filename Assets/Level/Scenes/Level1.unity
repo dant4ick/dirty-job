@@ -2096,6 +2096,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4804788563344420614, guid: 8def48a74397b414c838348feda2ebbc, type: 3}
+      propertyPath: maindialogue
+      value: 
+      objectReference: {fileID: 1397559090}
+    - target: {fileID: 4804788563344420614, guid: 8def48a74397b414c838348feda2ebbc, type: 3}
       propertyPath: gameOverScreen
       value: 
       objectReference: {fileID: 1484391914}
@@ -7704,6 +7708,11 @@ Transform:
   m_Father: {fileID: 989797305}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1397559090 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3802860931932244068, guid: 13bcc75d3e460e54da257c8aecf7c8b4, type: 3}
+  m_PrefabInstance: {fileID: 3802860932008461653}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1402322262
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17161,6 +17170,10 @@ PrefabInstance:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: f12cfb234e638f249a6a2b9025e223cd, type: 3}
+    - target: {fileID: 6073404705206336720, guid: f56268910ca022d428c0b3847a78015c, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6073404706022511395, guid: f56268910ca022d428c0b3847a78015c, type: 3}
       propertyPath: m_Volume
       value: 1

@@ -8,9 +8,12 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField] private AudioSource musicSource, effectSource;
 
+    public AudioSource MusicSource { get { return musicSource; } }
+
     void Start()
     {
         instance = this;
+        DontDestroyOnLoad(transform.gameObject);
     }
 
     public static void PlayWeaponSound(AudioClip clip)
