@@ -23,6 +23,7 @@ public class PlayerInventoryManager : MonoBehaviour
     private GameObject _meleeWeapon;
     [Header("Inventory canvas")]
     [SerializeField] private GameObject inventoryScreen;
+    [SerializeField] private GameObject inventoryCueIcon;
 
     [Header("Weapon positions")]
     [SerializeField] private Transform attackPoint;
@@ -38,6 +39,13 @@ public class PlayerInventoryManager : MonoBehaviour
         _instance = this;
         ShowInventory();
         equipment.OnWeaponListChanged += Equipment_OnWeaponListChanged;
+        StartCoroutine(LateStart(0.1f));
+    }
+
+    IEnumerator LateStart(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        UpdateEquipment();
     }
 
     private void OnDestroy()
@@ -58,10 +66,12 @@ public class PlayerInventoryManager : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Tab))
         {
+            inventoryCueIcon.SetActive(false);
             inventoryScreen.SetActive(true);
         }        
         else
         {
+            inventoryCueIcon.SetActive(true);
             inventoryScreen.SetActive(false);
         }
     }
