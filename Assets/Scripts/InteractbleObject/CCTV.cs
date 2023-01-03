@@ -7,11 +7,15 @@ public class CCTV : MonoBehaviour
     private bool _active = true;
 
     [SerializeField] private GameObject cameraMan;
+    [SerializeField] private GameObject mentor;
 
     private void Update()
     {
         if (cameraMan.layer == LayerMask.NameToLayer("Dead"))
+        {
+            mentor.GetComponent<MentorAI>().targetFollowEnabled = true;
             _active = false;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D playerCollided)

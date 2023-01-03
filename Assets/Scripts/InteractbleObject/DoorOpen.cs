@@ -19,7 +19,7 @@ public class DoorOpen : MonoBehaviour
         if (_doorOpened)
             return;
 
-        if (mortalCollided.TryGetComponent<Player.PlayerController>(out var player) || mortalCollided.TryGetComponent<EnemyAI>(out var enemy))
+        if (mortalCollided.TryGetComponent<Player.PlayerController>(out var player) || mortalCollided.TryGetComponent<EnemyAI>(out var enemy) || mortalCollided.TryGetComponent<MentorAI>(out var mentor))
         {
             SoundManager.PlayEnvironmentSound(openSound);
             _doorOpened = true;
