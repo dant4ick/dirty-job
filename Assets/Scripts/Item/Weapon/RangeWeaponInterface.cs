@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -49,6 +50,8 @@ namespace Item
 
             AlarmManager.AlarmEnemiesByLoudSound(transform, 200);
 
+            List<RaycastHit2D> hitedEnemies = new List<RaycastHit2D>();
+
             for (int bullet = 0; bullet < _rangeWeapon.NumberOfBulletsPerShot; bullet++)
             {
                 Vector2 firePointPosition = _firePoint.position;
@@ -60,39 +63,88 @@ namespace Item
                 float angleDir = Mathf.Atan2(directionToShoot.y, directionToShoot.x) + turn;
                 directionToShoot = new Vector2(Mathf.Cos(angleDir), Mathf.Sin(angleDir));
 
-                for (int penetration = 0; penetration < _rangeWeapon.Penetration; penetration++)
+                if (_rangeWeapon.Penetration > 1)
+                {
+                    for (int penetration = 0; penetration < _rangeWeapon.Penetration; penetration++)
+                    {
+                        RaycastHit2D hitInfo;
+
+                        hitInfo = Physics2D.Raycast(firePointPosition, directionToShoot, _rangeWeapon.Distance, _rangeWeapon.EnemyLayers);
+
+                        Debug.DrawRay(firePointPosition, directionToShoot, Color.black, 100f);
+
+                        if (hitInfo)
+                        {
+                            HealthManager mortal = hitInfo.transform.GetComponent<HealthManager>();
+
+                            if (mortal != null)
+                            {
+                                Vector2 hitNormal = hitInfo.normal * -1;
+
+                                Quaternion rotation = Quaternion.Euler(hitNormal.x, hitNormal.y, 0f);
+
+                                mortal.TakeDamage();
+                                mortal.TakeBleed(_rangeWeapon.ParticleSystem, hitInfo.point, rotation);
+                            }
+                        }
+                    }
+                }
+                else
                 {
                     RaycastHit2D hitInfo;
 
-                    if (_rangeWeapon.Penetration > 1)
-                    {
-                        hitInfo = Physics2D.Raycast(firePointPosition, directionToShoot, _rangeWeapon.Distance, _rangeWeapon.EnemyLayers);
-                    }
-                    else
-                    {
-                        hitInfo = Physics2D.Raycast(firePointPosition, directionToShoot, _rangeWeapon.Distance, enemyLayer);
-                    }
+                    hitInfo = Physics2D.Raycast(firePointPosition, directionToShoot, _rangeWeapon.Distance, enemyLayer);
 
                     Debug.DrawRay(firePointPosition, directionToShoot, Color.black, 100f);
 
                     if (hitInfo)
                     {
-                        HealthManager mortal = hitInfo.transform.GetComponent<HealthManager>();
-
-                        if (mortal != null)
+                        if (hitedEnemies.Count > 0)
                         {
-                            Vector2 hitNormal = hitInfo.normal * -1;
-
-                            Quaternion rotation = Quaternion.Euler(hitNormal.x, hitNormal.y, 0f);
-
-                            mortal.TakeDamage();
-                            mortal.TakeBleed(_rangeWeapon.ParticleSystem, hitInfo.point, rotation);
+                            if (!DublicationCheck(hitedEnemies, hitInfo))
+                            {
+                                hitedEnemies.Add(hitInfo);
+                            }
+                        }
+                        else
+                        {
+                            hitedEnemies.Add(hitInfo);
                         }
                     }
                 }
             }
 
+            if (_rangeWeapon.Penetration < 2)
+            {
+                foreach (RaycastHit2D hit in hitedEnemies)
+                {
+                    HealthManager mortal = hit.transform.GetComponent<HealthManager>();
+
+                    if (mortal != null)
+                    {
+                        Vector2 hitNormal = hit.normal * -1;
+
+                        Quaternion rotation = Quaternion.Euler(hitNormal.x, hitNormal.y, 0f);
+
+                        mortal.TakeDamage();
+                        mortal.TakeBleed(_rangeWeapon.ParticleSystem, hit.point, rotation);
+                    }
+                }
+            }
+
             _lastTimeAttack = Time.time;
+        }
+
+        private bool DublicationCheck (List<RaycastHit2D> hitedEnemies, RaycastHit2D hitInfo)
+        {
+            foreach(RaycastHit2D hit in hitedEnemies)
+            {
+                if (hit.rigidbody == hitInfo.rigidbody)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         private IEnumerator Reload()
