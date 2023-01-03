@@ -21,6 +21,8 @@ public class RangeWeapon : Weapon
 
     #endregion
 
+    [SerializeField] private GameObject muzzleFlash;
+
     public AudioClip SoundOnReload
     {
         get { return _soundOnReload; }
@@ -54,6 +56,11 @@ public class RangeWeapon : Weapon
     public float ReloadTime
     {
         get { return reloadTime; }
+    }
+
+    public GameObject MuzzleFlash
+    {
+        get { return muzzleFlash; }
     }
 }
 

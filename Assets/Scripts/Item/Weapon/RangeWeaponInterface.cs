@@ -132,6 +132,9 @@ namespace Item
                 }
             }
 
+            GameObject muzzleFlash = Instantiate(_rangeWeapon.MuzzleFlash, _firePoint.transform.position, _firePoint.rotation);
+            muzzleFlash.transform.localScale = _firePoint.lossyScale; 
+
             _lastTimeAttack = Time.time;
         }
 
