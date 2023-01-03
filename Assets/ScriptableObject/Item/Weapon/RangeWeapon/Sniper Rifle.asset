@@ -29,3 +29,4 @@ MonoBehaviour:
   numberOfBulletsPerShot: 1
   maxAmmo: 1
   reloadTime: 1e+18
+  muzzleFlash: {fileID: 4335889514221446353, guid: c15f9f11cb5375143a031e694cab9330, type: 3}

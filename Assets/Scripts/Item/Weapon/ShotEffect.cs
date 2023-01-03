@@ -19,7 +19,7 @@ public class ShotEffect : MonoBehaviour
     {
         animator.Play(muzzleFlashAnimation);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
 
         Destroy(gameObject);
     }
