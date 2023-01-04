@@ -104,9 +104,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: Stretchy pixels
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: 1830971629
   material: {fileID: -6240524192860071432}
-  materialHashCode: 0
+  materialHashCode: -221121235
   m_Version: 1.1.0
   m_SourceFontFileGUID: dcaf67c0a1674f27b93e4a235d05e7a1
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: dcaf67c0a1674f27b93e4a235d05e7a1, type: 3}

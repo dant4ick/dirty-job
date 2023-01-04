@@ -42,7 +42,7 @@ public class Timer : MonoBehaviour
                 foreach (GameObject enemy in enemies)
                 {
                     GameObject dialogueCanvas = Instantiate(dialogueAboveEnemy, enemy.transform);
-                    Transform dialogueToSay = dialogueCanvas.transform.GetChild(0);
+                    Transform dialogueToSay = dialogueCanvas.transform.GetChild(1);
                     dialogueToSay.GetComponent<DialogueAboveEnemy>().mainCamera = Player.PlayerController.Instance.mainCamera;
                     dialogueToSay.GetComponent<DialogueAboveEnemy>().inputPhrase.Add("Pizza time!");
                 }

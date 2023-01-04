@@ -73,7 +73,7 @@ public class DialogueAboveEnemy : MonoBehaviour
         if (nextOneToSayLine.Count != 0)
         {
             GameObject nextDialogueCanvas = Instantiate(dialogueCanvas, nextOneToSayLine[0].transform);
-            Transform dialogueToSay = nextDialogueCanvas.transform.GetChild(0);
+            Transform dialogueToSay = nextDialogueCanvas.transform.GetChild(1);
             dialogueToSay.GetComponent<DialogueAboveEnemy>().mainCamera = Player.PlayerController.Instance.mainCamera;
             dialogueToSay.GetComponent<DialogueAboveEnemy>().inputPhrase[0] = line[0];
             dialogueToSay.GetComponent<DialogueAboveEnemy>().delay = 0.05f;

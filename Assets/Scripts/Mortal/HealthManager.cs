@@ -49,9 +49,9 @@ public class HealthManager : MonoBehaviour
 
     private IEnumerator DieSlowly()
     {
-        Transform dialogueToSay = Instantiate(dialogueBeforeDeath, transform).transform.GetChild(0);
+        Transform dialogueToSay = Instantiate(dialogueBeforeDeath, transform).transform.GetChild(1);
         dialogueToSay.GetComponent<DialogueAboveEnemy>().mainCamera = transform.GetComponent<Player.PlayerController>().mainCamera;
-        dialogueToSay.GetComponent<DialogueAboveEnemy>().inputPhrase.Add("I'm feel kinda funny");        
+        dialogueToSay.GetComponent<DialogueAboveEnemy>().inputPhrase.Add("I feel kinda funny...");        
         
         yield return new WaitForSeconds(3f);
 
