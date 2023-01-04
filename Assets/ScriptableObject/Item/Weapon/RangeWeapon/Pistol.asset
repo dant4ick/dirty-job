@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb795c96ced7f5c4e8328e162170f68f, type: 3}
+  m_Name: Pistol
+  m_EditorClassIdentifier: 
+  _spriteInInventory: {fileID: -890569039, guid: 5e69be9462d5eec438dbd3e02ad93622, type: 3}
+  _name: Pistol
+  _description: Haha, classic.
+  _prefab: {fileID: 4384004111075575900, guid: 9f6b078dd681dc141b8352caff8aace6, type: 3}
+  _enemyLayers:
+    serializedVersion: 2
+    m_Bits: 13440
+  _attackRate: 1
+  _particleSystem: {fileID: 645099414429717669, guid: 3c133a55f4f25d545a68b4cfd0837ee9, type: 3}
+  _soundOnAttack: {fileID: 8300000, guid: 0c27428236d22634094423ed6cd7eb96, type: 3}
+  _soundOnReload: {fileID: 8300000, guid: 478ece71d27bd6e42bc9f932e3211373, type: 3}
+  spreadDegrees: 5
+  distance: 70
+  penetration: 1
+  numberOfBulletsPerShot: 1
+  maxAmmo: 8
+  reloadTime: 2
+  muzzleFlash: {fileID: 5107808543780010414, guid: 0970ab6205d8c064f9a5fdfe2b469e0e, type: 3}

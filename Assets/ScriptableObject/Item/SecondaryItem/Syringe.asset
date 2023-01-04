@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4567a6041478bac449cdad877f110d4d, type: 3}
+  m_Name: Syringe
+  m_EditorClassIdentifier: 
+  _spriteInInventory: {fileID: -987732223, guid: 32c8196c312a6a84ab6439e465a4d976, type: 3}
+  _name: Syringe
+  _description: Syringe from drug laboratory, COOL!
+  _prefab: {fileID: 2895769108821647054, guid: d1220f7e14a80a148b4e23ae33f5a2fe, type: 3}

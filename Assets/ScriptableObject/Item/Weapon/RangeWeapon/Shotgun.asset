@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb795c96ced7f5c4e8328e162170f68f, type: 3}
+  m_Name: Shotgun
+  m_EditorClassIdentifier: 
+  _spriteInInventory: {fileID: -2055253188, guid: 5e69be9462d5eec438dbd3e02ad93622, type: 3}
+  _name: Shotgun
+  _description: Now i can kill even more.
+  _prefab: {fileID: 6805725542362686688, guid: 197c5cf29bac8d347ba0bb3586d340c7, type: 3}
+  _enemyLayers:
+    serializedVersion: 2
+    m_Bits: 13440
+  _attackRate: 1.5
+  _particleSystem: {fileID: 645099414429717669, guid: 89932a4499633274bbde2d85c2703cb7, type: 3}
+  _soundOnAttack: {fileID: 8300000, guid: db80d7557b15a364ca9dd1a6585a993b, type: 3}
+  _soundOnReload: {fileID: 8300000, guid: d82d604064442e64eaac414008979113, type: 3}
+  spreadDegrees: 20
+  distance: 40
+  penetration: 1
+  numberOfBulletsPerShot: 8
+  maxAmmo: 2
+  reloadTime: 3
+  muzzleFlash: {fileID: 1827564300514683316, guid: b49ffacd41ac2b84db3d37791a7438ce, type: 3}

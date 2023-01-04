@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb795c96ced7f5c4e8328e162170f68f, type: 3}
+  m_Name: Empty Sniper Rifle
+  m_EditorClassIdentifier: 
+  _spriteInInventory: {fileID: -806273445, guid: 5e69be9462d5eec438dbd3e02ad93622, type: 3}
+  _name: EmptySniperRifle
+  _description: Useless.
+  _prefab: {fileID: 8273178324466297866, guid: c9a865b461a18214ea0a4a037b032e5c, type: 3}
+  _enemyLayers:
+    serializedVersion: 2
+    m_Bits: 8320
+  _attackRate: 99999
+  _particleSystem: {fileID: 0}
+  _soundOnAttack: {fileID: 0}
+  _soundOnReload: {fileID: 0}
+  spreadDegrees: 0
+  distance: 1
+  penetration: 0
+  numberOfBulletsPerShot: 0
+  maxAmmo: 0
+  reloadTime: 99999

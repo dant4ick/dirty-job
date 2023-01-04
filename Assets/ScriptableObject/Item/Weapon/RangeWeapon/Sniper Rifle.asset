@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb795c96ced7f5c4e8328e162170f68f, type: 3}
+  m_Name: Sniper Rifle
+  m_EditorClassIdentifier: 
+  _spriteInInventory: {fileID: -806273445, guid: 5e69be9462d5eec438dbd3e02ad93622, type: 3}
+  _name: Sniper Rifle
+  _description: Looks sick! Now I'm a god!
+  _prefab: {fileID: 8273178324466297866, guid: ddb280959e71f3b40865472789f1d1f1, type: 3}
+  _enemyLayers:
+    serializedVersion: 2
+    m_Bits: 8320
+  _attackRate: 0
+  _particleSystem: {fileID: 645099414429717669, guid: 6db061fe8c32bcf43a0ba358451dc6fa, type: 3}
+  _soundOnAttack: {fileID: 8300000, guid: bec988496fc47da4793eed9f64bcd951, type: 3}
+  _soundOnReload: {fileID: 0}
+  spreadDegrees: 0
+  distance: 1000
+  penetration: 100
+  numberOfBulletsPerShot: 1
+  maxAmmo: 1
+  reloadTime: 1e+18
+  muzzleFlash: {fileID: 4335889514221446353, guid: c15f9f11cb5375143a031e694cab9330, type: 3}

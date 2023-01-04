@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f910ee96ecfd2d64b8a3a4c8556177d4, type: 3}
+  m_Name: Knife
+  m_EditorClassIdentifier: 
+  _spriteInInventory: {fileID: -1423348549, guid: 4f2f2928c8b2c5a489a0bab946e27812, type: 3}
+  _name: Knife
+  _description: At least something.
+  _prefab: {fileID: 7252082141198909046, guid: 3618e235152ee8e4c876f831b3f5b5ff, type: 3}
+  _enemyLayers:
+    serializedVersion: 2
+    m_Bits: 8320
+  _attackRate: 0.25
+  _particleSystem: {fileID: 645099414429717669, guid: ce40f5a4861de2d4b8a541b81bd125c2, type: 3}
+  _soundOnAttack: {fileID: 8300000, guid: 516c8e8b3ba40854ca6b57d6e8bac0e1, type: 3}
+  _attackRange: 1
+  effects: []

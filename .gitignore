@@ -99,9 +99,6 @@ fabric.properties
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/
 
-# Asset meta data should only be ignored when the corresponding asset is also ignored
-!/[Aa]ssets/**/*.meta
-
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*
 
@@ -146,6 +143,7 @@ sysinfo.txt
 *.unitypackage
 
 # Crashlytics generated file
+crashlytics-build.properties
 
 # Packed Addressables
 /[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
@@ -162,10 +160,13 @@ sysinfo.txt
 
 # User-specific files
 *.rsuser
+*.suo
+*.user
 *.userosscache
 *.sln.docstates
 
 # User-specific files (MonoDevelop/Xamarin Studio)
+*.userprefs
 
 # Mono auto generated files
 mono_crash.*
@@ -187,6 +188,7 @@ bld/
 [Ll]ogs/
 
 # Visual Studio 2015/2017 cache/options directory
+.vs/
 # Uncomment if you have tasks that create the project's static files in wwwroot
 #wwwroot/
 
@@ -226,10 +228,10 @@ StyleCopReport.xml
 *_p.c
 *_h.h
 *.ilk
-*.meta
 *.obj
 *.iobj
 *.pch
+*.pdb
 *.ipdb
 *.pgc
 *.pgd
@@ -238,12 +240,14 @@ StyleCopReport.xml
 *.tlb
 *.tli
 *.tlh
+*.tmp
 *.tmp_proj
 *_wpftmp.csproj
 *.log
 *.vspscc
 *.vssscc
 .builds
+*.pidb
 *.svclog
 *.scc
 
@@ -254,9 +258,11 @@ _Chutzpah*
 ipch/
 *.aps
 *.ncb
+*.opendb
 *.opensdf
 *.sdf
 *.cachefile
+*.VC.db
 *.VC.VC.opendb
 
 # Visual Studio profiler

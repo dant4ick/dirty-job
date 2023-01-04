@@ -12,20 +12,20 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Enemy
+  - Item
+  - Pickup
+  - Player
+  - Platform
+  - PlayerThroughPlatform
+  - EnemyThroughPlatform
+  - Dead
+  - Door
+  - Breakable
+  - CCTV
+  - Mentor
+  - MentorThroughPlatform
+  - Furnuture
   - 
   - 
   - 
