@@ -58,7 +58,7 @@ public class DialogueSkipable : MonoBehaviour
         }
 
         this.gameObject.SetActive(false);
-
+        SoundManager.instance.MusicSource.Stop();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 

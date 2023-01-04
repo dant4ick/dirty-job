@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 6848098495280653162}
   - component: {fileID: 6289993390997306083}
   - component: {fileID: 2167897349901657674}
-  - component: {fileID: 3907836138303043357}
   - component: {fileID: 2367531794982660132}
+  - component: {fileID: 5232666478785517958}
   m_Layer: 8
   m_Name: Syringe
   m_TagString: Untagged
@@ -109,8 +109,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &3907836138303043357
-BoxCollider2D:
+--- !u!114 &2367531794982660132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2895769108821647054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d088306f7805394c8b4405924acaee7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 32439323e8fbe0449b2e220b3b9470f7, type: 2}
+  visualCuePreFab: {fileID: 6013516973862188284, guid: 72f36a85e1a5ea74cbbe4966304e7b53, type: 3}
+  firstTimePickUpCanvas: {fileID: 7897507176153783567, guid: 4fc7b14d155e61e43b70ff6b4247ae62, type: 3}
+--- !u!60 &5232666478785517958
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -132,24 +147,20 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.5625, y: 0.5}
-  m_EdgeRadius: 0
---- !u!114 &2367531794982660132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2895769108821647054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d088306f7805394c8b4405924acaee7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 32439323e8fbe0449b2e220b3b9470f7, type: 2}
-  visualCuePreFab: {fileID: 6013516973862188284, guid: 72f36a85e1a5ea74cbbe4966304e7b53, type: 3}
-  firstTimePickUpCanvas: {fileID: 7897507176153783567, guid: 4fc7b14d155e61e43b70ff6b4247ae62, type: 3}
+  m_Points:
+    m_Paths:
+    - - {x: 0.09375, y: 0.21875}
+      - {x: -0.15625, y: -0.03125}
+      - {x: -0.34375, y: -0.28125}
+      - {x: -0.34375, y: -0.34375}
+      - {x: -0.28125, y: -0.34375}
+      - {x: -0.03125, y: -0.15625}
+      - {x: 0.21875, y: 0.09375}
+      - {x: 0.34375, y: 0.15625}
+      - {x: 0.34375, y: 0.28125}
+      - {x: 0.28125, y: 0.28125}
+      - {x: 0.28125, y: 0.34375}
+      - {x: 0.15625, y: 0.34375}
 --- !u!1 &3523394425217931999
 GameObject:
   m_ObjectHideFlags: 0
