@@ -26,9 +26,9 @@ public class SoundManager : MonoBehaviour
         instance.effectSource.PlayOneShot(clip, 0.3f);
     }
 
-    public static void PlayCaracterSound(AudioClip clip)
+    public static void PlayCharacterSound(AudioClip clip)
     {
-        instance.effectSource.PlayOneShot(clip, 0.3f);
+        instance.effectSource.PlayOneShot(clip, 0.1f);
     }
 
     public static void PlayMicrowaveSound(AudioClip clip)

@@ -17,6 +17,7 @@ public class HealthManager : MonoBehaviour
 
     [SerializeField] private Animator animator;
     private static readonly int EnemyDeath = Animator.StringToHash("Enemy_Death");
+    private static readonly int BossDeath = Animator.StringToHash("Boss_Death");
 
     [SerializeField] private AudioClip clip;
     [SerializeField] private GameObject dialogue;
@@ -24,6 +25,7 @@ public class HealthManager : MonoBehaviour
     [SerializeField] private GameObject mainDialogue;
 
     [SerializeField] private GameObject activeCamera;
+    [SerializeField] private GameObject inventory;
 
     [SerializeField] private GameObject player;
 
@@ -65,7 +67,7 @@ public class HealthManager : MonoBehaviour
 
     private void Die()
     {
-        SoundManager.PlayCaracterSound(clip);
+        SoundManager.PlayCharacterSound(clip);
 
         if (gameObject.layer == LayerMask.NameToLayer("Player") || gameObject.layer == LayerMask.NameToLayer("Dead"))
         {
@@ -81,6 +83,7 @@ public class HealthManager : MonoBehaviour
             else
             {
                 activeCamera.SetActive(false);
+                inventory.SetActive(false);
             }
         }
         else
@@ -105,8 +108,11 @@ public class HealthManager : MonoBehaviour
                 Destroy(player.GetComponent<Player.PlayerController>());
                 Destroy(player.GetComponent<PlayerAttackManager>());
                 Destroy(player.GetComponent<PlayerInventoryManager>());
+                
+                animator.Play(BossDeath);
 
                 activeCamera.SetActive(false);
+                inventory.SetActive(false);
             }
 
             if (dialogue != null)

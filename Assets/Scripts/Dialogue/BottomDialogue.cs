@@ -35,11 +35,11 @@ public class BottomDialogue : MonoBehaviour
             for (int character = 0; character < inputPhrase[phrase].Length; character++)
             {
                 if (caracterTalking[phrase] == "Mentor")
-                    SoundManager.PlayEnvironmentSound(clipForMentor);
+                    SoundManager.PlayCharacterSound(clipForMentor);
                 else if (caracterTalking[phrase] == "Blondie")
-                    SoundManager.PlayEnvironmentSound(clipForBlondie);
+                    SoundManager.PlayCharacterSound(clipForBlondie);
                 else if (caracterTalking[phrase] == "Boss")
-                    SoundManager.PlayEnvironmentSound(clipForBoss);
+                    SoundManager.PlayCharacterSound(clipForBoss);
 
                 dialogueText.text += inputPhrase[phrase][character];
                 yield return new WaitForSeconds(delay);

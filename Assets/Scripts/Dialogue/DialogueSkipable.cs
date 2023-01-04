@@ -43,9 +43,9 @@ public class DialogueSkipable : MonoBehaviour
                     break;
 
                 if (caracterTalking[phrase] == "Mentor")
-                    SoundManager.PlayEnvironmentSound(clipForMentor);
+                    SoundManager.PlayCharacterSound(clipForMentor);
                 else if (caracterTalking[phrase] == "Blondie")
-                    SoundManager.PlayEnvironmentSound(clipForBlondie);
+                    SoundManager.PlayCharacterSound(clipForBlondie);
 
                 dialogueText.text += inputPhrase[phrase][character];
                 yield return new WaitForSeconds(delay);
