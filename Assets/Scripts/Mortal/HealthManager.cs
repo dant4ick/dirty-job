@@ -20,7 +20,7 @@ public class HealthManager : MonoBehaviour
     [SerializeField] private AudioClip clip;
     [SerializeField] private GameObject dialogue;
 
-    [SerializeField] private GameObject maindialogue;
+    [SerializeField] private GameObject mainDialogue;
 
     public void TakeDamage()
     {
@@ -64,7 +64,7 @@ public class HealthManager : MonoBehaviour
 
         if (gameObject.layer == LayerMask.NameToLayer("Player") || gameObject.layer == LayerMask.NameToLayer("Dead"))
         {
-            Destroy(maindialogue);
+            Destroy(mainDialogue);
             SoundManager.instance.MusicSource.Stop();
             Destroy(gameObject.GetComponent<Player.PlayerController>());
             Destroy(gameObject.GetComponent<PlayerAttackManager>());
