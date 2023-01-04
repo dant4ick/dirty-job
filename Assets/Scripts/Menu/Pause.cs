@@ -24,6 +24,7 @@ public class Pause : MonoBehaviour
     public void RestartButtonClick()
     {
         Time.timeScale = 1;
+        SoundManager.instance.MusicSource.Stop();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

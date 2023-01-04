@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HealthManager : MonoBehaviour
 {
@@ -21,6 +22,10 @@ public class HealthManager : MonoBehaviour
     [SerializeField] private GameObject dialogue;
 
     [SerializeField] private GameObject mainDialogue;
+
+    [SerializeField] private GameObject activeCamera;
+
+    [SerializeField] private GameObject player;
 
     public void TakeDamage()
     {
@@ -69,7 +74,14 @@ public class HealthManager : MonoBehaviour
             Destroy(gameObject.GetComponent<Player.PlayerController>());
             Destroy(gameObject.GetComponent<PlayerAttackManager>());
             Destroy(gameObject.GetComponent<PlayerInventoryManager>());
-            gameOverScreen.GameOver();
+            if (SceneManager.GetActiveScene().name != "Level4")
+            {
+                gameOverScreen.GameOver();                
+            }
+            else
+            {
+                activeCamera.SetActive(false);
+            }
         }
         else
         {
@@ -88,8 +100,14 @@ public class HealthManager : MonoBehaviour
             for (int child = 0; child < transform.childCount; child++)
                 Destroy(transform.GetChild(0).gameObject);
 
-            if (gameOverScreen != null)
-                gameOverScreen.GameOver();
+            if (activeCamera != null)
+            {
+                Destroy(player.GetComponent<Player.PlayerController>());
+                Destroy(player.GetComponent<PlayerAttackManager>());
+                Destroy(player.GetComponent<PlayerInventoryManager>());
+
+                activeCamera.SetActive(false);
+            }
 
             if (dialogue != null)
                 Destroy(dialogue);

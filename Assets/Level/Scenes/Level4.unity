@@ -583,6 +583,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4804788563344420614, guid: 8def48a74397b414c838348feda2ebbc, type: 3}
+      propertyPath: activeCamera
+      value: 
+      objectReference: {fileID: 1575216735}
+    - target: {fileID: 4804788563344420614, guid: 8def48a74397b414c838348feda2ebbc, type: 3}
       propertyPath: gameOverScreen
       value: 
       objectReference: {fileID: 1033873381}
@@ -672,9 +676,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6589016010649705855, guid: aaabb21d50f87754d9bbc33bbe0d9add, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1848398847}
+    - target: {fileID: 6589016010649705855, guid: aaabb21d50f87754d9bbc33bbe0d9add, type: 3}
       propertyPath: dialogue
       value: 
       objectReference: {fileID: 972280816}
+    - target: {fileID: 6589016010649705855, guid: aaabb21d50f87754d9bbc33bbe0d9add, type: 3}
+      propertyPath: activeCamera
+      value: 
+      objectReference: {fileID: 1575216735}
     - target: {fileID: 6589016010649705855, guid: aaabb21d50f87754d9bbc33bbe0d9add, type: 3}
       propertyPath: gameOverScreen
       value: 
@@ -3271,6 +3283,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23920814f07414041bccbf5c1d8df146, type: 3}
+--- !u!1 &1848398847 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 322673701078942236, guid: 8def48a74397b414c838348feda2ebbc, type: 3}
+  m_PrefabInstance: {fileID: 158017492}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1932940773
 GameObject:
   m_ObjectHideFlags: 0
